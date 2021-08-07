@@ -21,7 +21,7 @@ const TheHeaderDropdown = (props) => {
    if(userDetail){
      setUser(userDetail); 
    } else {
-    window.location.href="/#/login";
+    // window.location.href="/#/home";
    }  
   } , [props.userDetail])
 

@@ -44,8 +44,10 @@ const Enquiry = React.lazy(() => import("./views/enquiry/enquiry"));
 const Cmss = React.lazy(() => import("./views/cmss/cmsList"));
 const CmsForm = React.lazy(() => import("./views/cmss/cmsForm"));
 const EmailTemplate = React.lazy(() => import("./views/emailTemplate/emailTemplate"));
+const HomePage = React.lazy(() => import('./views/pages/home/index'));
+
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
+  { path: '/', exact: true, name: 'Home', component : HomePage },
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   

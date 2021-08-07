@@ -55,7 +55,7 @@ const _nav =  [
   {
     _tag: 'CSidebarNavItem',
     name: 'Cmss',
-    to: '/cms',
+    to: '/home/cms',
     icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
     // badge: {
     //   color: 'info',

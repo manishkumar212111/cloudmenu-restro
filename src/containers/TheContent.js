@@ -14,8 +14,8 @@ const loading = (
     <div className="sk-spinner sk-spinner-pulse"></div>
   </div>
 )
-
 const TheContent = () => {
+  console.log("In content")
   return (
     <main className="c-main">
       <CContainer fluid>
@@ -35,7 +35,7 @@ const TheContent = () => {
                   )} />
               )
             })}
-            <Redirect from="/" to="/dashboard" />
+            <Redirect from="/home" to="/dashboard" />
           </Switch>
         </Suspense>
       </CContainer>

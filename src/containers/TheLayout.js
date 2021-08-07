@@ -1,4 +1,6 @@
 import React from 'react'
+import Footer from './Footer'
+import Header from './Header'
 import {
   TheContent,
   TheSidebar,
@@ -9,16 +11,22 @@ import {
 const TheLayout = () => {
 
   return (
-    <div className="c-app c-default-layout">
-      <TheSidebar/>
-      <div className="c-wrapper">
-        <TheHeader/>
-        <div className="c-body">
-          <TheContent/>
-        </div>
-        <TheFooter/>
-      </div>
-    </div>
+    <>
+    <Header />
+    
+    <TheContent />
+    <Footer />
+    </>
+    // <div className="c-app c-default-layout">
+    //   <TheSidebar/>
+    //   <div className="c-wrapper">
+    //     <TheHeader/>
+    //     <div className="c-body">
+    //       <TheContent/>
+    //     </div>
+    //     <TheFooter/>
+    //   </div>
+    // </div>
   )
 }
 
