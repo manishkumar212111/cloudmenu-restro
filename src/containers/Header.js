@@ -23,7 +23,7 @@ const Header = () => {
       
             <div class="logo mr-auto">
               {/* <!-- <h1 class="text-light"><a href="index.html"><span>Ninestars</span></a></h1> --> */}
-              <a href="index.html"><img src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" class="img-fluid" /></a>
+              <a href="/"><img src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" class="img-fluid" /></a>
             </div>
       
             <nav class="nav-menu d-none d-lg-block">
@@ -34,7 +34,7 @@ const Header = () => {
                 <li><a href="faq.html">FAQ's</a></li>
                 <li><a href="#benifits">Benifits</a></li>
       
-                <li class="get-started"><a href="login.html">login</a></li>
+                <li class="get-started"><a href="/#/login">login</a></li>
               </ul>
             </nav>
           </div>

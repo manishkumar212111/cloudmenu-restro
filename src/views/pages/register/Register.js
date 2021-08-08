@@ -1,80 +1,113 @@
-import React from 'react'
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCol,
-  CContainer,
-  CForm,
-  CInput,
-  CInputGroup,
-  CInputGroupPrepend,
-  CInputGroupText,
-  CRow
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
+import React , { useEffect , useState} from 'react'
+import validateUtility from "../../../utils/ValidateUtility"
+import { connect } from 'react-redux';
+import { registerUser } from "../../../actions/auth"
+import { CSpinner } from '@coreui/react';
+const Register = (props) => {
 
-const Register = () => {
+  const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
+  const [errorObj , setErrorObj] = useState({ name : { error : true , msg : "Please enter valid email" } , 
+                                              password : { error : true , msg : "Please enter min 8 chars and min one letter and min one char" },
+                                              mobile : { error : true , msg : "Please enter valid mobile number" }
+                                           })
+  const validateField = (key , value) => {
+      value = value ? value : fieldobj[key] 
+      switch(key) {
+          case "name":
+              return  validateUtility.required(value)
+          case "mobile" :
+              return  validateUtility.mobile(value)
+          case "password" :
+              // console.log(validateUtility.required(value) && validateUtility.minLength(value , 8) , value) && (!value.match(/\d/) || !value.match(/[a-zA-Z]/));
+              return  validateUtility.required(value) && /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value);
+          default :
+              return true;
+      }
+  }
+
+  useEffect(() => {
+    console.log(props.userDetail);
+  }, [props.userDetail]);
+  const handleChange = (e) => {
+      let field = fieldobj;
+      field[e.target.name] = e.target.value;
+      setFieldObj(fieldOb => ({...fieldOb , ...field}))
+
+      let errOb = errorObj;
+      errOb[e.target.name].error = validateField(e.target.name);
+
+      setErrorObj( errorOb => ( { ...errorOb , errOb}))
+  }
+  
+  const handleClick = () => {
+      let requiredObj = ['name', 'mobile' , 'password'];
+      let errOb = errorObj;
+
+      let status = true;
+      requiredObj.forEach(element => {
+          let errorStatus = validateField(element);
+          errOb[element].error = errorStatus;
+          status = status && errorStatus;
+      })
+      setErrorObj( errorOb => ( { ...errorOb , errOb}))
+      if(!status)
+          return;
+      
+      console.log(fieldobj);  
+      props.registerUser(fieldobj)  
+
+  }
+
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
-      <CContainer>
-        <CRow className="justify-content-center">
-          <CCol md="9" lg="7" xl="6">
-            <CCard className="mx-4">
-              <CCardBody className="p-4">
-                <CForm>
-                  <h1>Register</h1>
-                  <p className="text-muted">Create your account</p>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-user" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Username" autoComplete="username" />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>@</CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="text" placeholder="Email" autoComplete="email" />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-lock-locked" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Password" autoComplete="new-password" />
-                  </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    <CInputGroupPrepend>
-                      <CInputGroupText>
-                        <CIcon name="cil-lock-locked" />
-                      </CInputGroupText>
-                    </CInputGroupPrepend>
-                    <CInput type="password" placeholder="Repeat password" autoComplete="new-password" />
-                  </CInputGroup>
-                  <CButton color="success" block>Create Account</CButton>
-                </CForm>
-              </CCardBody>
-              <CCardFooter className="p-4">
-                <CRow>
-                  <CCol xs="12" sm="6">
-                    <CButton className="btn-facebook mb-1" block><span>facebook</span></CButton>
-                  </CCol>
-                  <CCol xs="12" sm="6">
-                    <CButton className="btn-twitter mb-1" block><span>twitter</span></CButton>
-                  </CCol>
-                </CRow>
-              </CCardFooter>
-            </CCard>
-          </CCol>
-        </CRow>
-      </CContainer>
+    <div className="form-page">
+      <section className="main-form-wrapper">
+        <div className="container-fluid">
+          <div className="form-inner">
+            <div className="form-logo">
+              <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
+            </div>
+            <form>
+              {props.userDetail && props.userDetail.user && !props.userDetail.user.status ? <p>Your registration request is sent to admin for approval, once approved you can login to your account</p> :
+              <div className="main-form">
+                <h5>Register Yourself</h5>
+                  <div className="row">
+                    <div className="col-md-12 form-group mb-4">
+                      <input placeholder="Your Name" type="text" className="form-input" name="name" value={fieldobj.name} onChange={(e) => handleChange(e)}/>
+                      <span className="error">{!errorObj.name.error && errorObj.name.msg}</span>
+                    </div>
+                    <div className="col-4 col-md-4 form-group mb-4">
+                      <div className="custom-selected">
+                        <select className="form-input" name="ccode" value={fieldobj.ccode} onChange={(e) => handleChange(e)}>
+                          <option value="971">+971</option>
+                          <option value="91">+91</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-8 col-md-8 form-group mb-4">
+                      <input type="text" placeholder="Phone Number"  data-vu-type="number" onKeyPress={(e) => validateUtility.stopDefault(e)} className="form-input" name="mobile" value={fieldobj.mobile} onChange={(e) => handleChange(e)} />
+                      <span className="error">{!errorObj.mobile.error && errorObj.mobile.msg}</span>
+                    </div>
+                    <div className="col-md-12 form-group mb-2">
+                      <input placeholder="Password" type="password" className="form-input" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} />
+                      <span className="error">{!errorObj.password.error && errorObj.password.msg}</span>
+                    </div>
+                  </div>
+                  <div className="connect-btn mt-4">
+                    {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>REGISTER</button>}
+                  </div>
+                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="login.html">Login</a></p>
+              </div> }
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
 
-export default Register
+const mapStateToProps = state => ({
+  userDetail: state.auth.userDetail,
+  registerLoading: state.auth.registerLoading
+});
+
+export default connect( mapStateToProps , { registerUser } )( Register );

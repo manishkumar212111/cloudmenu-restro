@@ -3,7 +3,9 @@ import API from "../API"
 
 export const loginUser = ( data ) => dispatch =>{
   try{
-
+    dispatch( { type: "LOGIN_LOADING",
+      data : true
+    });
     API.post('Login' , data, '' , function(res){
       
       if(res && res.data.user){
@@ -14,6 +16,10 @@ export const loginUser = ( data ) => dispatch =>{
             console.log(res.data.message , "hghgh");
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
+
+        dispatch( { type: "LOGIN_LOADING",
+          data : false
+        });
     })
     
   } catch (err) {
@@ -58,26 +64,32 @@ export const logout = ( data ) => dispatch =>{
 //   }
 // }
 
-// export const registerUser = ( data ) => dispatch =>{
-//   try{
-
-//     API.post('Register' , data, '' , function(res){
+export const registerUser = ( data ) => dispatch =>{
+  try{
+    dispatch( { type: "REGISTER_LOADING",
+      data : true
+    });
+    API.post('Register' , data, '' , function(res){
       
-//       if(res && res.data.user){
-//           dispatch( { type: "REGISTER_USER",
-//             data : res.data
-//           });
-//         } else {
-//             //console.log(res.data.message);
-//             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
-//         }
-//     })
+      if(res && res.data.user){
+          dispatch( { type: "REGISTER_USER",
+            data : res.data
+          });
+        } else {
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
+        }
+
+        dispatch( { type: "REGISTER_LOADING",
+          data : false
+        });
+    })
     
-//   } catch (err) {
-//     console.log(err)
-//     console.log(err)
-//   }
-// }
+  } catch (err) {
+    console.log(err)
+    console.log(err)
+  }
+}
 
 
 export const sendResetLink = ( data ) => dispatch => {
