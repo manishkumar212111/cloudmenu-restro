@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './views/pages/login/Login';
+import Plan from './views/pages/Plan';
 import Register from './views/pages/register/Register';
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
@@ -52,7 +53,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home', component : HomePage },
   { path: '/register', exact: true, name: "Register Page", component : Register},
   { path: '/login', exact: true, name: "Login Page", component : Login},
-  
+  { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   
   

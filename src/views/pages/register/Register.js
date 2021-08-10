@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { registerUser } from "../../../actions/auth"
 import { CSpinner } from '@coreui/react';
 const Register = (props) => {
-
+  console.log(props);
+  const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
   const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
   const [errorObj , setErrorObj] = useState({ name : { error : true , msg : "Please enter valid email" } , 
                                               password : { error : true , msg : "Please enter min 8 chars and min one letter and min one char" },
@@ -54,7 +55,7 @@ const Register = (props) => {
           return;
       
       console.log(fieldobj);  
-      props.registerUser(fieldobj)  
+      props.registerUser({...fieldobj, planName : planName})  
 
   }
 
@@ -64,12 +65,12 @@ const Register = (props) => {
         <div className="container-fluid">
           <div className="form-inner">
             <div className="form-logo">
-              <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
+            {props.userDetail && props.userDetail.user && !props.userDetail.user.status ? "" : <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />}
             </div>
             <form>
               {props.userDetail && props.userDetail.user && !props.userDetail.user.status ? <p>Your registration request is sent to admin for approval, once approved you can login to your account</p> :
               <div className="main-form">
-                <h5>Register Yourself</h5>
+                <h5>Register Yourself ({planName})</h5> 
                   <div className="row">
                     <div className="col-md-12 form-group mb-4">
                       <input placeholder="Your Name" type="text" className="form-input" name="name" value={fieldobj.name} onChange={(e) => handleChange(e)}/>
