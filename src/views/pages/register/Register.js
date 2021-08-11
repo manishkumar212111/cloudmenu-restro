@@ -8,7 +8,7 @@ const Register = (props) => {
   const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
   const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
   const [errorObj , setErrorObj] = useState({ name : { error : true , msg : "Please enter valid email" } , 
-                                              password : { error : true , msg : "Please enter min 8 chars and min one letter and min one char" },
+                                              password : { error : true , msg : "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character" },
                                               mobile : { error : true , msg : "Please enter valid mobile number" }
                                            })
   const validateField = (key , value) => {
@@ -20,7 +20,7 @@ const Register = (props) => {
               return  validateUtility.mobile(value)
           case "password" :
               // console.log(validateUtility.required(value) && validateUtility.minLength(value , 8) , value) && (!value.match(/\d/) || !value.match(/[a-zA-Z]/));
-              return  validateUtility.required(value) && /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value);
+              return  validateUtility.required(value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
           default :
               return true;
       }
@@ -60,15 +60,31 @@ const Register = (props) => {
   }
 
   return (
+
+  (props.userDetail && props.userDetail.user && !props.userDetail.user.status) ? <div class="form-page">
+    <section class="main-form-wrapper">
+      <div class="container-fluid">
+        <div class="form-inner">
+          <div class="form-logo">
+            <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
+          </div>
+          <div class="main-form thank-you-page">
+            <img src="https://ik.imagekit.io/lcq5etn9k/restro/tick_bHZRtBg2f1.png?updatedAt=1628352123585" class="img-fluid mb-5" alt="" />
+            <h3>THANK YOU !</h3>
+            <p>for your registration, your account will be activated in less than 24 hours</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div> :
     <div className="form-page">
       <section className="main-form-wrapper">
         <div className="container-fluid">
           <div className="form-inner">
             <div className="form-logo">
-            {props.userDetail && props.userDetail.user && !props.userDetail.user.status ? "" : <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />}
+             <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
             </div>
             <form>
-              {props.userDetail && props.userDetail.user && !props.userDetail.user.status ? <p>Your registration request is sent to admin for approval, once approved you can login to your account</p> :
               <div className="main-form">
                 <h5>Register Yourself ({planName})</h5> 
                   <div className="row">
@@ -97,7 +113,7 @@ const Register = (props) => {
                     {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>REGISTER</button>}
                   </div>
                   <p className="login-bot mt-4 mb-0">Already have an account? <a href="login.html">Login</a></p>
-              </div> }
+              </div>
             </form>
           </div>
         </div>

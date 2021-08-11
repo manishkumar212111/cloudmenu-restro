@@ -35,10 +35,10 @@ const Header = (props) => {
       
             <nav class="nav-menu d-none d-lg-block">
               <ul>
-                <li class="active"><a href="index.html">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="#how-it-works-section">How It Works</a></li>
                 <li><a href="/#/pricing">Pricing</a></li>
-                <li><a href="faq.html">FAQ's</a></li>
+                <li><a href="/#/faqs">FAQ's</a></li>
                 <li><a href="#benifits">Benifits</a></li>
       
                 {user && user.name ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}

@@ -72,7 +72,7 @@ const Login = (props) => {
                     <input placeholder="Password" type="password" class="form-input"  value={password} onChange={(e) => setPassword(e.target.value)} />
                   </div>
                   <div class="col-md-12">
-                    <a href="forgot-password.html" class="forgot-link">forgot password ?</a>
+                    <a href="/#/forget-password" class="forgot-link">forgot password ?</a>
                   </div>
                 </div>
                 <div class="connect-btn mt-4">

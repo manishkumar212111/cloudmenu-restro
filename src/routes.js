@@ -1,7 +1,10 @@
 import React from 'react';
+import FAQ from './views/pages/Faq';
+import ForgotPassword from './views/pages/ForgotPassword';
 import Login from './views/pages/login/Login';
 import Plan from './views/pages/Plan';
 import Register from './views/pages/register/Register';
+import ResetPassword from './views/pages/ResetPassword';
 
 const Toaster = React.lazy(() => import('./views/notifications/toaster/Toaster'));
 const Tables = React.lazy(() => import('./views/base/tables/Tables'));
@@ -53,10 +56,12 @@ const routes = [
   { path: '/', exact: true, name: 'Home', component : HomePage },
   { path: '/register', exact: true, name: "Register Page", component : Register},
   { path: '/login', exact: true, name: "Login Page", component : Login},
+  { path: '/forget-password', exact: true, name: "Forget Password", component : ForgotPassword},
+  { path: '/reset-password/:token', exact: true, name: "Reset Password", component : ResetPassword},
   { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
+  { path: '/faqs', exact: true, name: "FAQs", component : FAQ},
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  
-  
+
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
