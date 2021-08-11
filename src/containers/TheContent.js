@@ -18,7 +18,7 @@ const TheContent = () => {
   console.log("In content")
   return (
     <main className="c-main">
-      <CContainer fluid>
+      {/* <CContainer fluid> */}
         <Suspense fallback={loading}>
           <Switch>
             {routes.map((route, idx) => {
@@ -38,7 +38,7 @@ const TheContent = () => {
             <Redirect from="/home" to="/dashboard" />
           </Switch>
         </Suspense>
-      </CContainer>
+      {/* </CContainer> */}
     </main>
   )
 }
