@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import validateUtility from "../../utils/ValidateUtility";
-import CKEditor from "ckeditor4-react";
+// import CKEditor from "ckeditor4-react";
 
 
 import { create , GetCmsById , UpdateCmsById} from "../../actions/cms";
@@ -161,7 +161,7 @@ const CmsForm = (props) => {
               </CFormGroup>
               <CFormGroup>
                 <CLabel htmlFor="description">Cms description *</CLabel>
-                <CKEditor
+                {/* <CKEditor
                     data={fieldObj.description ? fieldObj.description.replaceAll('&lt;','<') : "Write description here"}
                     config={{
                       height: 200,
@@ -204,7 +204,7 @@ const CmsForm = (props) => {
                     } }
                     onBeforeLoad={ ( CKEDITOR ) => ( CKEDITOR.disableAutoInline = true ) }
 
-                />
+                /> */}
                 {!errorObj.description.error && <CFormText className="help-block">{errorObj.description.msg}</CFormText>}
               
               </CFormGroup>
