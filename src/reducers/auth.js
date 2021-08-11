@@ -1,6 +1,6 @@
 
 const initialState = {
-    userDetail: [],
+    userDetail: false,
   };
   
   export default function(state = initialState, action) {

@@ -1,11 +1,18 @@
-import React , {useEffect} from 'react';
+import React , {useEffect, useState} from 'react';
+import {connect } from 'react-redux';
 
-const Header = () => {
-
+const Header = (props) => {
+    const [user , setUser] = useState({});
+    useEffect(() => {
+      if(typeof localStorage !== 'undefined' && localStorage.getItem('userDetail')){
+        setUser(JSON.parse(localStorage.getItem('userDetail')).user) 
+      }
+    }, [props.userDetail])
     useEffect(() => {
       window.addEventListener('scroll', handleScroll);
 
     }, [])
+
     const handleScroll = (e) => {
         let elem = document.querySelector("#header");
         if((document.getElementById('root') && document.getElementById('root').getBoundingClientRect().top) < -55){
@@ -34,7 +41,7 @@ const Header = () => {
                 <li><a href="faq.html">FAQ's</a></li>
                 <li><a href="#benifits">Benifits</a></li>
       
-                <li class="get-started"><a href="/#/login">login</a></li>
+                {user && user.name ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
               </ul>
             </nav>
           </div>
@@ -42,4 +49,12 @@ const Header = () => {
     )
 };
 
-export default Header;
+const mapStateToProps = ( state ) => ( {
+  userDetail: state.user.userDetail || state.auth.userDetail
+} );
+
+const mapDispatchToProps = {
+  // auth,
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( Header );

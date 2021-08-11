@@ -29,7 +29,7 @@ const Login = (props) => {
   useEffect(() => {
     if(props.userDetail && props.userDetail.user){
         typeof localStorage !== 'undefined' &&  localStorage.setItem('userDetail', JSON.stringify(props.userDetail))
-        // window.location.href = '/';
+        window.location.href = '/';
       }
       
   }, [props.userDetail])
