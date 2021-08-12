@@ -19,10 +19,10 @@ const Index = () => {
                   <p>Your customers can order from their table by <br></br>simply scanning a QR code</p>
                   <div className="banner-btn mt-4">
                     <div className="connect-btn mb-4 mb-md-0">
-                      <a className="trans-btn" href="pricing.html">Try it for free</a>
+                      <a className="trans-btn" href="/#/pricing">Try it for free</a>
                     </div>
                     <div className="trans-button ml-0 ml-md-4">
-                      <a className="trans-btn" href="pricing.html">View Plans</a>
+                      <a className="trans-btn" href="/#/pricing">View Plans</a>
                     </div>
                   </div>
                 </div>

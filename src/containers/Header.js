@@ -1,5 +1,6 @@
 import React , {useEffect, useState} from 'react';
 import {connect } from 'react-redux';
+import { HashLink } from 'react-router-hash-link';
 
 const Header = (props) => {
     const [user , setUser] = useState({});
@@ -36,10 +37,10 @@ const Header = (props) => {
             <nav class="nav-menu d-none d-lg-block">
               <ul>
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="#how-it-works-section">How It Works</a></li>
+                <li><HashLink to="#how-it-works-section">How It Works</HashLink></li>
                 <li><a href="/#/pricing">Pricing</a></li>
                 <li><a href="/#/faqs">FAQ's</a></li>
-                <li><a href="#benifits">Benifits</a></li>
+                <li><HashLink to="#benifits">Benifits</HashLink></li>
       
                 {user && user.name ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
               </ul>
