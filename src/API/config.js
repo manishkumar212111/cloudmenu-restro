@@ -1,5 +1,5 @@
-// const BASE_URL = 'http://localhost:5000/';
-const BASE_URL = 'https://afternoon-mesa-99102.herokuapp.com/';
+const BASE_URL = 'http://localhost:5000/';
+// const BASE_URL = 'https://afternoon-mesa-99102.herokuapp.com/';
 const IMAGE_URL = "https://ik.imagekit.io/i2wp0fsg8dx/";
 
 const getImageURL = (imgName) => IMAGE_URL.concat(imgName);
@@ -54,7 +54,7 @@ const EndPoints = {
         url: 'api/transaction',
     },
     Enquiry: {
-        url: 'api/enquiry',
+        url: 'api/common/enquiry',
     },
     Home : {
         url : "api/common/dashboard"

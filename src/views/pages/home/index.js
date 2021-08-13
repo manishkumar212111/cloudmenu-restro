@@ -1,4 +1,5 @@
 import React from 'react';
+import Contact from 'src/views/components/contact';
 
 const steps = [
   {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
@@ -253,33 +254,7 @@ const Index = () => {
                     <p>+966-123456789</p>
                   </div>
                 </div>
-                <div className="col-lg-7 col-md-6">
-                  <div className="connect-form-wrapper">
-                    <h5>Write To Us</h5>
-                    <form action="">
-                      <div className="row">
-                        <div className="col-md-6 form-group mb-4">
-                          <input placeholder="Full Name" type="text" className="form-input" />
-                        </div>
-                        <div className="col-md-6 form-group mb-4">
-                          <input placeholder="Email Id" type="email" className="form-input" />
-                        </div>
-                        <div className="col-md-6 form-group mb-4">
-                          <input placeholder="Phone Number" type="tel" className="form-input" />
-                        </div>
-                        <div className="col-md-6 form-group mb-4">
-                          <input placeholder="Subject" type="text" className="form-input" /> 
-                        </div>
-                        <div className="col-md-12 form-group">
-                          <textarea placeholder="Your Message" className="form-input" name="" id="" cols="30" rows="5"></textarea>
-                        </div>
-                      </div>
-                      <div className="connect-btn">
-                        <a className="trans-btn" href="#">Send</a>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+                <Contact />
               </div>
             </div>
           </section>

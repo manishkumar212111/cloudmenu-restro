@@ -9,6 +9,7 @@ import transaction from "./transaction";
 import enquiry from "./enquiry";
 import cms from "./cms";
 import emailTemplate from "./emailTemplate"
+import contact from "./contact"
 
 
 
@@ -35,7 +36,8 @@ const appReducers = combineReducers({
     transaction,
     enquiry,
     cms,
-    emailTemplate
+    emailTemplate,
+    contact
 });
 
 const rootReducer = (state, action) => {
