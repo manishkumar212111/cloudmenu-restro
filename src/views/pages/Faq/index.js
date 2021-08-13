@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Contact from 'src/views/components/contact';
 const Faqs = [
     { question : "Can I use the domain of my restaurant ?" , answer: "What can you link the domain of your restaurant with us? If you do not have a domain of your own, do not be afraid, we can arrange one for you."},
     { question : "Do I have to have a domain ?" , answer: "You do not need to have a domain, you can use our domain."},
@@ -69,33 +70,7 @@ const FAQ = () => {
                     <p>+966-123456789</p>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-6">
-                    <div class="connect-form-wrapper">
-                    <h5>Write To Us</h5>
-                    <form action="">
-                        <div class="row">
-                        <div class="col-md-6 form-group mb-4">
-                            <input placeholder="Full Name" type="text" class="form-input" />
-                        </div>
-                        <div class="col-md-6 form-group mb-4">
-                            <input placeholder="Email Id" type="email" class="form-input" />
-                        </div>
-                        <div class="col-md-6 form-group mb-4">
-                            <input placeholder="Phone Number" type="tel" class="form-input" />
-                        </div>
-                        <div class="col-md-6 form-group mb-4">
-                            <input placeholder="Subject" type="text" class="form-input" />
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <textarea placeholder="Your Message" class="form-input" name="" id="" cols="30" rows="5"></textarea>
-                        </div>
-                        </div>
-                        <div class="connect-btn">
-                        <a class="trans-btn" href="#">Send</a>
-                        </div>
-                    </form>
-                    </div>
-                </div>
+                <Contact />
                 </div>
             </div>
             </section>
