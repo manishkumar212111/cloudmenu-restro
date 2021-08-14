@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import {
@@ -7,28 +7,49 @@ import {
   TheFooter,
   TheHeader
 } from './index'
+import {connect } from 'react-redux';
 
-const TheLayout = () => {
-
+const TheLayout = (props) => {
+  const [user , setUser] = useState({});
+  useEffect(() => {
+    console.log("in useeffect")
+    if(typeof localStorage !== 'undefined' && localStorage.getItem('userDetail')){
+      const userDetail = JSON.parse(localStorage.getItem('userDetail')).user;
+      setUser(userDetail); 
+    } else {
+      setUser(null);
+    }
+  }, [props.userDetail]);
+  console.log(props, user)
   return (
+    user && user.status ? <>
+    <div className="c-app c-default-layout">
+        <TheSidebar/>
+        <div className="c-wrapper">
+          <TheHeader/>
+          <div className="c-body">
+            <TheContent/>
+          </div>
+          <TheFooter/>
+        </div>
+    </div>
+    </> : 
     <>
     <Header />
-    
-    <TheContent />
+      <TheContent />
     <Footer />
     </>
-    // <div className="c-app c-default-layout">
-    //   <TheSidebar/>
-    //   <div className="c-wrapper">
-    //     <TheHeader/>
-    //     <div className="c-body">
-    //       <TheContent/>
-    //     </div>
-    //     <TheFooter/>
-    //   </div>
-    // </div>
   )
 }
 
+const mapStateToProps = ( state ) => ( {
+  userDetail: state.user.userDetail || state.auth.userDetail
+} );
 
-export default TheLayout
+const mapDispatchToProps = {
+  // auth,
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( TheLayout );
+
+

@@ -8,7 +8,8 @@ const Header = (props) => {
       if(typeof localStorage !== 'undefined' && localStorage.getItem('userDetail')){
         setUser(JSON.parse(localStorage.getItem('userDetail')).user) 
       }
-    }, [props.userDetail])
+    }, [props.userDetail]);
+    
     useEffect(() => {
       window.addEventListener('scroll', handleScroll);
 
@@ -42,7 +43,7 @@ const Header = (props) => {
                 <li><a href="/#/faqs">FAQ's</a></li>
                 <li><HashLink to="#benifits">Benifits</HashLink></li>
       
-                {user && user.name ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
+                {user && user.status ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
               </ul>
             </nav>
           </div>

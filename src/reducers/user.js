@@ -1,6 +1,6 @@
 
 const initialState = {
-    userDetail: [],
+    userDetail: false,
     user_detail_loading : true,
     users: [],
     totalPages : 1

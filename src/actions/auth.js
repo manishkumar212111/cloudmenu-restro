@@ -32,9 +32,15 @@ export const logout = ( data ) => dispatch =>{
   try{
 
     API.post('Logout' , data, '' , function(res){
-      localStorage.setItem('userDetail', '');
+      localStorage.removeItem('userDetail');
+      dispatch({
+        type: "LOGIN_USER",
+        data : ""
+      });
       dispatch(setAlert("Logout successfull" , 'success'));    
-      window.location.href= '/#/login'
+      setTimeout(() => {
+        window.location.href= '/#/'
+      },1000)
     })
     
   } catch (err) {

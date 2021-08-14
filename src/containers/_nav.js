@@ -12,56 +12,56 @@ const _nav =  [
       text: 'NEW',
     }
   },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Customers',
-    to: '/users',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
-    // badge: {
-    //   color: 'info',
-    //   text: 'NEW',
-    // }
-  },
   // {
   //   _tag: 'CSidebarNavItem',
-  //   name: 'Plans',
-  //   to: '/plan',
+  //   name: 'Customers',
+  //   to: '/users',
   //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
   //   // badge: {
   //   //   color: 'info',
   //   //   text: 'NEW',
   //   // }
   // },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Transaction',
-    to: '/transactions',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
-    // badge: {
-    //   color: 'info',
-    //   text: 'NEW',
-    // }
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Enquiry',
-    to: '/enquiry',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
-    // badge: {
-    //   color: 'info',
-    //   text: 'NEW',
-    // }
-  },
-  {
-    _tag: 'CSidebarNavItem',
-    name: 'Cmss',
-    to: '/home/cms',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
-    // badge: {
-    //   color: 'info',
-    //   text: 'NEW',
-    // }
-  },
+  // // {
+  // //   _tag: 'CSidebarNavItem',
+  // //   name: 'Plans',
+  // //   to: '/plan',
+  // //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+  // //   // badge: {
+  // //   //   color: 'info',
+  // //   //   text: 'NEW',
+  // //   // }
+  // // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Transaction',
+  //   to: '/transactions',
+  //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+  //   // badge: {
+  //   //   color: 'info',
+  //   //   text: 'NEW',
+  //   // }
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Enquiry',
+  //   to: '/enquiry',
+  //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+  //   // badge: {
+  //   //   color: 'info',
+  //   //   text: 'NEW',
+  //   // }
+  // },
+  // {
+  //   _tag: 'CSidebarNavItem',
+  //   name: 'Cmss',
+  //   to: '/home/cms',
+  //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+  //   // badge: {
+  //   //   color: 'info',
+  //   //   text: 'NEW',
+  //   // }
+  // },
   // {
   //   _tag: 'CSidebarNavItem',
   //   name: 'Email Templates',

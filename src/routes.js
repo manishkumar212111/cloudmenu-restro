@@ -2,6 +2,8 @@ import React from 'react';
 import FAQ from './views/pages/Faq';
 import ForgotPassword from './views/pages/ForgotPassword';
 import Login from './views/pages/login/Login';
+import Page404 from './views/pages/page404/Page404';
+import Page500 from './views/pages/page500/Page500';
 import Plan from './views/pages/Plan';
 import Register from './views/pages/register/Register';
 import ResetPassword from './views/pages/ResetPassword';
@@ -60,44 +62,9 @@ const routes = [
   { path: '/reset-password/:token', exact: true, name: "Reset Password", component : ResetPassword},
   { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
   { path: '/faqs', exact: true, name: "FAQs", component : FAQ},
+  
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
 
-  { path: '/theme', name: 'Theme', component: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', component: Colors },
-  { path: '/theme/typography', name: 'Typography', component: Typography },
-  { path: '/base', name: 'Base', component: Cards, exact: true },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', component: Cards },
-  { path: '/base/carousels', name: 'Carousel', component: Carousels },
-  { path: '/base/collapses', name: 'Collapse', component: Collapses },
-  { path: '/base/forms', name: 'Forms', component: BasicForms },
-  { path: '/base/jumbotrons', name: 'Jumbotrons', component: Jumbotrons },
-  { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
-  { path: '/base/navbars', name: 'Navbars', component: Navbars },
-  { path: '/base/navs', name: 'Navs', component: Navs },
-  { path: '/base/paginations', name: 'Paginations', component: Paginations },
-  { path: '/base/popovers', name: 'Popovers', component: Popovers },
-  { path: '/base/progress-bar', name: 'Progress Bar', component: ProgressBar },
-  { path: '/base/switches', name: 'Switches', component: Switches },
-  { path: '/base/tables', name: 'Tables', component: Tables },
-  { path: '/base/tabs', name: 'Tabs', component: Tabs },
-  { path: '/base/tooltips', name: 'Tooltips', component: Tooltips },
-  { path: '/buttons', name: 'Buttons', component: Buttons, exact: true },
-  { path: '/buttons/buttons', name: 'Buttons', component: Buttons },
-  { path: '/buttons/button-dropdowns', name: 'Dropdowns', component: ButtonDropdowns },
-  { path: '/buttons/button-groups', name: 'Button Groups', component: ButtonGroups },
-  { path: '/buttons/brand-buttons', name: 'Brand Buttons', component: BrandButtons },
-  { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
-  { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },
-  { path: '/icons/flags', name: 'Flags', component: Flags },
-  { path: '/icons/brands', name: 'Brands', component: Brands },
-  { path: '/notifications', name: 'Notifications', component: Alerts, exact: true },
-  { path: '/notifications/alerts', name: 'Alerts', component: Alerts },
-  { path: '/notifications/badges', name: 'Badges', component: Badges },
-  { path: '/notifications/modals', name: 'Modals', component: Modals },
-  { path: '/notifications/toaster', name: 'Toaster', component: Toaster },
-  { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/plan', exact: true,  name: 'Plans', component: Plans },
   { path: '/plan/add', exact: true,  name: 'Add Plans', component: PlanForm },
@@ -108,7 +75,9 @@ const routes = [
   { path: '/cms', exact: true,  name: 'Plans', component: Cmss },
   { path: '/cms/add', exact: true,  name: 'Add Plans', component: CmsForm },
   { path: '/cms/:id', exact: true, name: 'Plan Details', component: CmsForm },
-  { path: "/email-template",  exact: true, name: 'Email Template', component: EmailTemplate}
+  { path: "/email-template",  exact: true, name: 'Email Template', component: EmailTemplate},
+  { path: "/404",  name: 'Page 404', component: Page404},
+  { path: "/500",  name: 'Page 500', component: Page500}
 ];
 
 export default routes;

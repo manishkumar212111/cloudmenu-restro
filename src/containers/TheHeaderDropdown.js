@@ -38,7 +38,7 @@ const TheHeaderDropdown = (props) => {
     >
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <div className="c-avatar">
-          <strong>{user.first_name}</strong>
+          <strong>{user.name}</strong>
           {/* <CImg
             src={'avatars/6.jpg'}
             className="c-avatar-img"

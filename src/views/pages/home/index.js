@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Contact from 'src/views/components/contact';
 
 const steps = [
@@ -9,6 +9,13 @@ const steps = [
 ]
 const Index = () => {
     const [activeTab , setActiveTab] = React.useState(0);
+
+    useEffect(() => {
+          let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+          if(userDetail.status){
+            window.location.href = '/#/dashboard';
+          }
+     }, [])
 
     return(<>
         <section id="hero">
