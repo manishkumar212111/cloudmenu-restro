@@ -12,16 +12,16 @@ const _nav =  [
       text: 'NEW',
     }
   },
-  // {
-  //   _tag: 'CSidebarNavItem',
-  //   name: 'Customers',
-  //   to: '/users',
-  //   icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
-  //   // badge: {
-  //   //   color: 'info',
-  //   //   text: 'NEW',
-  //   // }
-  // },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Profile',
+    to: '/profile',
+    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
+  },
   // // {
   // //   _tag: 'CSidebarNavItem',
   // //   name: 'Plans',

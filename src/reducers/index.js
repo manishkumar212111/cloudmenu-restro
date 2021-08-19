@@ -10,7 +10,7 @@ import enquiry from "./enquiry";
 import cms from "./cms";
 import emailTemplate from "./emailTemplate"
 import contact from "./contact"
-
+import restaurant from "./restaurant"
 
 
 
@@ -37,7 +37,8 @@ const appReducers = combineReducers({
     enquiry,
     cms,
     emailTemplate,
-    contact
+    contact,
+    restaurant
 });
 
 const rootReducer = (state, action) => {

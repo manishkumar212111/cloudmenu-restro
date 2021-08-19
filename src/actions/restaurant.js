@@ -1,19 +1,19 @@
 import { setAlert } from "./alert";
 import API from "../API";
-// import { clearCmsData } from '../utils/globals'
+// import { clearRestaurantData } from '../utils/globals'
 
-export const getCmss = ( page = 1) => ( dispatch ) =>{
+export const getRestaurants = ( page = 1) => ( dispatch ) =>{
   
     dispatch({
         type : "PAGE_LOADING",
         data : {}
     })
-    API.get('Cmss', {page : page} , "" , function(res){
+    API.get('Restaurants', {page : page} , "" , function(res){
         console.log(res);
         if(res && res.data){
 
           dispatch( 
-            {   type: "CMS_LIST",
+            {   type: "Restaurant_LIST",
                 data : res.data
             }
           );
@@ -33,14 +33,22 @@ export const create = (data) => dispatch =>{
             type : "PAGE_LOADING",
             data : {}
         })
-      API.post('Cmss' , data ,'', function(res){
+
+        let formData = new FormData();
+
+        Object.keys(data).map(itm => {
+            formData.append(itm, data[itm]);
+        });
+      API.post('Restaurants' , formData ,'', function(res){
         
         if(res && res.data.id){
-            dispatch( { type: "CMS_DETAIL",
+            dispatch( { type: "Restaurant_DETAIL",
               data : res.data
             });
-
-            dispatch(setAlert("Cmss Added successfully" , 'success'));    
+            dispatch( { type: "RESTAURANT_ONBOARDING_MESSAGE",
+                data : true
+            });
+            dispatch(setAlert("Restaurant successfully sent for verification" , 'success'));    
 
           } else {
               //console.log(res.data.message);
@@ -64,16 +72,16 @@ export const create = (data) => dispatch =>{
     }
   }
   
-export const GetCmsById = (cmsId) => dispatch =>{
+export const GetRestaurantById = (restaurantId) => dispatch =>{
   try{
         dispatch({
             type : "PAGE_LOADING",
             data : {}
         })
-    API.get('Cmss' , {}, cmsId , function(res){
+    API.get('Restaurants' , {}, restaurantId , function(res){
       
       if(res && res.data){
-          dispatch( { type: "CMS_DETAIL",
+          dispatch( { type: "Restaurant_DETAIL",
             data : res.data
           });
         } else {
@@ -98,7 +106,7 @@ export const GetCmsById = (cmsId) => dispatch =>{
   }
 }
 
-export const UpdateCmsById = (cmsId , data) => dispatch =>{
+export const UpdateRestaurantById = (restaurantId , data) => dispatch =>{
     try{
         dispatch({
             type : "PAGE_LOADING",
@@ -107,10 +115,10 @@ export const UpdateCmsById = (cmsId , data) => dispatch =>{
         delete data.createdAt;
         delete data.updatedAt;
 
-      API.patch('Cmss' , data , cmsId , function(res){
+      API.patch('Restaurants' , data , restaurantId , function(res){
         
         if(res && res.data.id) {
-            dispatch( { type: "CMS_DETAIL",
+            dispatch( { type: "Restaurant_DETAIL",
               data : res.data
             });
             dispatch(setAlert("Details updated successfully" , 'success'));    
