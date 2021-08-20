@@ -40,6 +40,7 @@ const defaultProps = {
         full_address : "",
         mobile : "",
         ccode : "+91",
+        email : "",
         state : "",
         city : "",
         password: "",
@@ -60,6 +61,7 @@ const Profile = (props) => {
             closingTime : { error : true , msg : "It should be valid" },
             full_address: { error : true , msg : "It should be valid" },
             mobile: { error : true , msg : "It should be valid" },
+            email: { error : true , msg : "It should be valid" },
             ccode: { error : true , msg : "It should be valid" },
             city: { error : true , msg : "It should be valid" },
             state: { error : true , msg : "It should be valid" },
@@ -121,14 +123,16 @@ const Profile = (props) => {
             case "city":
             case "password":
             case "businessDoc":
-                return  validateUtility.required(value)  
+                return  validateUtility.required(value);
+            case "email":
+                return validateUtility.required(value) && validateUtility.email(value);  
             default :
                 return true;
         }
     }
     
     const handleClick = () => {
-        let requiredObj = ['name', 'manager_name' , 'coverImage', 'openingTime', 'closingTime' , 'full_address', 'mobile',  'state', 'city', 'password', 'businessDoc'];
+        let requiredObj = ['name', 'manager_name' ,'email', 'coverImage', 'openingTime', 'closingTime' , 'full_address', 'mobile',  'state', 'city', 'password', 'businessDoc'];
         let errOb = errorObj;
 
         let status = true;

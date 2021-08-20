@@ -1,4 +1,6 @@
 import React from 'react';
+import Category from './views/pages/category';
+import CategoryForm from './views/pages/category/categoryForm';
 import FAQ from './views/pages/Faq';
 import ForgotPassword from './views/pages/ForgotPassword';
 import Login from './views/pages/login/Login';
@@ -37,6 +39,9 @@ const routes = [
   { path: '/plan/:id', exact: true, name: 'Plan Details', component: PlanForm },
   { path: '/transactions', exact: true,  name: 'Transaction', component: Transaction },
   { path: '/enquiry', exact: true,  name: 'Enquiry', component: Enquiry },
+  { path: '/category', exact: true,  name: 'Category', component: Category },
+  { path: '/category/create', exact: true,  name: 'Create Category', component: CategoryForm },
+  { path: '/category/:id', exact: true,  name: 'Category', component: CategoryForm },
 
   { path: "/email-template",  exact: true, name: 'Email Template', component: EmailTemplate},
   { path: "/404",  name: 'Page 404', component: Page404},

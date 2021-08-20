@@ -53,6 +53,9 @@ const EndPoints = {
     Transactions: {
         url: 'api/transaction',
     },
+    categoryList: {
+        url: 'api/category',
+    },
     Enquiry: {
         url: 'api/common/enquiry',
     },

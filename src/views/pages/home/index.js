@@ -12,8 +12,17 @@ const Index = () => {
 
     useEffect(() => {
           let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+          let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+          
           if(userDetail.status){
-            window.location.href = '/#/dashboard';
+            console.log(userDetail);
+            if(restaurantDetail && restaurantDetail.status){
+              window.location.href = '/#/dashboard';
+            } else if(restaurantDetail && restaurantDetail.status == 0){
+              window.location.href = '/#/profile?id='+userDetail.restaurant.id;
+            } else {
+              window.location.href = '/#/profile'
+            }
           }
      }, [])
 

@@ -22,6 +22,16 @@ const _nav =  [
     //   text: 'NEW',
     // }
   },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Category',
+    to: '/category',
+    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
+  },
   // // {
   // //   _tag: 'CSidebarNavItem',
   // //   name: 'Plans',
