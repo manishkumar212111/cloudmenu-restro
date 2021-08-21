@@ -10,6 +10,7 @@ import Plan from './views/pages/Plan';
 import profile from './views/pages/profile';
 import Register from './views/pages/register/Register';
 import ResetPassword from './views/pages/ResetPassword';
+import QR from './views/pages/QR';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 const Users = React.lazy(() => import('./views/users/Users'));
@@ -39,6 +40,7 @@ const routes = [
   { path: '/plan/:id', exact: true, name: 'Plan Details', component: PlanForm },
   { path: '/transactions', exact: true,  name: 'Transaction', component: Transaction },
   { path: '/enquiry', exact: true,  name: 'Enquiry', component: Enquiry },
+  { path: '/qr', exact: true,  name: 'QR Manage', component: QR },
   { path: '/category', exact: true,  name: 'Category', component: Category },
   { path: '/category/create', exact: true,  name: 'Create Category', component: CategoryForm },
   { path: '/category/:id', exact: true,  name: 'Category', component: CategoryForm },
