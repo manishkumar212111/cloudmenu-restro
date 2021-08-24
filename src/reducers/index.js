@@ -12,6 +12,7 @@ import emailTemplate from "./emailTemplate"
 import contact from "./contact"
 import restaurant from "./restaurant"
 import category from "./category"
+import product from "./product"
 
 
 
@@ -40,7 +41,8 @@ const appReducers = combineReducers({
     emailTemplate,
     contact,
     restaurant,
-    category
+    category,
+    product
 });
 
 const rootReducer = (state, action) => {

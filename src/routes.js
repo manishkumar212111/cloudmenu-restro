@@ -11,6 +11,7 @@ import profile from './views/pages/profile';
 import Register from './views/pages/register/Register';
 import ResetPassword from './views/pages/ResetPassword';
 import QR from './views/pages/QR';
+import menu from './views/pages/menu';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 const Users = React.lazy(() => import('./views/users/Users'));
@@ -44,6 +45,7 @@ const routes = [
   { path: '/category', exact: true,  name: 'Category', component: Category },
   { path: '/category/create', exact: true,  name: 'Create Category', component: CategoryForm },
   { path: '/category/:id', exact: true,  name: 'Category', component: CategoryForm },
+  { path: '/menu-management', exact: true,  name: 'Manu Management', component: menu },
 
   { path: "/email-template",  exact: true, name: 'Email Template', component: EmailTemplate},
   { path: "/404",  name: 'Page 404', component: Page404},

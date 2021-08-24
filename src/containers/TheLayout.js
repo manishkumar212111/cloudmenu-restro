@@ -20,7 +20,6 @@ const TheLayout = (props) => {
       setUser(null);
     }
   }, [props.userDetail]);
-  console.log(props, user)
   return (
     user && user.status ? <>
     <div className="c-app c-default-layout">

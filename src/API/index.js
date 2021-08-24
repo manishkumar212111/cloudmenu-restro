@@ -36,7 +36,7 @@ const API = {
         });;
     },
 
-    post: (key, data = {}, id = '' , cb) => {
+    post: (key, data = {}, id = '' , cb , contentType) => {
         const url = EndPoints[key].url + (id ? `/${id}` : "");
         console.log('POST',url);
         
@@ -45,7 +45,7 @@ const API = {
             'url': url,
             'data': data,
             headers: {
-                'content-type':'application/json',
+                'content-type':contentType ? contentType : 'application/json',
                 'Authorization' : 'Bearer ' + getLoggedInUserToken()
             },
         }).then(res => {

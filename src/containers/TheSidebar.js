@@ -23,11 +23,13 @@ const TheSidebar = () => {
 
   return (
     <CSidebar
+      style={{backgroundColor : "white"}}
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
-      <CSidebarBrand className="d-md-down-none" to="/">
-        <CIcon
+      <CSidebarBrand className="d-md-down-none" style={{color: "black"}} to="/">
+        CLOUD MENU
+        {/* <CIcon
           className="c-sidebar-brand-full"
           name="logo-negative"
           height={35}
@@ -36,7 +38,7 @@ const TheSidebar = () => {
           className="c-sidebar-brand-minimized"
           name="sygnet"
           height={35}
-        />
+        /> */}
       </CSidebarBrand>
       <CSidebarNav>
 

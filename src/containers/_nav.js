@@ -34,6 +34,16 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
+    name: 'Menu Management',
+    to: '/menu-management',
+    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
+  },
+  {
+    _tag: 'CSidebarNavItem',
     name: 'Manage QR',
     to: '/qr',
     icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,

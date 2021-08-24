@@ -31,7 +31,7 @@ const CategoryForm = (props) => {
     const [ isEdit , setIsEdit] = useState(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
     console.log(props);
     
-    const [ fieldObj , setfieldObj ] = useState(defaultProps.fieldObj)
+    const [ fieldObj , setfieldObj ] = useState({...defaultProps.fieldObj, name : props.location?.search.split("=")[1]})
     const [errorObj , setErrorObj] = useState(
         {   name : { error : true , msg : "It should be valid" } , 
         })
