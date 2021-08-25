@@ -16,6 +16,7 @@ import {
   } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import Items from './items';
+import Modifier from './modifier';
 
   
 const Index = (props) => {
@@ -50,7 +51,7 @@ const Index = (props) => {
                     <Items />
                 </CRow>}
                 {activeTab == 2 && <CRow>
-
+                    <Modifier />
                 </CRow>}
                 {activeTab == 0 && <CRow>
 

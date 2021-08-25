@@ -39,9 +39,29 @@ const API = {
     post: (key, data = {}, id = '' , cb , contentType) => {
         const url = EndPoints[key].url + (id ? `/${id}` : "");
         console.log('POST',url);
-        
+        console.log(contentType)
         return instance({
             'method': 'POST',
+            'url': url,
+            'data': data,
+            headers: {
+                'content-type':contentType ? contentType : 'application/json',
+                'Authorization' : 'Bearer ' + getLoggedInUserToken()
+            },
+        }).then(res => {
+            cb(res);
+        }).catch(err => {
+            cb(err.response);
+
+            console.log(err.response)
+        });
+    },
+    put: (key, data = {}, id = '' , cb , contentType) => {
+        const url = EndPoints[key].url + (id ? `/${id}` : "");
+        console.log('PUT',url);
+        console.log(contentType)
+        return instance({
+            'method': 'PUT',
             'url': url,
             'data': data,
             headers: {

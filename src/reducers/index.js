@@ -8,11 +8,12 @@ import plan from "./plan";
 import transaction from "./transaction";
 import enquiry from "./enquiry";
 import cms from "./cms";
-import emailTemplate from "./emailTemplate"
-import contact from "./contact"
-import restaurant from "./restaurant"
-import category from "./category"
-import product from "./product"
+import emailTemplate from "./emailTemplate";
+import contact from "./contact";
+import restaurant from "./restaurant";
+import category from "./category";
+import product from "./product";
+import modifier from "./modifier";
 
 
 
@@ -42,7 +43,8 @@ const appReducers = combineReducers({
     contact,
     restaurant,
     category,
-    product
+    product,
+    modifier
 });
 
 const rootReducer = (state, action) => {

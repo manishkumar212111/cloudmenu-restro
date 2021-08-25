@@ -59,6 +59,9 @@ const EndPoints = {
     productList:{
         url: 'api/product',
     },
+    modifierList:{
+        url: 'api/modifier',
+    },
     Enquiry: {
         url: 'api/common/enquiry',
     },

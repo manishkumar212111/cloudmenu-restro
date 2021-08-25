@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import validateUtility from "../../../utils/ValidateUtility";
 // import CKEditor from "ckeditor4-react";
 
-
+import { getModifierList } from "../../../actions/modifier"
 import { createProduct , getProductById , updateProductById} from "../../../actions/product";
 import { getCategoryList } from 'src/actions/category';
 import { connect } from "react-redux";
@@ -34,6 +34,7 @@ import CIcon from '@coreui/icons-react';
 import CreatableSelect from 'react-select/creatable';
 import { useHistory } from 'react-router-dom';
 import { BASE_URL } from 'src/API/config';
+import AsyncSelect from 'react-select/async';
 
 const defaultProps = {
     fieldObj : {
@@ -44,7 +45,8 @@ const defaultProps = {
         sellingPrice: "",
         sellingPriceAr : "",
         productImg : "",
-        category: ""
+        category: "",
+        modifierGroup: []
     }
 }
 
@@ -52,7 +54,7 @@ const Add = (props) => {
     const [ isEdit , setIsEdit] = useState(props.id)
     const [categoryList , setCategory] = useState([])
     const [preview , setPreview] = useState('');
-    const [ fieldObj , setfieldObj ] = useState({})
+    const [fieldObj , setfieldObj ] = useState({})
     const [errorObj , setErrorObj] = useState(
         {   title : { error : true , msg : "It should be valid" } , 
             titleAr : { error : true , msg : "It should be valid" },
@@ -75,7 +77,9 @@ const Add = (props) => {
     }, [props.id]);
 
     useEffect(() => {
-      props.fieldObj && props.fieldObj.id && setfieldObj(props.fieldObj)
+      if(props.fieldObj && props.fieldObj.id){
+        setfieldObj({...props.fieldObj, modifierGroup : props.fieldObj.modifierGroup ? props.fieldObj.modifierGroup.map((itm) => ({label : itm.label , value: itm.value})) : []})
+      }
     }, [props.fieldObj]);
     
 
@@ -105,7 +109,38 @@ const Add = (props) => {
         setErrorObj( er => ( { ...er , ...errOb}))
         
     }
-      
+    const handleModifierChange = (value) => {
+        let field = fieldObj.modifierGroup || [];
+        if(field.map(itm =>  (itm.value)).indexOf(value.value) === -1){
+            field.push(value)
+            setfieldObj(fieldOb => ({...fieldOb ,  modifierGroup : field}))
+        }
+
+    }
+
+    const handleDelete = (index) => {
+        let field = fieldObj.modifierGroup || [];
+        field.splice(index, 1);
+        setfieldObj(fieldOb => ({...fieldOb , modifierGroup :field}))
+    };
+    const promiseOptions = inputValue =>
+        new Promise(resolve => {
+            setTimeout(() => {
+                let option = { page: 1, limit: 12};
+                if(inputValue){
+                    option.name= inputValue
+                }
+               props.getModifierList( option, function(res){
+                if(res && res.results && res.results.length){
+                    resolve(res.results.map((itm) => ( { label: itm.name, value : itm.id})));
+                } else{
+                    resolve([]);
+                }    
+               });   
+            // resolve(filterColors(inputValue));
+        }, 1000);
+    });
+
     const validateField = (key , value) => {
         value = value ? value : fieldObj[key] 
         switch(key) {
@@ -141,6 +176,7 @@ const Add = (props) => {
         if(!status)
             return;
         
+
         if(isEdit){
             delete fieldObj.id;
             delete fieldObj.createdAt;
@@ -151,10 +187,10 @@ const Add = (props) => {
             delete fieldObj.restaurant;
 
 
-            props.updateProductById(isEdit , fieldObj)
+            props.updateProductById(isEdit , {...fieldObj , modifierGroup : JSON.stringify(fieldObj.modifierGroup)})
             return;
         }
-        props.createProduct(fieldObj)  
+        props.createProduct({...fieldObj , modifierGroup : JSON.stringify(fieldObj.modifierGroup)})  
 
     }
     useEffect(() => {
@@ -185,14 +221,14 @@ const Add = (props) => {
         )
     }
 
-    console.log(props,fieldObj)
+    console.log(fieldObj)
     return (
     <>
       <CRow>
         <CCol xs="12" sm="12"  style={{"margin-top" : "10px"}}>
           <CCard>
             <CCardBody>
-            
+            <CRow>
                 <CCol sm="6">
 
                     <CFormGroup>
@@ -256,7 +292,20 @@ const Add = (props) => {
                     {props.product_detail_loading ? <CSpinner /> : <CButton block color="primary" variant="outline"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>}
                 </CCol>
                 <CCol sm="6">
+                    <AsyncSelect 
+                        cacheOptions
+                        defaultOptions
+                        loadOptions={promiseOptions}
+                        onChange={handleModifierChange}
+
+                    />
+                        {fieldObj && fieldObj.modifierGroup && fieldObj.modifierGroup.map((itm, index) => (
+                            <><div>
+                                {itm.label} <span onClick={() => handleDelete(index)}>Delete</span>
+                            </div><br></br></>
+                        ))}
                 </CCol>
+            </CRow>
             </CCardBody>
           </CCard>
 
@@ -272,14 +321,17 @@ const mapStateToProps = ( state ) => ( {
     fieldObj : state.product.productDetail,
     product_detail_loading : state.product.product_detail_loading,
     categoryList: state.category.categoryList,
-    productDetail: state.product.productDetail
+    productDetail: state.product.productDetail,
+    modifierList: state.modifier.modifierList,
+    ModifierLoading: state.modifier.modifier_detail_loading,
   } );
   
   const mapDispatchToProps = {
     createProduct,
     getProductById,
     updateProductById,
-    getCategoryList
+    getCategoryList,
+    getModifierList
   };
   
 Add.defaultProps = defaultProps;

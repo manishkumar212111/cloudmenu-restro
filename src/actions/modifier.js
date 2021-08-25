@@ -2,33 +2,34 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getProductList = (options) => async dispatch =>{
+export const getModifierList = (options, cb) => dispatch =>{
   try{
-      if(!options){
-        let restaurantDetail =
+      options = options ? options : {page : 1, limit:12};
+      dispatch({
+          type : "MODIFIER_DETAIL_LOADING",
+          data : true
+      })
+
+      let restaurantDetail =
           localStorage.getItem("userDetail") &&
           JSON.parse(localStorage.getItem("userDetail"))
             ? JSON.parse(localStorage.getItem("userDetail")).restaurant
             : {};
-        options = { restaurant : restaurantDetail.id}    
-      }
-      dispatch({
-          type : "PRODUCT_DETAIL_LOADING",
-          data : true
-      })
-      console.log(options, "sdkkjdsvkjd fhvhdfgjhgj")
-    API.get('productList' , options, '' , function(res){
-        if(res && res.data){
-          dispatch( { type: "PRODUCT_LIST",
+        options.restaurant = restaurantDetail.id;
+    API.get('modifierList' , options, '' , function(res){
+      
+      if(res && res.data){
+          dispatch( { type: "MODIFIER_LIST",
             data : res.data
           });
+          typeof cb == 'function' && cb(res.data);
         } else {
             //console.log(res.data.message);
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
       dispatch({
-        type : "PRODUCT_DETAIL_LOADING",
+        type : "MODIFIER_DETAIL_LOADING",
         data : false
       })
     })
@@ -39,18 +40,18 @@ export const getProductList = (options) => async dispatch =>{
   }
 }
 
-export const deleteProductById = (id , options) => dispatch =>{
+export const deleteModifierById = (id , options) => dispatch =>{
   try{
       dispatch({
-          type : "PRODUCT_DETAIL_LOADING",
+          type : "MODIFIER_DETAIL_LOADING",
           data : true
       })
-    API.delete('productList' , {}, id , function(res){
+    API.delete('modifierList' , {}, id , function(res){
       
       if(res && res.data){
-          dispatch(setAlert("product deleted successfully" , 'success'));    
-          dispatch(getProductList())
-          // dispatch( { type: "PRODUCT_LIST",
+          dispatch(setAlert("modifier deleted successfully" , 'success'));    
+          dispatch(getModifierList())
+          // dispatch( { type: "MODIFIER_LIST",
           //   data : res.data
           // });
         } else {
@@ -59,7 +60,7 @@ export const deleteProductById = (id , options) => dispatch =>{
         }
 
       dispatch({
-        type : "PRODUCT_DETAIL_LOADING",
+        type : "MODIFIER_DETAIL_LOADING",
         data : false
       })
     })
@@ -71,26 +72,23 @@ export const deleteProductById = (id , options) => dispatch =>{
 }
 
 
-  export const createProduct = (data) => dispatch =>{
+  export const createModifier = (data) => dispatch =>{
     try{
         dispatch({
-            type : "PRODUCT_DETAIL_LOADING",
+            type : "MODIFIER_DETAIL_LOADING",
             data : true
-        });
-        let formData = new FormData();
-
-        Object.keys(data).map(itm => {
-            formData.append(itm, data[itm]);
-        });
-      API.post('productList' , formData , '' , function(res){
+        })
+      API.post('modifierList' , data , '' , function(res){
         if(res && res.data && res.data.id) {
-            dispatch(setAlert("Product added" , 'success'));
-            dispatch(getProductList())
+            // dispatch(getModifierByUserId());
+            dispatch(setAlert("Modifier added" , 'success'));
+            dispatch(getModifierList());
           } else {
+              //''
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
           dispatch({
-              type : "PRODUCT_DETAIL_LOADING",
+              type : "MODIFIER_DETAIL_LOADING",
               data : false
           })
       })
@@ -100,16 +98,16 @@ export const deleteProductById = (id , options) => dispatch =>{
     }
   }
 
-  export const getProductById = (productId) => dispatch =>{
+  export const getModifierById = (modifierId) => dispatch =>{
     try{
         dispatch({
-            type : "PRODUCT_DETAIL_LOADING",
+            type : "MODIFIER_DETAIL_LOADING",
             data : true
         })
-      API.get('productList' , {}, productId , function(res){
+      API.get('modifierList' , {}, modifierId , function(res){
         
         if(res && res.data){
-            dispatch( { type: "SINGLE_PRODUCT_DETAIL",
+            dispatch( { type: "SINGLE_MODIFIER_DETAIL",
               data : res.data
             });
           } else {
@@ -117,7 +115,7 @@ export const deleteProductById = (id , options) => dispatch =>{
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
           dispatch({
-              type : "PRODUCT_DETAIL_LOADING",
+              type : "MODIFIER_DETAIL_LOADING",
               data : false
           })
       })
@@ -127,36 +125,27 @@ export const deleteProductById = (id , options) => dispatch =>{
     }
   }
 
-  export const updateProductById = (productId , data) => dispatch =>{
+  export const updateModifierById = (modifierId , data) => dispatch =>{
     try{
         dispatch({
-            type : "PRODUCT_DETAIL_LOADING",
+            type : "MODIFIER_DETAIL_LOADING",
             data : true
         })
-        console.log(data)
-        let formData = new FormData();
-
-        Object.keys(data).map(itm => {
-            formData.append(itm, data[itm]);
-            console.log(formData.get(itm))
-
-          });
-      API.put('productList' , formData , productId , function(res){
+      API.patch('modifierList' , data , modifierId , function(res){
         
         if(res && res.data.id) {
             dispatch(setAlert("Details updated successfully" , 'success'));    
-            dispatch(getProductList())
-
-            
+            dispatch(getModifierList());
+  
           } else {
               //''
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
           dispatch({
-            type : "PRODUCT_DETAIL_LOADING",
+            type : "MODIFIER_DETAIL_LOADING",
             data : false
         })
-      } , "application/json;multipart/form-data;")
+      })
       
     } catch (err) {
       
