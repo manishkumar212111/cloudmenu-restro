@@ -276,16 +276,24 @@ const Profile = (props) => {
                 <CCol sm="4">
               
                     <CFormGroup>
-                        <CLabel htmlFor="password">Confirm password * </CLabel>
-                        <CInput type="password" id="password" name="password" value={fieldObj.password} onChange={(e) => handleChange(e , 'password')} placeholder="Confirm password" />
-                        {!errorObj.password.error && <CFormText className="help-block error">{errorObj.password.msg}</CFormText>}
+                        <CLabel htmlFor="email">Email * </CLabel>
+                        <CInput type="email" id="email" name="email" value={fieldObj.email} onChange={(e) => handleChange(e , 'email')} placeholder="Email" />
+                        {!errorObj.email.error && <CFormText className="help-block error">{errorObj.email.msg}</CFormText>}
                     
                     </CFormGroup>
                 </CCol>
             
             </CRow>
             <CRow>
-                
+                <CCol sm="4">
+                    
+                    <CFormGroup>
+                        <CLabel htmlFor="password">Confirm password * </CLabel>
+                        <CInput type="password" id="password" name="password" value={fieldObj.password} onChange={(e) => handleChange(e , 'password')} placeholder="Confirm password" />
+                        {!errorObj.password.error && <CFormText className="help-block error">{errorObj.password.msg}</CFormText>}
+                    
+                    </CFormGroup>
+                </CCol>
                 <CCol sm="4">
                     <CFormGroup>
                         <CLabel htmlFor="coverImage">Cover Image </CLabel>
