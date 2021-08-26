@@ -139,7 +139,6 @@ export const deleteProductById = (id , options) => dispatch =>{
         Object.keys(data).map(itm => {
             formData.append(itm, data[itm]);
             console.log(formData.get(itm))
-
           });
       API.put('productList' , formData , productId , function(res){
         

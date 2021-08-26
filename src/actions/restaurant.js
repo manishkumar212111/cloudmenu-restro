@@ -112,10 +112,14 @@ export const UpdateRestaurantById = (restaurantId , data) => dispatch =>{
             type : "PAGE_LOADING",
             data : {}
         })
-        delete data.createdAt;
-        delete data.updatedAt;
+        // delete data.createdAt;
+        // delete data.updatedAt;
+        let formData = new FormData();
 
-      API.patch('Restaurants' , data , restaurantId , function(res){
+        Object.keys(data).map(itm => {
+            formData.append(itm, data[itm]);
+          });
+      API.post('Restaurants' , formData , restaurantId , function(res){
         
         if(res && res.data.id) {
             dispatch( { type: "Restaurant_DETAIL",
@@ -131,7 +135,7 @@ export const UpdateRestaurantById = (restaurantId , data) => dispatch =>{
                 type : "REMOVE_LOADING",
                 data : {}
             })
-      })
+      }, "application/json;multipart/form-data;")
       
     } catch (err) {
 

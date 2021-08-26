@@ -12,19 +12,25 @@ import {
     CInputGroupText,
     CRow,
     CListGroup,
-    CListGroupItem
+    CListGroupItem,
+    CModal,
+    CModalHeader,
+    CModalBody
   } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import Items from './items';
 import Modifier from './modifier';
+import Setting from './setting';
 
   
 const Index = (props) => {
     const [activeTab, setActiveTab] = useState(0);
-    
+    const [viewOpen , setViewOpen] = useState(false);
+    const [restaurant , setRestaurant] = useState('');
     useEffect(() => {
         let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
         if(restaurantDetail && restaurantDetail.id){
+            setRestaurant(restaurantDetail.id);
             console.log("dfvndfj kjhkj");
             // props.getProductList({restaurant : restaurantDetail.id});
         }
@@ -34,6 +40,7 @@ const Index = (props) => {
     return(
             <CContainer>
                 <h3>Menu Management</h3>
+                <div style={{float: "right"}} onClick={() => setViewOpen(true)}>Settings</div>
                 <CRow>
                     <CListGroup style={{flexDirection : "row", cursor: "pointer"}}>
                         <CListGroupItem onClick={() => setActiveTab(0)}>
@@ -56,6 +63,16 @@ const Index = (props) => {
                 {activeTab == 0 && <CRow>
 
                 </CRow>}
+
+
+            {viewOpen && <CModal show={viewOpen} onClose={setViewOpen}>
+                <CModalHeader closeButton>Menu Settings</CModalHeader>
+                <CModalBody>
+                        <Setting id={restaurant}/>
+                </CModalBody>
+                {/* <CModalF>
+                </CModalFooter> */}
+            </CModal>}
             </CContainer>
     )
 };

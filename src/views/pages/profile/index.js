@@ -73,10 +73,13 @@ const Profile = (props) => {
     }, [props.match.params])
     
     useEffect(() => {
-        if(isEdit){
-            props.GetRestaurantById(isEdit)
+        let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+        if(restaurantDetail && restaurantDetail.id){
+            setIsEdit(restaurantDetail.id);
+            props.GetRestaurantById(restaurantDetail.id)
+        
         }
-    }, [isEdit]);
+    }, []);
 
     useEffect(() => {
       props.fieldObj && props.fieldObj.id && setfieldObj(props.fieldObj)

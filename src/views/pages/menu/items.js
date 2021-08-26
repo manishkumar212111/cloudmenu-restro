@@ -43,7 +43,7 @@ const Items = (props) => {
 
   useEffect(() => {
     setItem(props.productList);
-    !activeProduct.length && setActiveProduct(props.productList[0]?.details);
+    !(activeProduct && activeProduct.length) && setActiveProduct(props.productList[0]?.details);
   }, [props.productList]);
   console.log(item);
 
@@ -117,10 +117,6 @@ const Items = (props) => {
                 <View item={viewOpen}/>
         </CModalBody>
         <CModalFooter>
-          {/* <CButton color="primary">Do Something</CButton>{" "}
-          <CButton color="secondary" onClick={openDishAddPopup}>
-            Cancel
-          </CButton> */}
         </CModalFooter>
       </CModal>}
     </CContainer>
