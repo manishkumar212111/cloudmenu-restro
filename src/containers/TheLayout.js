@@ -34,9 +34,7 @@ const TheLayout = (props) => {
     </div>
     </> : 
     <>
-    <Header />
       <TheContent />
-    <Footer />
     </>
   )
 }

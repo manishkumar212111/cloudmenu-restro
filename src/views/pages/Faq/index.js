@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Footer from 'src/containers/Footer';
+import Header from 'src/containers/Header';
 import Contact from 'src/views/components/contact';
 const Faqs = [
     { question : "Can I use the domain of my restaurant ?" , answer: "What can you link the domain of your restaurant with us? If you do not have a domain of your own, do not be afraid, we can arrange one for you."},
@@ -11,7 +13,8 @@ const Faqs = [
 
 const FAQ = () => {
     const [active , setActive] = useState(0);
-    return (
+    return (<>  
+        <Header />
         <div id="main">
             <section class="inner-heading">
             <div class="container-fluid">
@@ -76,7 +79,8 @@ const FAQ = () => {
             </section>
         
       </div>
-    
+      <Footer />
+    </>
     )
 }
 

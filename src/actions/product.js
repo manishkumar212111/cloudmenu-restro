@@ -2,16 +2,15 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getProductList = (options) => async dispatch =>{
+export const getProductList = (options = {}) => async dispatch =>{
   try{
-      if(!options){
         let restaurantDetail =
           localStorage.getItem("userDetail") &&
           JSON.parse(localStorage.getItem("userDetail"))
             ? JSON.parse(localStorage.getItem("userDetail")).restaurant
             : {};
-        options = { restaurant : restaurantDetail.id}    
-      }
+        options.restaurant= restaurantDetail.id;    
+      
       dispatch({
           type : "PRODUCT_DETAIL_LOADING",
           data : true

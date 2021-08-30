@@ -960,3 +960,91 @@ body {
   #main #faq .card p {
     font-size: 14px;
   }
+
+  /* ==================================================
+New mayur changes
+================================================== */
+li.lang-area {
+  display: flex;
+  align-items: center;
+  border: 2px solid #2D2D2D;
+  border-radius: 30px;
+}
+li.lang-area span {
+  padding: 3px 7px;
+  cursor: pointer;
+}
+li.lang-area span.active-lang {
+  color: #eb5d1e;
+}
+.arabic-section .nav-menu > ul > li {
+  float: right;
+}
+.arabic-section .logo.mr-auto {
+  margin-right: 0 !important;
+}
+.arabic-section #header .container-fluid {
+  justify-content: space-between;
+}
+.arabic-section .graphic-4, .arabic-section .graphic-1 {
+  left: 0;
+}
+.arabic-section .banner-text {
+  text-align: right;
+}
+.arabic-section .trans-button  {
+  margin-left: 0;
+  margin-right: 24px;
+}
+.arabic-section .qr-content {
+  text-align: right;
+}
+.arabic-section .qr-generator h4, .arabic-section .qr-generator p {
+  text-align: right;
+}
+.arabic-section .plan-item, .arabic-section .connect-form-wrapper h5, .arabic-section .connect-text, .arabic-section #main #faq .card p {
+  text-align: right;
+}
+.arabic-section #main #faq .card .card-header .btn-header-link {
+  text-align: right;
+  border-right: 3px solid #DA3643;
+  border-left: none;
+}
+.arabic-section #main #faq .card .card-header .btn-header-link:after {
+  float: left;
+}
+.arabic-section .mobile-nav-toggle {
+  left: 15px;
+  right: initial;
+}
+@media (max-width: 992px) {
+  .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    padding: 0 20px;
+  }
+  li.lang-area {
+    width: 75px;
+    margin-left: 15px;
+  }
+  .arabic-section li.lang-area {
+    margin-right: 15px;
+  }
+}
+.arabic-section .mobile-nav {
+  right: -260px;
+  left: initial;
+}
+.arabic-section .mobile-nav-active .mobile-nav {
+  right: 0;
+}
+.arabic-section .mobile-nav * {
+  text-align: right;
+}
+.arabic-section .main-form h5 {
+  text-align: right;
+}
+.arabic-section .main-form a.forgot-link {
+  float: right;
+}
+.arabic-section .form-group p {
+  text-align: right;
+}

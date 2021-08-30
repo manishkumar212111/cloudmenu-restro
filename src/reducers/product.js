@@ -11,7 +11,7 @@ const initialState = {
     const { type , data } = action;
     switch ( type ) {
         case "PRODUCT_LIST":
-          return {...state, productList :  data, totalPages : data.totalPages};
+          return {...state, productList :  data.results, totalPages : data.totalPages};
         case 'SINGLE_PRODUCT_DETAIL' :
           return {...state , productDetail : data , product_detail_loading : false};
   

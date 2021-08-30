@@ -19,7 +19,7 @@ const store = createStore( window.REDUX_DATA );
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

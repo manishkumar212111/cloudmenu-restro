@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
 
@@ -26,7 +26,7 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 
 const App = (props) => {
-  
+    const [language, setLanguage] = useState("en");
     useEffect(() => {
       let alerts = props.alerts || [];
       alerts !== null &&
@@ -36,6 +36,10 @@ const App = (props) => {
       });
 
     } , [props.alerts]);
+
+    useEffect(() => {
+      setLanguage(props.language)
+    }, [props.language]);
 
     const createNotification = (type, message) => {
       console.log(type , message);
@@ -59,37 +63,38 @@ const App = (props) => {
           return toast.error(message, configs);
       }
     }
-
+    console.log(props)
   return (
-    <>
-    <ToastContainer 
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss = {false}
-        draggable
-        pauseOnHover
-        style={{zIndex : 99999}}
-    />
-    
-    <HashRouter>
-        <React.Suspense fallback={loading}>
-          <Switch>
-            {/* <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} /> */}
-            <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
-            
-          </Switch>
-        </React.Suspense>
-    </HashRouter>
-    </>
+    <div className={language === "ar" ? "arabic-section" : ""} dir={language === "ar" ? "rtl": ""}>
+      <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss = {false}
+          draggable
+          pauseOnHover
+          style={{zIndex : 99999}}
+      />
+      
+      <HashRouter>
+          <React.Suspense fallback={loading}>
+            <Switch>
+              {/* <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} /> */}
+              <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
+              
+            </Switch>
+          </React.Suspense>
+      </HashRouter>
+    </div>
   );
 }
 
 const mapStateToProps = state => ({
   alerts: state.alert,
+  language: state.language.language
 });
 
 export default connect( mapStateToProps )( App );

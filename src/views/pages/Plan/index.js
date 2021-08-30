@@ -1,7 +1,12 @@
 import React from 'react';
+import Footer from 'src/containers/Footer';
+import Header from 'src/containers/Header';
 
 const Plan = (props) => {
     return(
+        <>
+            <Header />
+
         <div id="main">
             <section class="inner-heading">
             <div class="container-fluid">
@@ -78,6 +83,8 @@ const Plan = (props) => {
             </div>
             </section>
         </div>
+        <Footer />
+        </>
     )
 }
 export default Plan;

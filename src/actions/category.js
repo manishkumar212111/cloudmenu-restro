@@ -2,8 +2,15 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getCategoryList = (options) => dispatch =>{
+export const getCategoryList = (options = {}) => dispatch =>{
   try{
+    let restaurantDetail =
+      localStorage.getItem("userDetail") &&
+      JSON.parse(localStorage.getItem("userDetail"))
+        ? JSON.parse(localStorage.getItem("userDetail")).restaurant
+        : {};
+    options.restaurant= restaurantDetail.id;    
+
       dispatch({
           type : "CATEGORY_DETAIL_LOADING",
           data : true
@@ -73,9 +80,10 @@ export const deleteCategoryById = (id , options) => dispatch =>{
         if(res && res.data && res.data.id) {
             // dispatch(getCategoryByUserId());
             dispatch(setAlert("Category added" , 'success'));
-            setTimeout(() => {
-              window.location.href="/#/category";
-            }, 1000)
+            dispatch(getCategoryList())
+            // setTimeout(() => {
+            //   window.location.href="/#/category";
+            // }, 1000)
           } else {
               //''
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    

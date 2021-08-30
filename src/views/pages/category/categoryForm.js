@@ -37,7 +37,7 @@ const CategoryForm = (props) => {
         })
     useEffect(() => {
       setIsEdit(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
-    }, [props.match.params])
+    }, [props?.match?.params])
     
     useEffect(() => {
         if(isEdit){
@@ -114,14 +114,13 @@ const CategoryForm = (props) => {
     <>
       <CRow>
         <CCol xs="12" sm="12"  style={{"margin-top" : "10px"}}>
-          <CCard>
-            <CCardHeader>
-              Update Category
-              {/* <small> Form</small> */}
-            </CCardHeader>
-            <CCardBody>
+          {/* <CCard> */}
+            {/* <CCardHeader>
+              Add Category
+            </CCardHeader> */}
+            {/* <CCardBody> */}
             <CRow>
-                <CCol sm="4">
+                <CCol sm="6">
                     <CFormGroup>
                     <CLabel htmlFor="name">Category Name *</CLabel>
                     <CInput id="name" name="name" value={fieldObj.name} onChange={(e) => handleChange(e , 'name')} placeholder="Enter category name" />
@@ -132,12 +131,13 @@ const CategoryForm = (props) => {
             </CRow>
                 <CRow>
                     <CCol sm="4">
+                   {     props.loading ? <><CSpinner /></> : 
                         <CButton block color="primary" variant="outline"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>
-                    </CCol>
+                   } </CCol>
                 </CRow>
             
-            </CCardBody>
-          </CCard>
+            {/* </CCardBody> */}
+          {/* </CCard> */}
 
         </CCol>
        
@@ -147,7 +147,7 @@ const CategoryForm = (props) => {
 }
 
 const mapStateToProps = ( state ) => ( {
-    loading : state.Home.loading,
+    loading : state.category.category_detail_loading,
     fieldObj : state.category.categoryDetail,
     categoryOnbordingMessage : state.category.categoryOnbordingMessage
   } );

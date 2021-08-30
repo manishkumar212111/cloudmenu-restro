@@ -1,9 +1,10 @@
 import React , {useEffect, useState} from 'react';
 import {connect } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
-
+import { setLanguage } from 'src/actions/language';
 const Header = (props) => {
     const [user , setUser] = useState({});
+    const [language , setLanguage] = useState("en");
     useEffect(() => {
       if(typeof localStorage !== 'undefined' && localStorage.getItem('userDetail')){
         setUser(JSON.parse(localStorage.getItem('userDetail')).user) 
@@ -15,6 +16,9 @@ const Header = (props) => {
 
     }, [])
 
+    useEffect(() =>{
+      setLanguage(props.language);
+    }, [props.language])
     const handleScroll = (e) => {
         let elem = document.querySelector("#header");
         if((document.getElementById('root') && document.getElementById('root').getBoundingClientRect().top) < -55){
@@ -42,7 +46,9 @@ const Header = (props) => {
                 <li><a href="/#/pricing">Pricing</a></li>
                 <li><a href="/#/faqs">FAQ's</a></li>
                 <li><HashLink to="#benifits">Benifits</HashLink></li>
-      
+                <li className="lang-area">
+                  <span onClick={() => props.setLanguage("en")} className={language == "en" ? "active-lang" : ""}>En</span> | <span onClick={() => props.setLanguage("ar")} class={language == "ar" ? "active-lang" : ""}>Ar</span>
+                </li>
                 {user && user.status ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
               </ul>
             </nav>
@@ -52,11 +58,14 @@ const Header = (props) => {
 };
 
 const mapStateToProps = ( state ) => ( {
-  userDetail: state.user.userDetail || state.auth.userDetail
+  userDetail: state.user.userDetail || state.auth.userDetail,
+  language: state.language.language,
+  
 } );
 
 const mapDispatchToProps = {
   // auth,
+  setLanguage
 };
 
 export default connect( mapStateToProps, mapDispatchToProps )( Header );

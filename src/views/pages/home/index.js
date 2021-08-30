@@ -1,4 +1,6 @@
 import React,{useEffect} from 'react';
+import Footer from 'src/containers/Footer';
+import Header from 'src/containers/Header';
 import Contact from 'src/views/components/contact';
 
 const steps = [
@@ -27,6 +29,8 @@ const Index = () => {
      }, [])
 
     return(<>
+      <Header />
+
         <section id="hero">
           <div className="container-fluid">
             <div className="row align-items-center">
@@ -276,6 +280,7 @@ const Index = () => {
           </section>
           
         </main>
+        <Footer />
       
       </>
     )

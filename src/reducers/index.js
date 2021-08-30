@@ -14,7 +14,7 @@ import restaurant from "./restaurant";
 import category from "./category";
 import product from "./product";
 import modifier from "./modifier";
-
+import language from "./language";
 
 
 const initialState = {
@@ -44,7 +44,8 @@ const appReducers = combineReducers({
     restaurant,
     category,
     product,
-    modifier
+    modifier,
+    language
 });
 
 const rootReducer = (state, action) => {
