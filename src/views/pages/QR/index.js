@@ -100,7 +100,7 @@ const QR = () => {
               <CCardBody>
                 <div id="my-qr" style={{backgroundColor : fieldObj.backgroundColor}}>
                   <p style={{color : fieldObj.textColor,  fontSize: parseInt(fieldObj.textSize)}}>{fieldObj.text}</p>
-                  <QRCode value={`https://www.google.com?id=${restaurantDetail.id}&tableNo=${fieldObj.tableNo}`} size="300" fgColor={fieldObj.qrColor}/><br></br>
+                  <QRCode value={`https://arcane-citadel-48750.herokuapp.com/${restaurantDetail.id}/${fieldObj.tableNo}`} size="300" fgColor={fieldObj.qrColor}/><br></br>
                   {fieldObj.tableNo && <p style={{color : fieldObj.textColor,  fontSize: parseInt(fieldObj.textSize)}}>
                     Table Number : {fieldObj.tableNo}
                   </p>}  
