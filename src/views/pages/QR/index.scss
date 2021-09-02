@@ -1,0 +1,180 @@
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #E5E5E5;
+}
+
+
+.dropdown-item:active {
+    background-color: #e9e9e9;
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+}
+
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.4em;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.45%29'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked {
+    background-color: #DA3643;
+    border-color: #DA3643;
+}
+
+.form-check-input:focus {
+    border-color: #DA3643;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #da36442c;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+.restaurant-details-container {
+    justify-content: space-between;
+}
+
+.restaurant-details-form-container , .restaurant-details-right-container-plan {
+    border-radius: 1.25rem;
+}
+
+.restaurant-details-form-heading {
+    color: #606060;
+    font-size: 1rem;
+    border-bottom: 0.15rem solid #C4C4C4;
+}
+
+
+.input-label {
+    color: #606060;
+    font-size: 1rem;
+}
+
+.form-input, .form-input::placeholder, .form-input-select {
+    color: #979797;
+    font-size: 1rem;
+}
+
+.form-input, .form-input-select {
+    border: 0.1rem solid #D7D7D7;
+    border-radius: 0.3rem;
+}
+
+.color-picker {
+    width: 2.5rem;
+    padding: 0;
+    height: 2.5rem;
+}
+
+.qr-container {
+    background-color: #F3F3F3;
+}
+
+.qr-text {
+    color: #DA3643;
+    font-size: 1.6rem;
+}
+
+.qr-img {
+    width: 100%;
+}
+
+.tbl-no {
+    color: #2D2D2D;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.imageUploadInput-container {
+    position: relative;
+}
+
+
+.imageUploadInput {
+    height: 8rem;
+    opacity: 0;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.restaurantLogoUploadBackground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #F5F5F5;
+    border: 0.1rem solid #D8D8D8;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.state-dropdown-btn {
+    background-color: #fff;
+    color: #979797;
+    width: 100%;
+    text-align: left;
+}
+
+.state-dropdown-menu {
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+    border-radius: 0.7rem;
+    border: none;
+}
+
+.switch-container {
+    padding-left: 0rem !important;
+}
+
+.form-check-switch-label {
+    color: #000;
+    font-size: 1rem;
+    user-select: none;
+}
+
+.update-btn {
+    background-color: #2D2D2D;
+    border-radius: 1.6rem;
+    padding: 0.5rem 4rem;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+
+.plan-name {
+    color: #DA3643;
+    font-weight: 700;
+    font-size: 4.2rem;
+}
+
+.plan-date {
+    color: #2D2D2D;
+    font-size: 1.5rem;
+}

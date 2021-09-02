@@ -8,6 +8,7 @@ import Page404 from './views/pages/page404/Page404';
 import Page500 from './views/pages/page500/Page500';
 import Plan from './views/pages/Plan';
 import profile from './views/pages/profile';
+import newProfile from './views/pages/profile/indexNew';
 import Register from './views/pages/register/Register';
 import ResetPassword from './views/pages/ResetPassword';
 import QR from './views/pages/QR';
@@ -32,6 +33,7 @@ const routes = [
   { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
   { path: '/faqs', exact: true, name: "FAQs", component : FAQ},
   { path: '/profile', exact: true, name: "Profile", component : profile},
+  { path: '/profile/:id', exact: true, name: "Profile", component : newProfile},
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
 

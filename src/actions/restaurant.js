@@ -117,7 +117,8 @@ export const UpdateRestaurantById = (restaurantId , data) => dispatch =>{
         let formData = new FormData();
 
         Object.keys(data).map(itm => {
-            formData.append(itm, data[itm]);
+          console.log(itm , data[itm], typeof data[itm]);
+            typeof data[itm] != "undefined" && data[itm] !== "" && formData.append(itm, data[itm]);
           });
       API.post('Restaurants' , formData , restaurantId , function(res){
         

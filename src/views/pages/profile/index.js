@@ -311,15 +311,6 @@ const Profile = (props) => {
                     </CFormGroup>
                 </CCol>
             </CRow>
-{/*              
- 
-              <CFormGroup>
-                <CLabel htmlFor="status">Status </CLabel>
-                <CSelect name="status" id="status" value={fieldObj.status} onChange={(e) => handleChange(e , 'status')} >
-                    <option value={true}>Active</option>
-                    <option value={false}>Inactive</option>
-                </CSelect>
-                </CFormGroup> */}
                 <CRow>
                     <CCol sm="4">
                         <CButton block color="primary" variant="outline"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>

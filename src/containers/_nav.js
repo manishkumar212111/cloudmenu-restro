@@ -15,7 +15,7 @@ const _nav =  [
   {
     _tag: 'CSidebarNavItem',
     name: 'Profile',
-    to: '/profile',
+    to: '/profile/update',
     icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
     // badge: {
     //   color: 'info',
