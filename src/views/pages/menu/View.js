@@ -15,7 +15,7 @@ const View = ({item}) => {
         <span>Selling Price: {item.price}</span><br></br>
         <span>Selling Price Arabic: {item.price}</span><br></br>
 
-        <span>Category: {item.category[0].name}</span>
+        <span>Category: {item?.category.name}</span>
     </div>)
 }
 

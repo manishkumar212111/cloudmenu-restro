@@ -246,7 +246,7 @@ const Profile = (props) => {
                             <label for="restaurant-name-en" class="input-label">Restaurant Name English</label>
                             <input type="text" class="form-control py-2 pl-3 form-input" id="nameAr" name="nameAr" value={fieldObj.nameAr} onChange={(e) => handleChange(e , 'nameAr')}
                                 placeholder="enter restaurant name english" />
-                        {!errorObj.name.error && <CFormText className="help-block error">{errorObj.name.msg}</CFormText>}
+                        {!errorObj.nameAr.error && <CFormText className="help-block error">{errorObj.nameAr.msg}</CFormText>}
                         </div>
 
                         <div class="form-group mb-4">

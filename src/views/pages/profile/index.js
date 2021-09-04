@@ -35,8 +35,6 @@ const defaultProps = {
         name: '',
         manager_name: "",
         coverImage: "",
-        openingTime: "",
-        closingTime: "",
         full_address : "",
         mobile : "",
         ccode : "+91",
@@ -57,8 +55,6 @@ const Profile = (props) => {
         {   name : { error : true , msg : "It should be valid" } , 
             manager_name : { error : true , msg : "It should be valid" },
             coverImage : { error : true , msg : "It should be valid" },
-            openingTime : { error : true , msg : "It should be valid" },
-            closingTime : { error : true , msg : "It should be valid" },
             full_address: { error : true , msg : "It should be valid" },
             mobile: { error : true , msg : "It should be valid" },
             email: { error : true , msg : "It should be valid" },
@@ -117,8 +113,6 @@ const Profile = (props) => {
             case "name":
             case "manager_name" :
             case "coverImage": 
-            case "openingTime":
-            case "closingTime":
             case "full_address":
             case "mobile":
             case "ccode":
@@ -135,7 +129,7 @@ const Profile = (props) => {
     }
     
     const handleClick = () => {
-        let requiredObj = ['name', 'manager_name' ,'email', 'coverImage', 'openingTime', 'closingTime' , 'full_address', 'mobile',  'state', 'city', 'password', 'businessDoc'];
+        let requiredObj = ['name', 'manager_name' ,'email', 'coverImage', 'full_address', 'mobile',  'state', 'city', 'password', 'businessDoc'];
         let errOb = errorObj;
 
         let status = true;
@@ -226,26 +220,10 @@ const Profile = (props) => {
                     
                     </CFormGroup>
                 </CCol>
+
             </CRow>
                 
             <CRow>
-
-                <CCol sm="4">
-                    <CFormGroup>
-                        <CLabel htmlFor="closingTime">Closing Time * </CLabel>
-                        <CInput type="time" id="closingTime" name="closingTime" value={fieldObj.closingTime} onChange={(e) => handleChange(e , 'closingTime')} placeholder="Enter Closing time" />
-                        {!errorObj.closingTime.error && <CFormText className="help-block">{errorObj.closingTime.msg}</CFormText>}
-                    
-                    </CFormGroup>
-                </CCol>
-                <CCol sm="4">
-                    <CFormGroup>
-                        <CLabel htmlFor="openingTime">Opening Time * </CLabel>
-                        <CInput type="time" id="openingTime" name="openingTime" value={fieldObj.openingTime} onChange={(e) => handleChange(e , 'openingTime')} placeholder="Enter Opening time" />
-                        {!errorObj.openingTime.error && <CFormText className="help-block">{errorObj.openingTime.msg}</CFormText>}
-                    
-                    </CFormGroup>
-                </CCol>
 
                 <CCol sm="4">
                     <CFormGroup>
@@ -255,8 +233,6 @@ const Profile = (props) => {
                     
                     </CFormGroup>
                 </CCol>
-            </CRow>
-            <CRow>
                 <CCol sm="4">
                     <CFormGroup>
                         <CLabel htmlFor="city">City * </CLabel>
@@ -273,24 +249,14 @@ const Profile = (props) => {
                     
                     </CFormGroup>
                 </CCol>
+            </CRow>
+            <CRow>
+                
                 <CCol sm="4">
-              
                     <CFormGroup>
                         <CLabel htmlFor="email">Email * </CLabel>
                         <CInput type="email" id="email" name="email" value={fieldObj.email} onChange={(e) => handleChange(e , 'email')} placeholder="Email" />
                         {!errorObj.email.error && <CFormText className="help-block error">{errorObj.email.msg}</CFormText>}
-                    
-                    </CFormGroup>
-                </CCol>
-            
-            </CRow>
-            <CRow>
-                <CCol sm="4">
-                    
-                    <CFormGroup>
-                        <CLabel htmlFor="password">Confirm password * </CLabel>
-                        <CInput type="password" id="password" name="password" value={fieldObj.password} onChange={(e) => handleChange(e , 'password')} placeholder="Confirm password" />
-                        {!errorObj.password.error && <CFormText className="help-block error">{errorObj.password.msg}</CFormText>}
                     
                     </CFormGroup>
                 </CCol>
@@ -311,12 +277,20 @@ const Profile = (props) => {
                     </CFormGroup>
                 </CCol>
             </CRow>
-                <CRow>
-                    <CCol sm="4">
-                        <CButton block color="primary" variant="outline"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>
-                    </CCol>
-                </CRow>
-            
+            <CRow>
+                <CCol sm="4">
+                    
+                    <CFormGroup>
+                        <CLabel htmlFor="password">Confirm password * </CLabel>
+                        <CInput type="password" id="password" name="password" value={fieldObj.password} onChange={(e) => handleChange(e , 'password')} placeholder="Confirm password" />
+                        {!errorObj.password.error && <CFormText className="help-block error">{errorObj.password.msg}</CFormText>}
+                    
+                    </CFormGroup>
+                </CCol>
+                
+            </CRow>
+                <CButton style={{marginLeft: "40%" , width: 200}} block color="primary"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>
+                    
             </CCardBody>
           </CCard>
 

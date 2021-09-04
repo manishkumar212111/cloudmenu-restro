@@ -122,7 +122,7 @@ let validateUtility = {
     },
     
     required(value) {
-       return value?.toString().trim().length !== 0;
+       return value && (value?.toString().trim().length !== 0);
     },
     
     minLength(value, length) {

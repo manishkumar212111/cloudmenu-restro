@@ -27,6 +27,7 @@ import {
   CModalFooter,
   CImg
 } from '@coreui/react';
+import ImagUpload from "./images/upload-image-icon.svg"
 
 import { Draggable } from "react-drag-reorder";
 
@@ -35,7 +36,8 @@ import CreatableSelect from 'react-select/creatable';
 import { useHistory } from 'react-router-dom';
 import { BASE_URL } from 'src/API/config';
 import AsyncSelect from 'react-select/async';
-
+import "./style/item.scss";
+import crossIcon from "./images/cross.svg"
 const defaultProps = {
     fieldObj : {
         title: '',
@@ -62,7 +64,7 @@ const Add = (props) => {
             descriptionAr : { error : true , msg : "It should be valid" },
             sellingPrice : { error : true , msg : "It should be valid" },
             sellingPriceAr: { error : true , msg : "It should be valid" },
-            productImg: { error : true , msg : "It should be valid" },
+            productImg: { error : true , msg : "Product Image is required" },
             category: { error : true , msg : "It should be valid" },
         })
     useEffect(() => {
@@ -142,7 +144,8 @@ const Add = (props) => {
     });
 
     const validateField = (key , value) => {
-        value = value ? value : fieldObj[key] 
+        value = value ? value : fieldObj[key];
+        console.log(key , fieldObj.key) 
         switch(key) {
             case "title":
             case "titleAr" :
@@ -161,13 +164,13 @@ const Add = (props) => {
     }
     
     const handleClick = () => {
-        let requiredObj = ['title', 'titleAr' ,'description', 'descriptionAr', 'sellingPrice', 'sellingPriceAr' , 'category', 'productImg'];
+        let requiredObj = ['title', 'titleAr' ,'description', 'descriptionAr', 'sellingPrice', 'sellingPriceAr' , 'productImg', 'category'];
         let errOb = errorObj;
 
         let status = true;
         requiredObj.forEach(element => {
             let errorStatus = validateField(element);
-            console.log(errorStatus , element)
+            console.log(errorStatus , element);
             errOb[element].error = errorStatus;
             status = status && errorStatus;
         })
@@ -225,12 +228,11 @@ const Add = (props) => {
     return (
     <>
       <CRow>
-        <CCol xs="12" sm="12"  style={{"margin-top" : "10px"}}>
+        <CCol xs="12" sm="12">
           <CCard>
             <CCardBody>
             <CRow>
                 <CCol sm="6">
-
                     <CFormGroup>
                     <CLabel htmlFor="title">Title *</CLabel>
                     <CInput id="title" name="title" value={fieldObj.title} onChange={(e) => handleChange(e , 'title')} placeholder="Enter title" />
@@ -261,13 +263,13 @@ const Add = (props) => {
             
                     <CFormGroup>
                         <CLabel htmlFor="description">Description * </CLabel>
-                        <CInput id="description" name="description"  value={fieldObj.description} onChange={(e) => handleChange(e , 'description')} placeholder="Enter description" />
+                        <CTextarea id="description" name="description"  value={fieldObj.description} onChange={(e) => handleChange(e , 'description')} placeholder="Enter description" />
                         {!errorObj.description.error && <CFormText className="help-block error">{errorObj.description.msg}</CFormText>}
 
                     </CFormGroup>
                     <CFormGroup>
                         <CLabel htmlFor="descriptionAr">Description (Arabic) * </CLabel>
-                        <CInput id="descriptionAr" name="descriptionAr" value={fieldObj.descriptionAr} onChange={(e) => handleChange(e , 'descriptionAr')} placeholder="Enter Description ( Arabic )" />
+                        <CTextarea id="descriptionAr" name="descriptionAr" value={fieldObj.descriptionAr} onChange={(e) => handleChange(e , 'descriptionAr')} placeholder="Enter Description ( Arabic )" />
                         {!errorObj.descriptionAr.error && <CFormText className="help-block error">{errorObj.descriptionAr.msg}</CFormText>}                    
                     </CFormGroup>
                     <CFormGroup>
@@ -282,16 +284,27 @@ const Add = (props) => {
                         {!errorObj.sellingPriceAr.error && <CFormText className="help-block error">{errorObj.sellingPriceAr.msg}</CFormText>}
                     
                     </CFormGroup>
-                    <CFormGroup>
-                        <CLabel htmlFor="productImg">Product Image </CLabel>
-                        <CInput type="file" id="productImg" name="productImg" onChange={(e) => handleFileUpload(e , 'productImg')} placeholder="Enter Product Image" />
+                    <div class="form-group mb-4">
+                    <CLabel htmlFor="sellingPriceAr">Product Image *</CLabel>
+                        <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
+                            <input class="form-control imageUploadInput" type="file"
+                                id="productImg" name="productImg" onChange={(e) => handleFileUpload(e , 'productImg')} />
+                            <div style={{ width: 260, height : 130}}
+                                class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center">
+                                <img src={preview ? preview : fieldObj.imageUrl ? (BASE_URL+fieldObj.imageUrl) : ImagUpload} alt=""
+                                    style={{ width: 260, height : 130}} class="restaurantLogoUploadBackground-icon" />
+                            </div>
+                        </div>
                         {!errorObj.productImg.error && <CFormText className="help-block error">{errorObj.productImg.msg}</CFormText>}
-                    </CFormGroup>
-                    {preview ? <CImg src={preview} width="40" height="40"></CImg>:
-                    fieldObj.imageUrl && <CImg src={BASE_URL+fieldObj.imageUrl} width="40" height="40"></CImg>}    
-                    {props.product_detail_loading ? <CSpinner /> : <CButton block color="primary" variant="outline"  onClick={handleClick} value="Submit">{isEdit ? "Update" : "Submit"}</CButton>}
+                    </div>
+
+                    
+                    
                 </CCol>
                 <CCol sm="6">
+                <CFormGroup>
+                <CLabel htmlFor="productImg">Select Modifiers </CLabel>
+                    
                     <AsyncSelect 
                         cacheOptions
                         defaultOptions
@@ -299,12 +312,31 @@ const Add = (props) => {
                         onChange={handleModifierChange}
 
                     />
+                </CFormGroup>
+                
                         {fieldObj && fieldObj.modifierGroup && fieldObj.modifierGroup.map((itm, index) => (
-                            <><div>
-                                {itm.label} <span onClick={() => handleDelete(index)}>Delete</span>
-                            </div><br></br></>
+                            <>
+                            <div class="form-group px-2 pt-2">
+                                <div class="mb-4">
+                                    <div class="dropdown">
+                                        <span
+                                            class=" saucedropdown-toggle form-input pl-3 dish-modifier-items-range-dropdown-btn"
+                                             id="dropdownMenuButton" >
+                                            <span>{itm.label}</span>
+                                            <img onClick={() => handleDelete(index)} src={crossIcon} alt="" style={{cursor: "pointer"}} class="cross-icon" />
+                                        </span>
+                                        
+                                    </div>
+                                </div>
+                            </div></>
                         ))}
                 </CCol>
+                <div class="form-group col-3 mx-auto d-flex justify-content-center">
+
+                {props.product_detail_loading ? <CSpinner /> : 
+                    
+                        <button type="button" class="btn add-dish-btn" onClick={handleClick}>{isEdit ? "UPDATE" : "SUBMIT"}</button>
+                    }</div>
             </CRow>
             </CCardBody>
           </CCard>

@@ -1,0 +1,60 @@
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+body {
+    background-color: #E5E5E5;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+.add-category-container {
+    background-color: #fff;
+    border-radius: 1.25rem;
+}
+
+.add-category-header {
+    color: #606060;
+    font-size: 1.3rem;
+    border-bottom: 0.1rem solid #C4C4C4;
+}
+
+.input-label {
+    color: #606060;
+    font-size: 1.2rem;
+}
+
+.form-input, .form-input::placeholder {
+    color: #979797;
+    font-size: 1.1rem;
+}
+
+.form-input {
+    border: 0.1rem solid #D7D7D7;
+    border-radius: 0.3rem;
+}
+
+
+.add-category-btn {
+    background-color: #2D2D2D;
+    border-radius: 1.6rem;
+    padding: 0.5rem 4rem;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 500;
+}

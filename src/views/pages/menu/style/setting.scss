@@ -1,0 +1,85 @@
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+body {
+    background-color: #E5E5E5;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+.form-switch .form-check-input {
+    width: 3em;
+    height: 1.4em;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.45%29'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked {
+    background-color: #DA3643;
+    border-color: #DA3643;
+}
+
+.form-check-input:focus {
+    border-color: #DA3643;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #da36442c;
+}
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+.menu-settings-container {
+    background-color: #fff;
+    border-radius: 1.25rem;
+}
+
+.menu-settings-header {
+    color: #DA3643;
+    font-weight: 500;
+    font-size: 1.5rem;
+    border-bottom: 0.15rem solid #C4C4C4;
+}
+
+.input-label {
+    color: #606060;
+    font-size: 1.2rem;
+}
+
+.form-input, .form-input::placeholder {
+    color: #979797;
+    font-size: 1.1rem;
+}
+
+.form-input {
+    border: 0.1rem solid #D7D7D7;
+    border-radius: 0.3rem;
+}
+
+.switch-container {
+    padding-left: 0.6rem !important;
+}
+
+.form-check-switch-label {
+    color: #000;
+    font-size: 1.2rem;
+}
+
+.menu-settings-payment-heading {
+    color: #DA3643;
+    font-size: 1.2rem;
+}
