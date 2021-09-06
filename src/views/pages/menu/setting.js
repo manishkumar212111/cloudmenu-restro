@@ -38,8 +38,8 @@ const Setting = (props) => {
     return(
         <CRow>
             <CCol xs="12" sm="12"  style={{"margin-top" : "10px"}}>
-                <CCard>
-                    <CCardBody>
+                <CCard style={{border: "none"}}>
+                    <CCardBody >
                         <CFormGroup>
                             <CLabel htmlFor="title">Default language</CLabel>
                             <select className="form-control" name="language" value={setting.language} onChange={(e) => handleChange(e , 'language', e.target.value)}>
