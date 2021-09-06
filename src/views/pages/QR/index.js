@@ -22,6 +22,7 @@ const QR = () => {
     qrColor: "black",
     textSize: 16,
     text: "Qr Text Here",
+    layoutSize: 520
   });
 
   const restaurantDetail =
@@ -45,6 +46,18 @@ const QR = () => {
       link.click();
     });
   };
+
+  const printDiv = (divName) => {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
+  }
+
   console.log(fieldObj);
   if (!restaurantDetail) {
     return <div>Your restaurant is not approved to generet qr code</div>;
@@ -93,7 +106,7 @@ const QR = () => {
               </div>
 
               <div class="row mt-4">
-                <div class="col-6 px-4">
+                <div class="col-4 px-4">
                   <div class="form-group mb-5">
                     <label for="textcolor" class="input-label mb-3">
                       Text Color
@@ -109,7 +122,7 @@ const QR = () => {
                     />
                   </div>
                 </div>
-                <div class="col-6 px-4">
+                <div class="col-4 px-4">
                  
                 <div class="form-group mb-5">
                     <label for="textsize" class="input-label mb-3">
@@ -126,6 +139,27 @@ const QR = () => {
                     />
                   </div>
                 </div>
+
+                <div class="col-4 px-4">
+                 
+                <div class="form-group mb-5">
+                    <label for="textsize" class="input-label mb-3">
+                      Layout Size
+                    </label>
+                    <input
+                      class="form-control py-2 pl-3 form-input"
+                      type="Number"
+                      id="layoutSize"
+                      name="layoutSize"
+                      min="250"
+                      max="900"
+                      value={fieldObj.layoutSize}
+                      onChange={(e) => handleChange(e, "layoutSize")}
+                      placeholder="Enter layout size"
+                    />
+                  </div>
+                </div>
+
               </div>
               <div class="row mt-4">
               <div class="col-4 px-4">
@@ -182,8 +216,8 @@ const QR = () => {
                 </button>
               </div>
             </div>
-            <div class="col-5 restaurant-details-right-container">
-              <div class="row restaurant-details-right-container-plan bg-white py-5 px-4">
+            <div class={`col-5 restaurant-details-right-container `} >
+              <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{width: parseInt(fieldObj.layoutSize) }}>
                 <div
                   id="my-qr"
                   style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10 }}

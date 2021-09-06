@@ -57,6 +57,7 @@ const AddModifier = (props) => {
   const [name, setName] = useState("");
   const [nameAr, setNameAr] = useState("");
   const [price, setPrice] = useState("");
+  const [showMin , setShowMin] = useState(0);
   const [errorObj, setErrorObj] = useState({
     name: { error: true, msg: "It should be valid" },
     nameAr: { error: true, msg: "It should be valid" },
@@ -78,11 +79,13 @@ const AddModifier = (props) => {
 
   useEffect(() => {
     props.fieldObj && props.fieldObj.id && setfieldObj(props.fieldObj);
+    if(props.fieldObj?.id){
+      setShowMin(props.fieldObj.max && props.fieldObj.max > 0);
+    }
   }, [props.fieldObj]);
 
   const handleChange = (e, key, value) => {
     console.log(e.target);
-    window.temp = e;
     let field = {};
     field[key] = typeof value !== "undefined" ? value : e.target.value;
     setfieldObj((fieldOb) => ({ ...fieldOb, ...field }));
@@ -133,17 +136,22 @@ const AddModifier = (props) => {
       delete fieldObj.status;
       delete fieldObj.updatedAt;
       delete fieldObj.restaurant;
-
+      if(!showMin){
+        fieldObj.max=0;
+      }  
       props.updateModifierById(isEdit, fieldObj);
       return;
+    }
+    if(!showMin){
+      fieldObj.max=0;
     }
     props.createModifier(fieldObj);
   };
 
   const handleSubmit = () => {
-      if(!name || !nameAr || !price){
-          return;
-      }
+    if (!name || !nameAr || !price) {
+      return;
+    }
     let field = fieldObj["modifiers"] || [];
     field.push({ name: name, price: price, nameAr: nameAr });
     setfieldObj((fieldOb) => ({ ...fieldOb, modifiers: field }));
@@ -159,6 +167,15 @@ const AddModifier = (props) => {
     setPrice("");
     setNameAr("");
   };
+  
+  const handleSelectionChange= (e) => {
+    if(e.target.value == "select"){
+      setfieldObj((fieldOb) => ({ ...fieldOb, max: 0 }));
+      setShowMin(false);
+    } else{
+      setShowMin(true);
+    }
+  }
 
   const handleDelete = (index) => {
     let field = fieldObj["modifiers"] || [];
@@ -192,40 +209,48 @@ const AddModifier = (props) => {
           <CCard>
             <CCardBody>
               <CCol sm="12">
-                <CFormGroup className="form-group mb-4 px-2">
-                  <CLabel className="input-label" htmlFor="name">
-                    Name *
-                  </CLabel>
-                  <CInput
-                    className="form-control py-3 pl-3 form-input"
-                    id="name"
-                    name="name"
-                    value={fieldObj.name}
-                    onChange={(e) => handleChange(e, "name")}
-                    placeholder="Enter name"
-                  />
-                  {!errorObj.name.error && (
-                    <CFormText className="help-block error">
-                      {errorObj.name.msg}
-                    </CFormText>
-                  )}
-                </CFormGroup>
-
-                <CFormGroup className="form-group mb-4 px-2">
-                  <CLabel htmlFor="nameAr">Name (Arabic) * </CLabel>
-                  <CInput
-                    id="nameAr"
-                    name="nameAr"
-                    value={fieldObj.nameAr}
-                    onChange={(e) => handleChange(e, "nameAr")}
-                    placeholder="Enter name (arabic)"
-                  />
-                  {!errorObj.nameAr.error && (
-                    <CFormText className="help-block error">
-                      {errorObj.nameAr.msg}
-                    </CFormText>
-                  )}
-                </CFormGroup>
+                <CRow>
+                  <CCol sm="6">
+                    <CFormGroup className="form-group mb-4 px-2">
+                      <CLabel className="input-label" htmlFor="name">
+                        Name *
+                      </CLabel>
+                      <CInput
+                        className="form-control py-3 pl-3 form-input"
+                        id="name"
+                        name="name"
+                        value={fieldObj.name}
+                        onChange={(e) => handleChange(e, "name")}
+                        placeholder="Enter name"
+                      />
+                      {!errorObj.name.error && (
+                        <CFormText className="help-block error">
+                          {errorObj.name.msg}
+                        </CFormText>
+                      )}
+                    </CFormGroup>
+                  </CCol>
+                  <CCol sm="6">
+                    <CFormGroup className="form-group mb-4 px-2">
+                      <CLabel className="input-label" htmlFor="nameAr">
+                        Name (Arabic) *{" "}
+                      </CLabel>
+                      <CInput
+                        id="nameAr"
+                        name="nameAr"
+                        value={fieldObj.nameAr}
+                        onChange={(e) => handleChange(e, "nameAr")}
+                        placeholder="Enter name (arabic)"
+                        className="form-control py-3 pl-3 form-input"
+                      />
+                      {!errorObj.nameAr.error && (
+                        <CFormText className="help-block error">
+                          {errorObj.nameAr.msg}
+                        </CFormText>
+                      )}
+                    </CFormGroup>
+                  </CCol>
+                </CRow>
 
                 <div class="form-group mb-0 px-2">
                   <label for="modifier-require" class="input-label">
@@ -279,7 +304,15 @@ const AddModifier = (props) => {
                       How many items can the customer choose?
                     </label>
                   </div>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb-4">
+                  <CRow style={{marginTop: 10}}>
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
+                    <select class="form-select" placeholder="Select a range" onChange={(e) => handleSelectionChange(e)} aria-label="Default select example">
+                      {/* <option selected>Select A Range</option> */}
+                      <option value="select">Select</option>
+                      <option value="select arange">Select a range</option>
+                    </select>
+                  </div>
+                  {<div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
                     <input
                       type="number"
                       class="form-control form-input form-input-min"
@@ -295,8 +328,8 @@ const AddModifier = (props) => {
                         {errorObj.min.msg}
                       </CFormText>
                     )}
-                  </div>
-                  <div class="col-6 col-sm-6 col-md-6 col-lg-6 mb-4">
+                  </div>}
+                  {Boolean(showMin) && <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
                     <input
                       type="number"
                       class="form-control form-input form-input-max"
@@ -312,7 +345,8 @@ const AddModifier = (props) => {
                         {errorObj.max.msg}
                       </CFormText>
                     )}
-                  </div>
+                  </div>}
+                  </CRow>
                 </div>
 
                 <div class="form-group">
@@ -345,12 +379,12 @@ const AddModifier = (props) => {
                       <div class="row">
                         <div class="col-md-4">
                           <div class="row justify-content-md-center px-4 py-3 text-center">
-                            {itm.name}
+                            {itm.nameAr}
                           </div>
                         </div>
                         <div class="col-md-4">
                           <div class="row justify-content-md-center px-4 py-3 text-center">
-                            {itm.nameAr}
+                            {itm.name}
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -407,9 +441,12 @@ const AddModifier = (props) => {
                         </div>
                       </div>
                       <div class="col-md-1">
-                        <div onClick={handleSubmit} style={{ marginTop: 22, cursor: "pointer" }}>
-                            Add
-                            {/* <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                        <div
+                          onClick={handleSubmit}
+                          style={{ marginTop: 22, cursor: "pointer" }}
+                        >
+                          Add
+                          {/* <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                             </div>
                             <div><img
                             alt="Cancel"

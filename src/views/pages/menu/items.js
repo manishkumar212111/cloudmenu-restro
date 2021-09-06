@@ -137,9 +137,9 @@ const Items = (props) => {
                     <div class="row align-items-center justify-content-end">
                       <div class="col-3"></div>
                       <div class="col-3">
-                        <button type="button" onClick={() => setViewOpen(itm)} class="btn item-view-btn">
+                        {/* <button type="button" onClick={() => setViewOpen(itm)} class="btn item-view-btn">
                           view
-                        </button>
+                        </button> */}
                       </div>
                       <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
                         <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" class="menu-icon" />
