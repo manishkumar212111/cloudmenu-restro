@@ -236,14 +236,14 @@ const Profile = (props) => {
                     <div class="col-6 px-4">
 
                         <div class="form-group mb-4">
-                            <label for="restaurant-name-ar" class="input-label">Restaurant Name Arabic</label>
+                            <label for="restaurant-name-ar" class="input-label">Restaurant Name English</label>
                             <input type="text" class="form-control py-2 pl-3 form-input" id="name" name="name" value={fieldObj.name} onChange={(e) => handleChange(e , 'name')}
                                 placeholder="enter restaurant name arabic" />
                             {!errorObj.name.error && <CFormText className="help-block error">{errorObj.name.msg}</CFormText>}
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="restaurant-name-en" class="input-label">Restaurant Name English</label>
+                            <label for="restaurant-name-en" class="input-label">Restaurant Name Arabic</label>
                             <input type="text" class="form-control py-2 pl-3 form-input" id="nameAr" name="nameAr" value={fieldObj.nameAr} onChange={(e) => handleChange(e , 'nameAr')}
                                 placeholder="enter restaurant name english" />
                         {!errorObj.nameAr.error && <CFormText className="help-block error">{errorObj.nameAr.msg}</CFormText>}

@@ -92,8 +92,8 @@ const Items = (props) => {
           <div class="row">
             <div class="category-tab-heading py-4 px-0 mb-4">Categories</div>
           </div>
-          {categoryList &&
-                categoryList.length &&
+          {(categoryList &&
+                categoryList.length > 0) &&
                 categoryList.map((itm) => (
                   <div class="row" onClick={() => handleCategoryClick(itm)}>
                     <div class={`category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>{itm.name}</div>
