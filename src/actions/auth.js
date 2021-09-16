@@ -106,12 +106,12 @@ export const sendResetLink = ( data ) => dispatch => {
 
     API.post('Forgot_Password' , data, '' , function(res){
       console.log(res)
-      if(res && !res.data.message){
-        dispatch(setAlert("Reset link sent" , 'success'));    
+      if(res && res.data && res.data.status){
+        dispatch(setAlert("Otp sent at your mobile no" , 'success'));    
         dispatch( { type: "LOGIN_USER_LOADING",
           data : false
         });
-      
+        window.location.href= `/#/verify-otp/${res.data.userId}`
       } else {
             //console.log(res.data.message);
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
@@ -129,6 +129,37 @@ export const sendResetLink = ( data ) => dispatch => {
   }
 }
 
+export const verifyOtp = ( data ) => dispatch => {
+  try{
+    dispatch( { type: "LOGIN_USER_LOADING",
+      data : true
+    });
+
+    API.post('VerifyOtp' , data, '' , function(res){
+      console.log(res)
+      if(res && res.data && res.data.token){
+        dispatch( { type: "LOGIN_USER_LOADING",
+          data : false
+        });
+        window.location.href= `/#/reset-password/${res.data.token}`
+      } else {
+            //console.log(res.data.message);
+            res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
+          dispatch( { type: "LOGIN_USER_LOADING",
+            data : false
+          });
+        
+      }
+      
+    })
+    
+  } catch (err) {
+    console.log(err)
+    console.log(err)
+  }
+}
+
+
 export const resetPassword = ( token , password ) => dispatch =>{
   try{
 
@@ -138,6 +169,7 @@ export const resetPassword = ( token , password ) => dispatch =>{
     API.post('ResetPassword' , { token : token , password : password}, '' , function(res){
       if(res && !res.data.message){
         dispatch(setAlert("Password reset successfull " , 'success'));    
+        window.location.href= `/#/login`
 
         } else {
             //console.log(res.data.message);

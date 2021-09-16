@@ -15,6 +15,7 @@ import category from "./category";
 import product from "./product";
 import modifier from "./modifier";
 import language from "./language";
+import menu from "./menu";
 
 
 const initialState = {
@@ -45,7 +46,8 @@ const appReducers = combineReducers({
     category,
     product,
     modifier,
-    language
+    language,
+    menu
 });
 
 const rootReducer = (state, action) => {

@@ -69,7 +69,7 @@ const Index = () => {
                   <div className="qr-content">
                     <h3>Mobile scan code order</h3>
                     <p>Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions</p>
-                    <a className="trans-btn" href="register.html">Register Now</a>
+                    <a className="trans-btn" href="/#/register?plan=free">Register Now</a>
                   </div>
                 </div>
               </div>

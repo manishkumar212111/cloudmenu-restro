@@ -10,6 +10,7 @@ export const getCategoryList = (options = {}) => dispatch =>{
         ? JSON.parse(localStorage.getItem("userDetail")).restaurant
         : {};
     options.restaurant= restaurantDetail.id;    
+    options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
 
       dispatch({
           type : "CATEGORY_DETAIL_LOADING",
@@ -70,12 +71,14 @@ export const deleteCategoryById = (id , options) => dispatch =>{
 }
 
 
-  export const createCategory = (data) => dispatch =>{
+  export const createCategory = (data={}) => dispatch =>{
     try{
         dispatch({
             type : "CATEGORY_DETAIL_LOADING",
             data : true
-        })
+        });
+        data.menu = data.menu ? data.menu : localStorage.getItem("currentMenu")    
+
       API.post('categoryList' , data , '' , function(res){
         if(res && res.data && res.data.id) {
             // dispatch(getCategoryByUserId());

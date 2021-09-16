@@ -27,11 +27,13 @@ import Modifier from "./modifier";
 import Setting from "./setting";
 import "./style/index.scss";
 import SettingIcon from "./images/settings.svg";
+import Menu from "./menu";
 
 const Index = (props) => {
   const [activeTab, setActiveTab] = useState(0);
   const [viewOpen, setViewOpen] = useState(false);
   const [restaurant, setRestaurant] = useState("");
+  const [activeMenu , setActiveMenu] = useState("");
   useEffect(() => {
     let restaurantDetail =
       localStorage.getItem("userDetail") &&
@@ -44,6 +46,12 @@ const Index = (props) => {
       // props.getProductList({restaurant : restaurantDetail.id});
     }
   }, [props.getProductList]);
+
+  const handleMenuClick= (itm) => {
+    setActiveMenu(itm);
+    setActiveTab(1);
+    localStorage.setItem("currentMenu", itm.id)
+  } 
 
   return (
     <div class="row">
@@ -70,7 +78,7 @@ const Index = (props) => {
           </div>
           <div
             class="col-3 d-flex justify-content-center text-center"
-            onClick={() => setActiveTab(1)}
+            // onClick={() => setActiveTab(1)}
           >
             <div
               class={`menu-tab py-2 ${activeTab == 1 ? "menu-tab-active" : ""}`}
@@ -91,13 +99,13 @@ const Index = (props) => {
         </div>
 
              {activeTab == 1 && 
-                     <Items />
+                     <Items currentMenu={activeMenu} />
                  }
                  {activeTab == 2 && 
                      <Modifier />
                  }
                  {activeTab == 0 && 
-                    <></>
+                    <Menu handleMenuClick = {handleMenuClick}/>
                  }
         {viewOpen && (
           <CModal show={viewOpen} onClose={setViewOpen}>

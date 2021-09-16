@@ -149,3 +149,14 @@ export const UpdateRestaurantById = (restaurantId , data) => dispatch =>{
     }
   }
   
+  export const planUpgradeRequest = () => dispatch =>{
+    try{
+      API.post('UpgradePlanRequest' , {} , '' , function(res){
+        console.log(res);
+      })
+      
+    } catch (err) {
+
+  }
+}
+  

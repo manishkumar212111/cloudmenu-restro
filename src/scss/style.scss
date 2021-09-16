@@ -19,6 +19,9 @@
 // $body-color: #111;
 // @import "./../../node_modules/@coreui/coreui/scss/coreui";
 
+.c-sidebar-nav-link:hover{
+  background-color: #DA3643 !important;
+}
 body {
     font-family: 'Poppins', sans-serif;
     color: #212529;

@@ -41,6 +41,11 @@ const Items = (props) => {
   const [page, setPage] = useState(1);
   const [viewOpen, setViewOpen] = useState(false);
   const [openHandleItem , setHandleItm] = useState();
+  const [currentMenu , setCurrentMenu] = useState(props.currentMenu);
+
+  useEffect(() => {
+    setCurrentMenu(props.currentMenu);
+  }, [props.currentMenu])
   useEffect(() => {
     let restaurantDetail =
       localStorage.getItem("userDetail") &&
@@ -49,13 +54,16 @@ const Items = (props) => {
         : {};
     if (restaurantDetail && restaurantDetail.id) {
       console.log("dfvndfj kjhkj");
-      props.getProductList({ restaurant: restaurantDetail.id });
+      props.getProductList({ restaurant: restaurantDetail.id, menu: currentMenu.id });
     }
   }, [props.getProductList]);
 
   useEffect(() => {
-    props.getCategoryList();
+    props.getCategoryList({
+      menu : currentMenu.id
+    });
   }, [props.getCategoryList]);
+  
   useEffect(() => {
     setCategory(props.categoryList);
   }, [props.categoryList]);
@@ -70,13 +78,13 @@ const Items = (props) => {
   const handleCategoryClick = (itm) => {
     setPage(1);
     setActiveCategory(itm.id);
-    props.getProductList({ category: itm.id, page: 1 });
+    props.getProductList({menu: currentMenu.id, category: itm.id, page: 1 });
   };
 
   const handlePaginationChange = (page) => {
     setPage(page);
 
-    props.getProductList({ category: category, page: page });
+    props.getProductList({ menu: currentMenu.id,category: category, page: page });
   };
   const handleDelete = (id) => {
     props.deleteProductById(id);
@@ -216,75 +224,7 @@ const Items = (props) => {
         )}
       </div>
     </>
-    //  <CContainer style={{ marginTop: 10 }}>
-    //    <CRow>
-    //      <CCol md="4">
-    //        <CListGroup>
-    //          <CListGroupItem>Categories</CListGroupItem>
 
-    //      </CCol>
-    //      <CCol md="8">
-    //        <CListGroup>
-    //          <CListGroupItem>
-    //            Items{" "}
-    //            <button onClick={() => {openCategoryAddPopup(true); }}>Add Category</button>
-    //            <button onClick={() => {setActievId(''); openDishAddPopup(true); }}>Add Dish</button>
-    //          </CListGroupItem>
-
-    //          {!props.loading ? (activeProduct &&
-    //            activeProduct.length ?
-    //            activeProduct.map((itm) => (
-    //              <CListGroupItem>
-    //                <CImg
-    //                  src={BASE_URL + itm.imageUrl}
-    //                  width="40"
-    //                  height="40"
-    //                ></CImg>{" "}
-    //                {itm.title}
-    //                <div style={{ float: "right" }}>
-    //                  <span style={{ cursor: "pointer" }} onClick={() => setViewOpen(itm)}>View</span>{" "}
-    //                  <span style={{ cursor: "pointer" }} onClick={() => handleEdit(itm.id)}>Edit</span>{" "}
-    //                  <span style={{ cursor: "pointer" }} onClick={() => handleDelete(itm.id)}>Delete</span>
-    //                </div>
-    //              </CListGroupItem>
-    //            )) : <>No dish available</>) : <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>}
-    //        </CListGroup>
-    //        <div className={'mt-2 '} style={{float: "right"}}>
-    //            <CPagination
-    //              activePage={page}
-    //              pages={props.totalPages}
-    //              onActivePageChange={(i) => handlePaginationChange(i)}
-    //            ></CPagination>
-    //          </div>
-
-    //      </CCol>
-    //    </CRow>
-    //    {addDishPopup && <CModal show={addDishPopup} onClose={openDishAddPopup}>
-    //      <CModalHeader closeButton>Add Dish</CModalHeader>
-    //      <CModalBody>
-    //              <Add id={activeId}/>
-    //      </CModalBody>
-    //      <CModalFooter>
-    //      </CModalFooter>
-    //    </CModal>}
-    //    {addCategoryPopup && <CModal show={addCategoryPopup} onClose={openCategoryAddPopup}>
-    //      <CModalHeader closeButton>Add Category</CModalHeader>
-    //      <CModalBody>
-    //              <CategoryForm />
-    //      </CModalBody>
-    //      <CModalFooter>
-    //      </CModalFooter>
-    //    </CModal>}
-
-    //    {viewOpen && <CModal show={viewOpen} onClose={setViewOpen}>
-    //      <CModalHeader closeButton>Dish Detail</CModalHeader>
-    //      <CModalBody>
-    //              <View item={viewOpen}/>
-    //      </CModalBody>
-    //      <CModalFooter>
-    //      </CModalFooter>
-    //    </CModal>}
-    //  </CContainer>
   );
 };
 

@@ -1,22 +1,27 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
+import menu from "./images/menu.png";
+import restaurant from "./images/restaurant.png";
+import qr from "./images/qr.png";
+import dashboard from "./images/dashboard.png";
 
 const _nav =  [
   {
     _tag: 'CSidebarNavItem',
     name: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon"/>,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    }
+    icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={dashboard} />
+
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Profile',
+    name: 'Restaurant',
     to: '/profile/update',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    icon: <img style={{flex: "0 0 21px", marginRight: 8 , marginLeft : 0}} className="c-sidebar-nav-icon" src={restaurant} />
     // badge: {
     //   color: 'info',
     //   text: 'NEW',
@@ -36,7 +41,7 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Menu Management',
     to: '/menu-management',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    icon: <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={menu} />
     // badge: {
     //   color: 'info',
     //   text: 'NEW',
@@ -46,7 +51,7 @@ const _nav =  [
     _tag: 'CSidebarNavItem',
     name: 'Manage QR',
     to: '/qr',
-    icon: <CIcon name="human" customClasses="c-sidebar-nav-icon"/>,
+    icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={qr} />
     // badge: {
     //   color: 'info',
     //   text: 'NEW',

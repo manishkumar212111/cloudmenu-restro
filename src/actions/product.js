@@ -9,6 +9,7 @@ export const getProductList = (options = {}) => async dispatch =>{
           JSON.parse(localStorage.getItem("userDetail"))
             ? JSON.parse(localStorage.getItem("userDetail")).restaurant
             : {};
+        options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
         options.restaurant= restaurantDetail.id;    
       
       dispatch({
@@ -77,7 +78,7 @@ export const deleteProductById = (id , options) => dispatch =>{
             data : true
         });
         let formData = new FormData();
-
+        formData.append("menu", localStorage.getItem("currentMenu"));
         Object.keys(data).map(itm => {
             formData.append(itm, data[itm]);
         });

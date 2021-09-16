@@ -19,13 +19,24 @@ body {
     background-color: #e9e9e9;
 }
 
-// .dropdown-toggle::after {
-//     position: absolute;
-//     right: 1rem;
-//     top: 50%;
-// }
+.dropdown-toggle::after {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+}
 
-
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
 
 /* CONFIGURATION */
 
@@ -86,11 +97,11 @@ body {
     display: inline-block;
 }
 
-// .dish-modifier-items-range-dropdown-btn::after {
-//     position: absolute;
-//     left: 1rem;
-//     top: 45%;
-// }
+.dish-modifier-items-range-dropdown-btn::after {
+    position: absolute;
+    left: 1rem;
+    top: 45%;
+}
 
 .cross-icon {
     position: absolute;
@@ -98,11 +109,11 @@ body {
     top: 30%;
 }
 
-// .modifier-items-range-dropdown-menu {
-//     filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
-//     border-radius: 0.7rem;
-//     border: none;
-// }
+.modifier-items-range-dropdown-menu {
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+    border-radius: 0.7rem;
+    border: none;
+}
 
 .description-input {
     resize: none;
@@ -141,4 +152,8 @@ body {
 
 .temp .modal-dialog {
     max-width: 950px;
+}
+
+.temp .add-temp .modal-dialog {
+    max-width: 440px;
 }

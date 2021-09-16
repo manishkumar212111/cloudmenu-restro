@@ -3,6 +3,7 @@ import Category from './views/pages/category';
 import CategoryForm from './views/pages/category/categoryForm';
 import FAQ from './views/pages/Faq';
 import ForgotPassword from './views/pages/ForgotPassword';
+import VerifyOtp from './views/pages/ForgotPassword/otpScreen';
 import Login from './views/pages/login/Login';
 import Page404 from './views/pages/page404/Page404';
 import Page500 from './views/pages/page500/Page500';
@@ -29,6 +30,7 @@ const routes = [
   { path: '/register', exact: true, name: "Register Page", component : Register},
   { path: '/login', exact: true, name: "Login Page", component : Login},
   { path: '/forget-password', exact: true, name: "Forget Password", component : ForgotPassword},
+  { path: '/verify-otp/:userId', exact: true, name: "Verify otp", component : VerifyOtp},
   { path: '/reset-password/:token', exact: true, name: "Reset Password", component : ResetPassword},
   { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
   { path: '/faqs', exact: true, name: "FAQs", component : FAQ},

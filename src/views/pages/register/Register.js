@@ -112,7 +112,7 @@ const Register = (props) => {
                   <div className="connect-btn mt-4">
                     {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>REGISTER</button>}
                   </div>
-                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="login.html">Login</a></p>
+                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="/#/register?plan=free">Login</a></p>
               </div>
             </form>
           </div>

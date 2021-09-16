@@ -1,0 +1,79 @@
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+body {
+    background-color: #E5E5E5;
+}
+
+* {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+/* CONFIGURATION */
+
+.menu-heading {
+    color: #2D2D2D;
+    font-size: 1.8rem;
+}
+
+.menu-settings-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu-settings-icon {
+    width: 1.8rem;
+    cursor: pointer;
+}
+
+.menu-tabs-container {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-tab {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #2D2D2D;
+    display: inline;
+    border-bottom: 0.15rem solid #e5e5e5;
+    cursor: pointer;
+}
+
+.menu-tab-active {
+    color: #DA3643;
+    border-bottom: 0.15rem solid #DA3643;
+}
+
+.menu-display-container {
+    border-radius: 1.25rem;
+}
+
+.add-menu-bg {
+    background-color: #F5F5F5;
+    border: 0.15rem dashed #606060;
+    border-radius: 0.8rem;
+}
+
+.add-menu-icon {
+    width: 7rem;
+}
+
+.add-menu-text {
+    color: #000;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
