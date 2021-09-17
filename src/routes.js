@@ -14,6 +14,7 @@ import Register from './views/pages/register/Register';
 import ResetPassword from './views/pages/ResetPassword';
 import QR from './views/pages/QR';
 import menu from './views/pages/menu';
+import OrderList from './views/pages/order';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 const Users = React.lazy(() => import('./views/users/Users'));
@@ -35,6 +36,7 @@ const routes = [
   { path: '/pricing', exact: true, name: "Pricing Page", component : Plan},
   { path: '/faqs', exact: true, name: "FAQs", component : FAQ},
   { path: '/profile', exact: true, name: "Profile", component : profile},
+  { path: '/order', exact: true, name: "Order", component : OrderList},
   { path: '/profile/:id', exact: true, name: "Profile", component : newProfile},
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },

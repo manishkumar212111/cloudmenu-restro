@@ -4,6 +4,7 @@ import menu from "./images/menu.png";
 import restaurant from "./images/restaurant.png";
 import qr from "./images/qr.png";
 import dashboard from "./images/dashboard.png";
+import order from "./images/order.png";
 
 const _nav =  [
   {
@@ -22,6 +23,16 @@ const _nav =  [
     name: 'Restaurant',
     to: '/profile/update',
     icon: <img style={{flex: "0 0 21px", marginRight: 8 , marginLeft : 0}} className="c-sidebar-nav-icon" src={restaurant} />
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
+  },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Orders',
+    to: '/order',
+    icon: <img style={{flex: "0 0 21px", marginRight: 8 , marginLeft : 0}} className="c-sidebar-nav-icon" src={order} />
     // badge: {
     //   color: 'info',
     //   text: 'NEW',

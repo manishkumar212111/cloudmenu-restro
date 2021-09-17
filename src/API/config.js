@@ -59,6 +59,9 @@ const EndPoints = {
     categoryList: {
         url: 'api/category',
     },
+    orderList: {
+        url: 'api/order',
+    },
     productList:{
         url: 'api/product',
     },

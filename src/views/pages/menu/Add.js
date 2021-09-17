@@ -54,6 +54,7 @@ const defaultProps = {
     sellingPriceAr: "",
     productImg: "",
     category: "",
+    calorie: "",
     modifierGroup: [],
   },
 };
@@ -73,6 +74,7 @@ const Add = (props) => {
     sellingPriceAr: { error: true, msg: "It should be valid" },
     productImg: { error: true, msg: "Product Image is required" },
     category: { error: true, msg: "It should be valid" },
+    calorie: { error: true, msg: "It should be valid" },
   });
   useEffect(() => {
     //   setIsEdit(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
@@ -163,6 +165,7 @@ const Add = (props) => {
       case "descriptionAr":
       case "sellingPrice":
       case "sellingPriceAr":
+      case "calorie":
       case "category":
         return validateUtility.required(value);
       case "productImg":
@@ -180,7 +183,6 @@ const Add = (props) => {
       "description",
       "descriptionAr",
       "sellingPrice",
-      "sellingPriceAr",
       "productImg",
       "category",
     ];
@@ -229,7 +231,7 @@ const Add = (props) => {
     if (inputValue && inputValue.value && !inputValue.__isNew__) {
       handleChange("", "category", inputValue.value);
     } else if (inputValue && inputValue.__isNew__) {
-      window.open("/#/category/create?name=" + inputValue.value, "_blank");
+      // window.open("/#/category/create?name=" + inputValue.value, "_blank");
     }
   };
   const handleCategoryInputChange = (inputValue, actionMeta) => {};
@@ -399,7 +401,25 @@ const Add = (props) => {
                       </CFormText>
                     )}
                   </CFormGroup>
+
                   <CFormGroup>
+                    <CLabel htmlFor="calorie">Calorie (per unit) </CLabel>
+                    <CInput
+                      type="number"
+                      id="calorie"
+                      name="calorie"
+                      value={fieldObj.calorie}
+                      onChange={(e) => handleChange(e, "calorie")}
+                      placeholder="Enter calorie"
+                    />
+                    {!errorObj.calorie.error && (
+                      <CFormText className="help-block error">
+                        {errorObj.calorie.msg}
+                      </CFormText>
+                    )}
+                  </CFormGroup>
+                  
+                  {/* <CFormGroup>
                     <CLabel htmlFor="sellingPriceAr">Price (Arabic) *</CLabel>
                     <CInput
                       id="sellingPriceAr"
@@ -413,7 +433,7 @@ const Add = (props) => {
                         {errorObj.sellingPriceAr.msg}
                       </CFormText>
                     )}
-                  </CFormGroup>
+                  </CFormGroup> */}
                   <div class="form-group mb-4">
                     <CLabel htmlFor="sellingPriceAr">Product Image *</CLabel>
                     <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
