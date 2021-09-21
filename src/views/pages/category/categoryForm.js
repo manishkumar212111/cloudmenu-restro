@@ -46,12 +46,9 @@ const CategoryForm = (props) => {
     name: { error: true, msg: "It should be valid" },
   });
   useEffect(() => {
-    setIsEdit(
-      props.match && props.match.params && props.match.params.id
-        ? props.match.params.id
-        : false
-    );
-  }, [props?.match?.params]);
+    typeof props.id ? setIsEdit(props.id) : setIsEdit('');
+    setfieldObj(ct => ({}));
+  }, [props]);
 
   useEffect(() => {
     if (isEdit) {
@@ -121,7 +118,7 @@ const CategoryForm = (props) => {
       props.updateCategoryById(isEdit, { name: fieldObj.name });
       return;
     }
-    props.createCategory(fieldObj);
+    props.createCategory({ name: fieldObj.name});
   };
 
   return (

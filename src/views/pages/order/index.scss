@@ -143,6 +143,7 @@ body {
     border-radius: 1rem;
     right: 3rem;
     width: 13rem;
+    left : -12rem;
 }
 
 .item-dropdown-row {
@@ -168,4 +169,12 @@ body {
 
 .item-view-btn-preparing {
     background-color: #F7981D;
+}
+
+.item-view-btn-complete {
+    background-color: #CA2DE6;
+}
+
+.item-view-btn-cancelled {
+    background-color:red;
 }

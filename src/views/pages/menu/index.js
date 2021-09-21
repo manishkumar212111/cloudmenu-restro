@@ -55,15 +55,15 @@ const Index = (props) => {
 
   return (
     <div class="row">
-      <div class="col-11 px-5">
-        <div class="row menu-header py-5">
+      <div class="col-12 px-5">
+        <div class="row menu-header">
           <div class="col-6 menu-heading">Menu Management</div>
-          <div
+          {/* <div
             class="col-6 menu-settings-container"
             onClick={() => setViewOpen(true)}
           >
             <img src={SettingIcon} alt="" class="menu-settings-icon" />
-          </div>
+          </div> */}
         </div>
         <div class="row menu-tabs-container">
           <div

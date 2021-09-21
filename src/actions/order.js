@@ -131,25 +131,23 @@ export const deleteOrderById = (id , options) => dispatch =>{
   export const updateOrderById = (orderId , data) => dispatch =>{
     try{
         dispatch({
-            type : "ORDER_DETAIL_LOADING",
-            data : true
+            type : "UPDATING_ORDER",
+            data : orderId
         })
       API.patch('orderList' , data , orderId , function(res){
         
         if(res && res.data.id) {
-            dispatch(setAlert("Details updated successfully" , 'success'));    
-            setTimeout(() => {
-              window.location.href="/#/order";
-            }, 500)
-            
+            dispatch({
+                type : "ORDER_UPDATE_SUCCESS",
+                data : res.data
+            })  
           } else {
-              //''
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
           dispatch({
-            type : "ORDER_DETAIL_LOADING",
+            type : "UPDATING_ORDER",
             data : false
-        })
+          })
       })
       
     } catch (err) {

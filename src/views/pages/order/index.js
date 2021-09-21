@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import { getOrderList, deleteOrderById } from "../../../actions/order";
+import { getOrderList, deleteOrderById ,updateOrderById } from "../../../actions/order";
 import { connect } from "react-redux";
 import { CModal, CModalBody, CModalHeader, CPagination, CSpinner } from "@coreui/react";
 import cross from "./images/cross.svg";
@@ -13,12 +13,22 @@ import moment from 'moment';
 import "./index.scss";
 import Detail from "./detail";
 
+const statusObj = {
+  "Pending" : {current: "Accept", next : "Preparing" , class: "item-view-btn-accept"},
+  "Preparing" : {current: "Preparing", next : "Serving" , class: "item-view-btn-preparing"},
+  "Serving" : {current: "Serving", next : "Complete" , class: "item-view-btn-serving"},
+  "Complete" : {current: "Complete", next : "" , class: "item-view-btn-complete"},
+  "Cancelled" : {current: "Cancelled", next : "" , class: "item-view-btn-cancelled"}
+}
+
 const OrderList = (props) => {
   const [page, setPage] = useState(1);
   const [orderList, setOrderList] = useState([]);
-  const [showOrderDetail , setShowOrderDetail] = useState(false)
+  const [showOrderDetail , setShowOrderDetail] = useState(false);
+  const [actievMenu , setActiveMenu] = useState(false);
   useEffect(() => {
     setOrderList(props.orderList);
+    setActiveMenu(false);
   }, [props.orderList]);
   useEffect(() => {
     props.getOrderList();
@@ -28,6 +38,10 @@ const OrderList = (props) => {
     setPage(page);
 
     props.getOrderList({ page: page });
+  };
+
+  const handleStatusChange = (orderId , status) => {
+    status.next && props.updateOrderById(orderId , { status: status.next})
   };
 
   console.log(props);
@@ -94,20 +108,22 @@ const OrderList = (props) => {
                     </button>
                   </div>
                   <div className="col-1 px-4">
-                    <button
+                    {props.updatingOrder == itm.id ? <CSpinner /> : <button
                       type="button"
-                      className="btn item-view-btn item-view-btn-accept"
+                      onClick={() => handleStatusChange(itm.id , statusObj[itm.status])}
+                      className={`btn item-view-btn ${statusObj[itm.status].class}`}
                     >
-                      Accept
-                    </button>
+                      {statusObj[itm.status].current}
+                    </button>}
                   </div>
+
                   <div className="col-1 item-btns-col">
                     <div className="row align-items-center justify-content-center">
                       <div className="col-6 d-flex justify-content-end item-dropdown-container">
-                        <img src={menu} alt="" className="menu-icon" />
-                        <div className="item-dropdown py-3 px-3 d-none">
+                        <img src={menu} alt="" className="menu-icon" onClick={() => setActiveMenu(actievMenu == itm.id ? false : itm.id)} />
+                        {(actievMenu == itm.id) && <div className="item-dropdown py-3 px-3">
                           <div className="row item-dropdown-row py-2">
-                            <div className="row item-dropdown-row">
+                            <div className="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleStatusChange(itm.id, { next : "Cancelled"})}>
                               <div className="col-3">
                                 <img
                                   src={cross}
@@ -120,7 +136,7 @@ const OrderList = (props) => {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div>}
                       </div>
                     </div>
                   </div>
@@ -158,11 +174,13 @@ const mapStateToProps = (state) => ({
   orderList: state.order.orderList,
   totalPages: state.order.totalPages,
   loading: state.order.order_detail_loading,
+  updatingOrder: state.order.updatingOrder
 });
 
 const mapDispatchToProps = {
   getOrderList,
   deleteOrderById,
+  updateOrderById
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderList);

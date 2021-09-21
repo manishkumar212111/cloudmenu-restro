@@ -15,6 +15,7 @@ const TheHeaderDropdownNotif = () => {
     <CDropdown
       inNav
       className="c-header-nav-item mx-2"
+      style={{marginTop: 7}}
     >
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <CIcon name="cil-bell"/>

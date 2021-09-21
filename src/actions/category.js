@@ -139,9 +139,7 @@ export const deleteCategoryById = (id , options) => dispatch =>{
         
         if(res && res.data.id) {
             dispatch(setAlert("Details updated successfully" , 'success'));    
-            setTimeout(() => {
-              window.location.href="/#/category";
-            }, 500)
+            dispatch(getCategoryList())
             
           } else {
               //''

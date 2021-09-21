@@ -2,53 +2,120 @@ import React, { useEffect, useState } from "react";
 import "./style/menu.scss";
 import Add from "./images/add.svg";
 import { connect } from "react-redux";
-import { getMenuById, deleteMenuById,getMenuList,activateMenu } from "src/actions/menu";
-import { CModal, CModalBody, CModalHeader, CSpinner } from "@coreui/react";
+import {
+  getMenuById,
+  deleteMenuById,
+  getMenuList,
+  activateMenu,
+  updateMenuById
+} from "src/actions/menu";
+import {
+  CModal,
+  CModalBody,
+  CModalHeader,
+  CSpinner,
+  CSwitch,
+} from "@coreui/react";
 import AddMenu from "./addMenu";
+import SettingIcon from "./images/settings.svg";
+import Setting from "./setting";
 
 const Menu = (props) => {
-    const [addOpen , setAddOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
+  const [openSetting , setSetting] = useState(false);
+  useEffect(() => {
+    props.getMenuList();
+  }, [props.getMenuList]);
+  
+  useEffect(() => {
+    setAddOpen(false);
+    setSetting(false)
+  }, [props.menuList]);
 
-    useEffect(() => {
-        props.getMenuList()
-    }, [props.getMenuList])
+  const activateMenuClick = (itm) => {
+    props.activateMenu(itm.id);
+  };
 
-    const activateMenuClick = (itm) => {
-      props.activateMenu(itm.id);
-    };
-    
-  if(props.loading){
-      return <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>
-  }  
+  const handleSettingCb = (setting) => {
+    props.updateMenuById(openSetting.id, {settings: JSON.stringify(setting)})
+  }
+
+  if (props.loading) {
+    return (
+      <div style={{ textAlign: "center", marginTop: "25px" }}>
+        <CSpinner />{" "}
+      </div>
+    );
+  }
   return (
     <div class="row menu-display-container bg-white mt-4 px-5 py-5">
-      {
-          props.menuList && props.menuList.map(itm => (
-            <div class="col-3 add-menu-button p-4" style={{cursor: "pointer"}}>
-            <div class="row justify-content-center align-items-center" onClick={() => props.handleMenuClick(itm)}>
-              <img src={itm.bannerImage} style={{width: 264}} alt="" class="add-menu-icon" />
+      {props.menuList &&
+        props.menuList.map((itm) => (
+          <div class="col-3 add-menu-button p-4" style={{ cursor: "pointer" }}>
+            <div
+              class="row justify-content-center align-items-center"
+              onClick={() => props.handleMenuClick(itm)}
+            >
+              <img
+                src={itm.bannerImage}
+                style={{ width: 264 }}
+                alt=""
+                class="add-menu-icon"
+              />
             </div>
             <div class="row add-menu-text mt-4 text-center justify-content-center">
-              {itm.name} {itm.restaurant.menu == itm.id ? <span style={{color: "green"}}>(Active)</span> : <span onClick={() => activateMenuClick(itm)} style={{color: "blue"}}>(Activate)</span>}
+              {itm.name}
+
+              <CSwitch
+                style={{ width: 65 }}
+                color="success"
+                shape="pill"
+                // labelOff="DeActivate"
+                // labelOn="Activate"
+                checked={itm.restaurant.menu == itm.id}
+                onChange={(e) =>
+                  e.target.checked == true ? activateMenuClick(itm) : () => {}
+                }
+              />
+              <img
+                onClick={() => setSetting(itm)}
+                src={SettingIcon}
+                style={{ width: "2.8rem" }}
+                alt=""
+                class="menu-settings-icon"
+              />
             </div>
           </div>
-          ))
-      }
-      <div class="col-3 add-menu-button p-4" style={{cursor: "pointer"}} onClick={() => setAddOpen(true)}>
+        ))}
+      <div
+        class="col-3 add-menu-button p-4"
+        style={{ cursor: "pointer" }}
+        onClick={() => setAddOpen(true)}
+      >
         <div class="row add-menu-bg justify-content-center align-items-center">
-          <img src={Add} alt="" style={{width: 150}} class="add-menu-icon" />
+          <img src={Add} alt="" style={{ width: 150 }} class="add-menu-icon" />
         </div>
         <div class="row add-menu-text mt-4 text-center justify-content-center">
           Add Menu
         </div>
       </div>
       {addOpen && (
-          <CModal show={addOpen} onClose={setAddOpen}>
+        <CModal show={addOpen} onClose={setAddOpen}>
+          <CModalHeader closeButton>
+            <div class="col add-dish-header">Add Menu</div>
+          </CModalHeader>
+          <CModalBody>
+            <AddMenu />
+          </CModalBody>
+        </CModal>
+      )}
+      {openSetting && (
+          <CModal show={openSetting} onClose={setSetting}>
             <CModalHeader closeButton><div class="col add-dish-header">
-            Add Menu
+            Menu Settings ({openSetting.name})
             </div></CModalHeader>
             <CModalBody>
-                <AddMenu />
+              <Setting settings={openSetting.settings} submitCb={handleSettingCb}/>
             </CModalBody>
           </CModal>
         )}
@@ -57,17 +124,17 @@ const Menu = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    menuList: state.menu.menuList,
-    totalPages: state.menu.totalPages,
-    loading: state.menu.menu_detail_loading
+  menuList: state.menu.menuList,
+  totalPages: state.menu.totalPages,
+  loading: state.menu.menu_detail_loading,
 });
-  
+
 const mapDispatchToProps = {
-    getMenuList,
-    deleteMenuById,
-    getMenuById,
-    activateMenu
+  getMenuList,
+  deleteMenuById,
+  getMenuById,
+  activateMenu,
+  updateMenuById
 };
-  
+
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
-  

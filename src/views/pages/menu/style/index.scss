@@ -142,6 +142,18 @@ body {
     z-index: 1000000;
 }
 
+
+.temp .item-dropdownCategory {
+    position: absolute;
+    background-color: #fff;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.25));
+    border-radius: 1rem;
+    left: 19.5rem;
+    top: -150px;
+    width: 11rem;
+    z-index: 1000000;
+}
+
 .item-dropdown-row {
     display: flex;
     justify-content: flex-start;

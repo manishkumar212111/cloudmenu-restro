@@ -3,16 +3,26 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { GetRestaurantById, UpdateRestaurantById } from 'src/actions/restaurant';
 
+const defaultProps ={
+    settings : {
+        language: "en",
+        digitalPayment: true,
+        takeAwayOrder: false,
+        payment: {
+            cash: true,
+            paymentTerminal: true,
+            creditCard: true,
+            mada: false,
+            applePay: false
+        }
+    }
+}
 const Setting = (props) => {
-    const [setting , setSetting] = useState({});
+    const [setting , setSetting] = useState(props.settings);
 
     useEffect(() => {
-        props.id && props.GetRestaurantById(props.id);
-    }, [props.id , props.GetRestaurantById])
-
-    useEffect(() => {
-        setSetting(props.restaurantDetail?.settings)
-    }, [props.restaurantDetail])
+        props.settings && setSetting(set => ({...set , ...props.settings}))
+    }, [props.settings])
     
     const handleChange = (e , key , value) => {
         
@@ -29,8 +39,9 @@ const Setting = (props) => {
 
     }
     const handleClick = () => {
-        props.UpdateRestaurantById(props.id, { settings : JSON.stringify(setting)})
-    }
+        props.submitCb(setting)
+    };
+
     console.log(props, setting)
     if(!(setting && setting.language)){
         return null;
@@ -60,10 +71,10 @@ const Setting = (props) => {
 
                         <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                             <div class="col-8 text-left">
-                                <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Allow Takeaway Orders</label>
+                                <label class="form-check-label form-check-switch-label" for="flexTakeDefault">Allow Takeaway Orders</label>
                             </div>
                             <div class="col-4 d-flex justify-content-end px-4">
-                                <input checked={setting.takeAwayOrder} onChange={(e) => handleChange(e , 'takeAwayOrder' , e.target.checked)} class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />                    
+                                <input checked={setting.takeAwayOrder} onChange={(e) => handleChange(e , 'takeAwayOrder' , e.target.checked)} class="form-check-input" type="checkbox" id="flexTakeDefault" />                    
                             </div>                                        
                         </div>
 
@@ -74,51 +85,51 @@ const Setting = (props) => {
 
                         <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                     <div class="col-8 text-left">
-                        <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Cash</label>
+                        <label class="form-check-label form-check-switch-label" for="flexCashCheckDefault">Cash</label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={setting.payment.cash} onChange={(e) => handleChangePayment(e , 'cash' , e.target.checked)} />                    
+                        <input class="form-check-input" type="checkbox" id="flexCashCheckDefault" checked={setting.payment.cash} onChange={(e) => handleChangePayment(e , 'cash' , e.target.checked)} />                    
                     </div>                                        
                 </div>
 
                 <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                     <div class="col-8 text-left">
-                        <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Payment Terminal</label>
+                        <label class="form-check-label form-check-switch-label" for="flexPaymentCheckDefault">Payment Terminal</label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onChange={(e) => handleChangePayment(e , 'paymentTerminal' , e.target.checked)} />                    
+                        <input class="form-check-input" type="checkbox" id="flexPaymentCheckDefault" checked={setting.payment.paymentTerminal} onChange={(e) => handleChangePayment(e , 'paymentTerminal' , e.target.checked)} />                    
                     </div>                                        
                 </div>
 
                 <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                     <div class="col-8 text-left">
-                        <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Credit Card</label>
+                        <label class="form-check-label form-check-switch-label" for="flexCreditCheckDefault">Credit Card</label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"  checked={setting.payment.creditCard} onChange={(e) => handleChangePayment(e , 'creditCard' , e.target.checked)} />                    
+                        <input class="form-check-input" type="checkbox" id="flexCreditCheckDefault"  checked={setting.payment.creditCard} onChange={(e) => handleChangePayment(e , 'creditCard' , e.target.checked)} />                    
                     </div>                                        
                 </div>
 
                 <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                     <div class="col-8 text-left">
-                        <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Mada</label>
+                        <label class="form-check-label form-check-switch-label" for="flexMadaCheckDefault">Mada</label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={setting.payment.mada} onChange={(e) => handleChangePayment(e , 'Mada' , e.target.checked)} />                    
+                        <input class="form-check-input" type="checkbox" id="flexMadaCheckDefault" checked={setting.payment.mada} onChange={(e) => handleChangePayment(e , 'mada' , e.target.checked)} />                    
                     </div>                                        
                 </div>
 
                 <div class="row form-check form-switch d-flex switch-container justify-content-space-between mb-3">
                     <div class="col-8 text-left">
-                        <label class="form-check-label form-check-switch-label" for="flexSwitchCheckDefault">Apple Pay</label>
+                        <label class="form-check-label form-check-switch-label" for="flexAppleCheckDefault">Apple Pay</label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={setting.payment.applePay} onChange={(e) => handleChangePayment(e , 'applePay' , e.target.checked)} />                    
+                        <input class="form-check-input" type="checkbox" id="flexAppleCheckDefault" checked={setting.payment.applePay} onChange={(e) => handleChangePayment(e , 'applePay' , e.target.checked)} />                    
                     </div>                                        
                 </div>
                 <div class="form-group col-3 mx-auto d-flex justify-content-center">
 
-                        {props.loading ? <CSpinner /> : <button className="btn add-dish-btn" block color="primary" variant="outline"  onClick={handleClick} value="Submit">Update</button>}
+                        {props.loading ? <CSpinner /> : <button className="btn add-dish-btn" block color="primary" variant="outline"  onClick={handleClick} value="Submit">{props.setting ? "Update" : "Create"}</button>}
                     </div>
                     </CCardBody>
                 </CCard>
@@ -130,8 +141,8 @@ const Setting = (props) => {
 
 
 const mapStateToProps = ( state ) => ( {
-    loading : state.restaurant.restaurant_detail_loading,
-    restaurantDetail: state.restaurant.restaurantDetail
+    // loading : state.restaurant.restaurant_detail_loading,
+    // restaurantDetail: state.restaurant.restaurantDetail
   } );
 
 const mapDispatchToProps = {
@@ -139,4 +150,5 @@ const mapDispatchToProps = {
     UpdateRestaurantById
 };
 
+Setting.defaultProps = defaultProps;
 export default connect(mapStateToProps , mapDispatchToProps)(Setting)

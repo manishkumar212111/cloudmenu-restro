@@ -11,6 +11,7 @@ import {
   CSidebarNavDropdown,
   CSidebarNavItem,
 } from '@coreui/react'
+import CloudMenu from "./images/CloudMenu.png";
 
 import CIcon from '@coreui/icons-react'
 
@@ -23,22 +24,19 @@ const TheSidebar = () => {
 
   return (
     <CSidebar
-      style={{backgroundColor : "white"}}
+      style={{backgroundColor : "white", boxShadow: "0px 4px 30px rgba(0, 0, 0, 0.1)" , width: 290, }}
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
-      <CSidebarBrand className="d-md-down-none" style={{color: "black"}} to="/">
-        CLOUD MENU
-        {/* <CIcon
+      <CSidebarBrand className="d-md-down-none" style={{color: "black", backgroundColor: "white",flex: "0 0 75px"}} to="/#/dashboard">
+        {/* CLOUD MENU */}
+        <img
           className="c-sidebar-brand-full"
-          name="logo-negative"
-          height={35}
+          src={CloudMenu}
+          height={21}
+          width={150}
         />
-        <CIcon
-          className="c-sidebar-brand-minimized"
-          name="sygnet"
-          height={35}
-        /> */}
+        
       </CSidebarBrand>
       <CSidebarNav>
 

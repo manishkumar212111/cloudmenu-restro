@@ -24,7 +24,7 @@ import { connect } from "react-redux";
 import { BASE_URL } from "src/API/config";
 import Add from "./Add";
 import View from "./View";
-import { getCategoryList } from "src/actions/category";
+import { getCategoryList , deleteCategoryById} from "src/actions/category";
 import CategoryForm from "../category/categoryForm";
 import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
@@ -41,8 +41,9 @@ const Items = (props) => {
   const [page, setPage] = useState(1);
   const [viewOpen, setViewOpen] = useState(false);
   const [openHandleItem , setHandleItm] = useState();
+  const [openHandleCategory , setHandleCategory] = useState();
   const [currentMenu , setCurrentMenu] = useState(props.currentMenu);
-
+  const [selectedCategory , setSelectedCategory] = useState('');
   useEffect(() => {
     setCurrentMenu(props.currentMenu);
   }, [props.currentMenu])
@@ -65,12 +66,18 @@ const Items = (props) => {
   }, [props.getCategoryList]);
   
   useEffect(() => {
+    setHandleCategory(false);
     setCategory(props.categoryList);
+    openCategoryAddPopup(false);
   }, [props.categoryList]);
 
   useEffect(() => {
     setItem(props.productList);
     setActiveProduct(props.productList);
+    setHandleItm(false);
+    setHandleCategory(false);
+    openDishAddPopup(false);
+    setHandleItm(false);
   }, [props.productList]);
 
   console.log(props, activeProduct);
@@ -86,10 +93,28 @@ const Items = (props) => {
 
     props.getProductList({ menu: currentMenu.id,category: category, page: page });
   };
-  const handleDelete = (id) => {
+  const handleDelete = (id , type) => {
+    if(type === "category"){
+      var retVal = window.confirm("Do you want to delete, it will delete all related product to this category ?");
+      if( retVal == true ) {
+        setHandleCategory(false);
+        props.deleteCategoryById(id);
+        return;
+      } else {
+        return false;
+      }
+    }
+
     props.deleteProductById(id);
   };
-  const handleEdit = (id) => {
+  const handleEdit = (id, type) => {
+    if(type === "category"){
+      openCategoryAddPopup(id);
+      setHandleCategory(false);
+      setSelectedCategory(id)
+      return;
+    }
+    
     openDishAddPopup(true);
     setActievId(id);
   };
@@ -103,8 +128,41 @@ const Items = (props) => {
           {(categoryList &&
                 categoryList.length > 0) &&
                 categoryList.map((itm) => (
-                  <div class="row" onClick={() => handleCategoryClick(itm)}>
-                    <div class={`category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>{itm.name}</div>
+                  <div class="row" >
+                    <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
+                      {itm.name}
+                      </div>
+                    <div class="col-2">
+                    <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" class="menu-icon" />
+                    </div>
+                    <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
+                         <div class={`item-dropdownCategory py-3 px-3 ${openHandleCategory == itm.id? "" : "d-none"}`}>
+                          <div class="row item-dropdown-row py-2" onClick={() => handleEdit(itm.id, "category")}>
+                            <div class="col-3" >
+                              <img
+                                src={editIcon}
+                                alt=""
+                                class="item-dropdown-icon"
+                              />
+                            </div>
+                            <div style={{cursor:"pointer"}}  class="col-8 item-dropdown-text px-0">Edit</div>
+                          </div>
+                          <div class="row item-dropdown-row py-2">
+                            <div class="row item-dropdown-row" onClick={() => handleDelete(itm.id, "category")}>
+                              <div class="col-3" >
+                                <img
+                                  src={crossIcon}
+                                  alt=""
+                                  class="item-dropdown-icon"
+                                />
+                              </div>
+                              <div style={{cursor:"pointer"}} class="col-8 item-dropdown-text px-1">
+                                Delete
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       </div> 
                   </div>
                 ))}
         </div>
@@ -118,7 +176,7 @@ const Items = (props) => {
                   <button
                     type="button"
                     class="btn menu-display-btn menu-display-btn-category"
-                    onClick={() => {openCategoryAddPopup(true); }}
+                    onClick={() => {openCategoryAddPopup(true); setSelectedCategory('') }}
                   >
                     Add Category
                   </button>
@@ -152,8 +210,8 @@ const Items = (props) => {
                       <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
                         <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" class="menu-icon" />
                         <div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2">
-                            <div class="col-3" onClick={() => handleEdit(itm.id)}>
+                          <div class="row item-dropdown-row py-2" onClick={() => handleEdit(itm.id)}>
+                            <div class="col-3" >
                               <img
                                 src={editIcon}
                                 alt=""
@@ -163,8 +221,8 @@ const Items = (props) => {
                             <div class="col-8 item-dropdown-text px-0">Edit Item</div>
                           </div>
                           <div class="row item-dropdown-row py-2">
-                            <div class="row item-dropdown-row">
-                              <div class="col-3" onClick={() => handleDelete(itm.id)}>
+                            <div class="row item-dropdown-row" onClick={() => handleDelete(itm.id)}>
+                              <div class="col-3" >
                                 <img
                                   src={crossIcon}
                                   alt=""
@@ -185,7 +243,7 @@ const Items = (props) => {
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
-                    pages={props.totalPages}
+                    pages={props.totalPages || 0}
                     onActivePageChange={(i) => handlePaginationChange(i)}
                   ></CPagination>
               </div>
@@ -207,7 +265,7 @@ const Items = (props) => {
           <CModal show={addCategoryPopup} onClose={openCategoryAddPopup}>
             <CModalHeader closeButton>Add Category</CModalHeader>
             <CModalBody>
-              <CategoryForm />
+              <CategoryForm id={selectedCategory}/>
             </CModalBody>
             <CModalFooter></CModalFooter>
           </CModal>
@@ -233,7 +291,6 @@ const mapStateToProps = (state) => ({
   totalPages: state.product.totalPages,
   loading: state.product.product_detail_loading,
   categoryList: state.category.categoryList,
-  totalPages: state.category.totalPages,
 });
 
 const mapDispatchToProps = {
@@ -241,6 +298,7 @@ const mapDispatchToProps = {
   deleteProductById,
   getProductById,
   getCategoryList,
+  deleteCategoryById
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);

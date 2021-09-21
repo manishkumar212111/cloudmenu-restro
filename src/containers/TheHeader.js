@@ -38,7 +38,7 @@ const TheHeader = () => {
   }
 
   return (
-    <CHeader withSubheader>
+    <CHeader withSubheader style={{maxHeight: 75}}>
       <CToggler
         inHeader
         className="ml-md-3 d-lg-none"

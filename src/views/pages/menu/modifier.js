@@ -36,6 +36,7 @@ const Modifier = (props) => {
 
   useEffect(() => {
     setModifiers(props.modifierList);
+    setHandleItm(false);
   }, [props.modifierList]);
 
   const handleDelete = (id) => {
@@ -45,12 +46,13 @@ const Modifier = (props) => {
   const handleEdit = (id) => {
     setView(true);
     setActievId(id);
+    setView(false);
   };
 
   console.log(props);
   return (
     <div class="row">
-      <div class="col-11 px-5">
+      <div class="col-12">
         <div class="row menu-display-container bg-white mt-4">
           <div class="col-12">
             <div class="row menu-display-header pt-3">

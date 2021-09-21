@@ -11,13 +11,20 @@ export const fetchData = ( ) => ( dispatch ) =>{
   })
 }
 
-export const getHomePageData = () =>( dispatch ) => {
+export const getHomePageData = (options = {}) =>( dispatch ) => {
   try{
     dispatch({
         type : "PAGE_LOADING",
         data : {}
-    })
-    API.get('Home' , {}, '' , function(res){
+    });
+    let restaurantDetail =
+      localStorage.getItem("userDetail") &&
+      JSON.parse(localStorage.getItem("userDetail"))
+        ? JSON.parse(localStorage.getItem("userDetail")).restaurant
+        : {};
+    options.restaurant= restaurantDetail.id;    
+    
+    API.get('Home' , options, '' , function(res){
       
       if(res && res.data){
           dispatch( { type: "HOME",

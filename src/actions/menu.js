@@ -75,11 +75,12 @@ export const createMenu = (data) => (dispatch) => {
     let formData = new FormData();
 
     Object.keys(data).map((itm) => {
-      formData.append(itm, data[itm]);
+      data[itm] && formData.append(itm, data[itm]);
     });
     API.post("menuList", formData, "", function (res) {
       if (res && res.data && res.data.id) {
         dispatch(setAlert("Menu added", "success"));
+
         dispatch(getMenuList());
       } else {
         res && res.data && dispatch(setAlert(res.data.message, "danger"));
@@ -167,7 +168,7 @@ export const updateMenuById = (menuId, data) => (dispatch) => {
     let formData = new FormData();
 
     Object.keys(data).map((itm) => {
-      formData.append(itm, data[itm]);
+      data[itm] && formData.append(itm, data[itm]);
       console.log(formData.get(itm));
     });
     API.put(

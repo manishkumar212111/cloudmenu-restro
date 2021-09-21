@@ -252,7 +252,7 @@ const Profile = (props) => {
     <>
       <div class="row">
         <div class="col-12">
-          <div class="row py-5 px-5 restaurant-details-container d-flex">
+          <div class="row px-5 restaurant-details-container d-flex">
             <div class="col-7 restaurant-details-form-container py-3 bg-white">
               <div class="row restaurant-details-form-heading py-3 px-4">
                 Restaurant Details
