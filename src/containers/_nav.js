@@ -68,6 +68,16 @@ const _nav =  [
     //   text: 'NEW',
     // }
   },
+  {
+    _tag: 'CSidebarNavItem',
+    name: 'Analytics',
+    to: '/analytics',
+    icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={menu} />
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // }
+  },
   // // {
   // //   _tag: 'CSidebarNavItem',
   // //   name: 'Plans',

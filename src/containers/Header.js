@@ -2,6 +2,7 @@ import React , {useEffect, useState} from 'react';
 import {connect } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
 import { setLanguage } from 'src/actions/language';
+import { t } from "../utils/language";
 const Header = (props) => {
     const [user , setUser] = useState({});
     const [language , setLanguage] = useState("en");
@@ -17,7 +18,7 @@ const Header = (props) => {
     }, [])
 
     useEffect(() =>{
-      setLanguage(props.language);
+      setLanguage(localStorage.getItem("language") || "en");
     }, [props.language])
     const handleScroll = (e) => {
         let elem = document.querySelector("#header");
@@ -41,15 +42,15 @@ const Header = (props) => {
       
             <nav class="nav-menu d-none d-lg-block">
               <ul>
-                <li class="active"><a href="/">Home</a></li>
-                <li><HashLink to="#how-it-works-section">How It Works</HashLink></li>
-                <li><a href="/#/pricing">Pricing</a></li>
-                <li><a href="/#/faqs">FAQ's</a></li>
-                <li><HashLink to="#benifits">Benifits</HashLink></li>
+                <li class="active"><a href="/">{t("Home")}</a></li>
+                <li><HashLink to="#how-it-works-section">{t("How It Works")}</HashLink></li>
+                <li><a href="/#/pricing">{t("Pricing")}</a></li>
+                <li><a href="/#/faqs">{t("FAQ's")}</a></li>
+                <li><HashLink to="#benifits">{t("Benifits")}</HashLink></li>
                 <li className="lang-area">
                   <span onClick={() => props.setLanguage("en")} className={language == "en" ? "active-lang" : ""}>En</span> | <span onClick={() => props.setLanguage("ar")} class={language == "ar" ? "active-lang" : ""}>Ar</span>
                 </li>
-                {user && user.status ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">login</a></li>}
+                {user && user.status ? <li><a href="#">{user.name}</a></li> : <li class="get-started"><a href="/#/login">{t("login")}</a></li>}
               </ul>
             </nav>
           </div>

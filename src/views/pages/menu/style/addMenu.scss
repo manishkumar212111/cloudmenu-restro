@@ -6,15 +6,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-body {
-    background-color: #E5E5E5;
-}
-
-* {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-}
-
 
 
 /* CONFIGURATION */
@@ -22,7 +13,8 @@ body {
 /* CONFIGURATION */
 
 /* CONFIGURATION */
-
+.addMenu {
+ 
 .create-menu-container {
     background-color: #fff;
     border-radius: 1.25rem;
@@ -84,4 +76,6 @@ body {
 .banner-img {
     cursor: pointer;
     width: 22%;
+}
+   
 }

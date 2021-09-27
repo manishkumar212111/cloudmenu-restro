@@ -20,7 +20,7 @@ const Detail = (props) => {
   };
   console.log(props);
   return (
-    <div className="row justify-content-center">
+    <div className="row justify-content-center order">
       <div className="col-12 col-sm-12 py-3 order-details-container">
         <div className="row py-4">
           <div className="col-2 text-center order-col-heading">Quantity</div>

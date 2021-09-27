@@ -122,7 +122,7 @@ const Dashboard = (props) => {
                                 data: revenueInWeek.reverse().map(itm => itm.value)
                             }
                         ]}
-                        labels={revenueInWeek.reverse().map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
+                        labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
                         options={{
                         tooltips: {
                             enabled: true

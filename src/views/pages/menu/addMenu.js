@@ -113,7 +113,7 @@ const AddMenu = (props) => {
   console.log(fieldObj);
   return (
     step == 0 ? <>
-      <div class="form-group mb-4 px-2">
+      <div class="form-group mb-4 px-2 addMenu">
         <label for="menu-name" class="input-label">
           Menu Name
         </label>

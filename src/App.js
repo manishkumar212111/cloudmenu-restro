@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
+import { subscribeUser } from './subscription';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -41,6 +42,13 @@ const App = (props) => {
       setLanguage(props.language)
     }, [props.language]);
 
+    useEffect(() => {
+      let users = props.userDetail && props.userDetail.user ? props.userDetail : localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')); 
+      let userDetail = users ? users.user : false;
+      if(userDetail?.id){
+        subscribeUser({id: userDetail?.id});
+      }   
+    }, [props.userDetail]);
     const createNotification = (type, message) => {
       console.log(type , message);
       let configs = {
@@ -94,7 +102,9 @@ const App = (props) => {
 
 const mapStateToProps = state => ({
   alerts: state.alert,
-  language: state.language.language
+  language: state.language.language,
+  userDetail: state.auth.userDetail,
+
 });
 
 export default connect( mapStateToProps )( App );

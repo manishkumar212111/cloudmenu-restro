@@ -66,7 +66,7 @@ const OrderList = (props) => {
               <div className="col-1 text-center menu-display-heading py-4">
                 Date/Time
               </div>
-              <div className="col-1 text-center menu-display-heading py-4">
+              <div className="col-1 text-right menu-display-heading py-4">
                 Type
               </div>
               <div className="col-2 text-center menu-display-heading py-4">
@@ -76,7 +76,7 @@ const OrderList = (props) => {
                 Table No
               </div>
               <div className="col-2 text-center menu-display-heading py-4">
-                Payment Method
+                Payment Type
               </div>
               <div className="col-1 text-center menu-display-heading py-4">
                 Status
@@ -92,7 +92,7 @@ const OrderList = (props) => {
                   <div className="col-1 text-center test py-4">
                      {moment(itm.createdAt).format("DD/MM/YYYY")} {moment(itm.createdAt).format("HH:mm")}
                   </div>
-                  <div className="col-1 text-center test py-4">{itm.orderType}</div>
+                  <div className="col-1 text-right test py-4">{itm.orderType}</div>
                   <div className="col-2 text-center test py-4">{itm.orderNo}</div>
                   <div className="col-1 text-center test py-4">{itm.tableNo || "NA"}</div>
                   <div className="col-2 text-center test py-4">{itm.paymentType}</div>

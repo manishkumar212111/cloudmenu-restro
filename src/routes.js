@@ -17,6 +17,7 @@ import menu from './views/pages/menu';
 import OrderList from './views/pages/order';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const Analytics = React.lazy(() => import('./views/analytics/Analytics'));
 const Users = React.lazy(() => import('./views/users/Users'));
 const User = React.lazy(() => import('./views/users/User'));
 const Plans = React.lazy(() => import("./views/plan/planList"));
@@ -40,6 +41,7 @@ const routes = [
   { path: '/profile/:id', exact: true, name: "Profile", component : newProfile},
   
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/analytics', name: 'Analytics', component: Analytics },
 
   { path: '/users', exact: true,  name: 'Users', component: Users },
   { path: '/plan', exact: true,  name: 'Plans', component: Plans },

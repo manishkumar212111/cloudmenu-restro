@@ -7,15 +7,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-body {
-    background-color: #E5E5E5;
-}
-
-* {
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-}
-
 
 
 /* CONFIGURATION */
@@ -130,6 +121,7 @@ body {
     color: #fff;
     border-radius: 2rem;
     padding: 0.4rem 1.6rem;
+    width: 116px;
 }
 
 .item-dropdown-container {

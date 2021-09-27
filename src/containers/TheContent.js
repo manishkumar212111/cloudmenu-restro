@@ -17,7 +17,7 @@ const loading = (
 const TheContent = () => {
   console.log("In content")
   return (
-    <main className="c-main">
+    <main className="">
       {/* <CContainer fluid> */}
         <Suspense fallback={loading}>
           <Switch>

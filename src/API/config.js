@@ -77,6 +77,9 @@ const EndPoints = {
     Home : {
         url : "api/common/dashboard"
     },
+    HomeByDate: {
+        url : "api/common/dashboard/bydate"
+    },
     UpgradePlanRequest: {
         url: 'api/restaurant/user/subscription-request',
     }

@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import Footer from 'src/containers/Footer';
 import Header from 'src/containers/Header';
 import Contact from 'src/views/components/contact';
-
+import { t } from "../../../utils/language";
 const steps = [
   {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
   {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
@@ -36,14 +36,14 @@ const Index = () => {
             <div className="row align-items-center">
               <div className="col-md-7 order-2 order-md-1">
                 <div className="banner-text">
-                  <h2>SCAN, ORDER & PAY</h2>
-                  <p>Your customers can order from their table by <br></br>simply scanning a QR code</p>
+                  <h2>{t("SCAN, ORDER & PAY")}</h2>
+                  <p>{t("Your customers can order from their table by")} <br></br>{t("simply scanning a QR code")}</p>
                   <div className="banner-btn mt-4">
                     <div className="connect-btn mb-4 mb-md-0">
-                      <a className="trans-btn" href="/#/pricing">Try it for free</a>
+                      <a className="trans-btn" href="/#/pricing">{t("Try it for free")}</a>
                     </div>
                     <div className="trans-button ml-0 ml-md-4">
-                      <a className="trans-btn" href="/#/pricing">View Plans</a>
+                      <a className="trans-btn" href="/#/pricing">{t("View Plans")}</a>
                     </div>
                   </div>
                 </div>
@@ -67,9 +67,9 @@ const Index = () => {
                 </div>
                 <div className="col-xl-6 col-md-5 ml-auto">
                   <div className="qr-content">
-                    <h3>Mobile scan code order</h3>
-                    <p>Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions</p>
-                    <a className="trans-btn" href="/#/register?plan=free">Register Now</a>
+                    <h3>{t("Mobile scan code order")}</h3>
+                    <p>{t("Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions")}</p>
+                    <a className="trans-btn" href="/#/register?plan=free">{t("Register Now")}</a>
                   </div>
                 </div>
               </div>
