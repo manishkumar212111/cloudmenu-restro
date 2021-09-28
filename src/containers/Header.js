@@ -34,7 +34,7 @@ const Header = (props) => {
       }
     return(
         <header id="header" class="fixed-top">
-          <div class="container-fluid d-flex align-items-center">
+          <div class={`container-fluid d-flex align-items-center ${openNav ? "mobile-nav-active" : ""}`}>
             <button type="button" onClick={() => setOpenNav(!openNav)} class="mobile-nav-toggle"><i style={{fontSize: 24}} class="bx bx-menu"></i></button>
             <div class="logo mr-auto">
               {/* <!-- <h1 class="text-light"><a href="index.html"><span>Ninestars</span></a></h1> --> */}
