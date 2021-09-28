@@ -273,7 +273,7 @@ body {
     bottom: 0;
     z-index: 9999;
     overflow-y: auto;
-    left: -260px;
+    // left: -2px;
     width: 260px;
     padding-top: 18px;
     background: #4e4039;
@@ -364,9 +364,9 @@ body {
     top: 0;
     left: 0;
     position: fixed;
-    background: rgba(78, 64, 57, 0.9);
+    // background: rgba(78, 64, 57, 0.9);
     overflow: hidden;
-    display: none;
+    // display: none;
   }
   
   .mobile-nav-active {
@@ -433,7 +433,12 @@ body {
       flex-direction: column;
     }
   }
-  
+  @media (min-width: 767px) {
+    .mobile-nav-toggle {
+      display: none;
+    }
+
+  }
   /*--------------------------------------------------------------
   # Sections General
   --------------------------------------------------------------*/
