@@ -28,12 +28,19 @@
 .c-switch {
   width: 65px !important;
 }
-.c-wrapper {
-  margin-left: 288px !important;
+.c-sidebar {
+  background-color: white;
 }
-.c-body {
-  margin-left: 20px;
+.c-sidebar-brand {
+  background-color : white !important;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1)
 }
+// .c-wrapper {
+//   margin-left: 288px !important;
+// }
+// .c-body {
+//   margin-left: 20px;
+// }
 body {
     font-family: 'Poppins', sans-serif;
     color: #212529;

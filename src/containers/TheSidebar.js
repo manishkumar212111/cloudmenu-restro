@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CCreateElement,
@@ -20,15 +20,19 @@ import navigation from './_nav'
 
 const TheSidebar = () => {
   const dispatch = useDispatch()
-  const show = useSelector(state => state.sidebarShow)
+  const show = useSelector(state => state.changeState.sidebarShow)
+  
 
+  console.log(show, "sdvbdfhjhjh")
   return (
     <CSidebar
-      style={{backgroundColor : "white", boxShadow: "0px 4px 30px rgba(0, 0, 0, 0.1)" , width: 290, }}
+      // style={{backgroundColor : "white", boxShadow: "0px 4px 30px rgba(0, 0, 0, 0.1)" , width: 290, }}
       show={show}
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
-      <CSidebarBrand className="d-md-down-none" style={{color: "black", backgroundColor: "white",flex: "0 0 75px"}} to="/#/dashboard">
+      <CSidebarBrand className="d-md-down-none" 
+      // style={{color: "black", backgroundColor: "white",flex: "0 0 75px"}} 
+      to="/#/dashboard">
         {/* CLOUD MENU */}
         <img
           className="c-sidebar-brand-full"
@@ -50,9 +54,9 @@ const TheSidebar = () => {
           }}
         />
       </CSidebarNav>
-      {/* <CSidebarMinimizer className="c-d-md-down-none"/> */}
+      <CSidebarMinimizer className="c-d-md-down-none"/>
     </CSidebar>
   )
 }
 
-export default React.memo(TheSidebar)
+export default TheSidebar

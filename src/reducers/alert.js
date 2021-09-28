@@ -9,6 +9,8 @@ export default function(state = initialState, action) {
       return [payload];
     case 'REMOVE_ALERT':
       return (state = []);
+    case 'set':
+      return {...state , sideBarState: action.sidebarShow}
     default:
       return state;
   }
