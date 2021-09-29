@@ -61,44 +61,48 @@ const OrderList = (props) => {
         </div>
 
         <div className="row menu-display-container bg-white mt-4">
-          <div className="col-12">
-            <div className="row menu-display-header pt-3">
-              <div className="col-1 text-center menu-display-heading py-4">
-                Date/Time
-              </div>
-              <div className="col-1 text-right menu-display-heading py-4">
-                Type
-              </div>
-              <div className="col-2 text-center menu-display-heading py-4">
-                Order Number
-              </div>
-              <div className="col-1 text-center menu-display-heading py-4">
-                Table No
-              </div>
-              <div className="col-2 text-center menu-display-heading py-4">
-                Payment Type
-              </div>
-              <div className="col-1 text-center menu-display-heading py-4">
-                Status
-              </div>
-              <div className="col-1 text-center menu-display-heading py-4">
-                Pay
-              </div>
-            </div>
+          <div >
+            <table className="col-12">
+              <tr className="row menu-display-header pt-3">
+                <th className="col-1 text-center menu-display-heading py-4">
+                  Date/Time
+                </th>
+                <th className="col-1 text-right menu-display-heading py-4">
+                  Type
+                </th>
+                <th className="col-2 text-center menu-display-heading py-4">
+                  Order Number
+                </th>
+                <th className="col-1 text-center menu-display-heading py-4">
+                  Table No
+                </th>
+                <th className="col-2 text-center menu-display-heading py-4">
+                  Payment Type
+                </th>
+                <th className="col-1 text-center menu-display-heading py-4">
+                  Status
+                </th>
+                <th className="col-1 text-center menu-display-heading py-4">
+                  Pay
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
             {orderList &&
               orderList.length &&
               orderList.map((itm) => (
-                <div className="row item-row py-4 align-items-center px-0">
-                  <div className="col-1 text-center test py-4">
+                <tr className="row item-row py-4 align-items-center px-0">
+                  <td className="col-1 text-center test py-4">
                      {moment(itm.createdAt).format("DD/MM/YYYY")} {moment(itm.createdAt).format("HH:mm")}
-                  </div>
-                  <div className="col-1 text-right test py-4">{itm.orderType}</div>
-                  <div className="col-2 text-center test py-4">{itm.orderNo}</div>
-                  <div className="col-1 text-center test py-4">{itm.tableNo || "NA"}</div>
-                  <div className="col-2 text-center test py-4">{itm.paymentType}</div>
-                  <div className="col-1 text-center test py-4">{itm.paymentStatus}</div>
-                  <div className="col-1 text-center test py-4">SR {itm.totalAmount}</div>
-                  <div className="col-1">
+                  </td>
+                  <td className="col-1 text-right test py-4">{itm.orderType}</td>
+                  <td className="col-2 text-center test py-4">{itm.orderNo}</td>
+                  <td className="col-1 text-center test py-4">{itm.tableNo || "NA"}</td>
+                  <td className="col-2 text-center test py-4">{itm.paymentType}</td>
+                  <td className="col-1 text-center test py-4">{itm.paymentStatus}</td>
+                  <td className="col-1 text-center test py-4">SR {itm.totalAmount}</td>
+                  <td className="col-1">
                     <button
                       type="button"
                       className="btn item-view-btn item-view-btn-details"
@@ -106,8 +110,8 @@ const OrderList = (props) => {
                     >
                       Details
                     </button>
-                  </div>
-                  <div className="col-1 px-4">
+                  </td>
+                  <td className="col-1 px-4">
                     {props.updatingOrder == itm.id ? <CSpinner /> : <button
                       type="button"
                       onClick={() => handleStatusChange(itm.id , statusObj[itm.status])}
@@ -115,9 +119,9 @@ const OrderList = (props) => {
                     >
                       {statusObj[itm.status].current}
                     </button>}
-                  </div>
+                  </td>
 
-                  <div className="col-1 item-btns-col">
+                  <td className="col-1 item-btns-col">
                     <div className="row align-items-center justify-content-center">
                       <div className="col-6 d-flex justify-content-end item-dropdown-container">
                         <img src={menu} alt="" className="menu-icon" onClick={() => setActiveMenu(actievMenu == itm.id ? false : itm.id)} />
@@ -139,9 +143,10 @@ const OrderList = (props) => {
                         </div>}
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </td>
+                </tr>
               ))}
+              </table>
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
