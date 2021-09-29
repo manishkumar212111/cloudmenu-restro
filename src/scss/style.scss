@@ -19,21 +19,23 @@
 // $body-color: #111;
 // @import "./../../node_modules/@coreui/coreui/scss/coreui";
 
+.c-sidebar-nav-link, .c-sidebar-nav-dropdown-toggle {
+  margin: 0 20px;
+  padding: 20px 0;
+  border-bottom: 4px solid transparent;
+}
 .c-sidebar-nav-link:hover{
-  background-color: #DA3643 !important;
+  border-bottom: 4px solid #DA3643;
+  background-color: #ffffff !important;
 }
 .c-active{
-  background-color: #DA3643 !important;
+  border-bottom: 4px solid #DA3643;
 }
 .c-switch {
   width: 65px !important;
 }
 .c-sidebar {
   background-color: white;
-}
-.c-body {
-  margin-top: 10px !important;
-  margin-left: 10px !important;
 }
 .c-sidebar-brand {
   background-color : white !important;
@@ -1082,4 +1084,11 @@ li.lang-area span.active-lang {
 
 .modal-content {
   border-radius: 1.25rem;
+}
+
+.restaurant-details-container1 {
+  justify-content: space-evenly;
+}
+main {
+  margin: 30px 0;
 }

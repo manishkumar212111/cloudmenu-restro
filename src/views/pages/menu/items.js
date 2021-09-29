@@ -171,8 +171,7 @@ const Items = (props) => {
             <div class="col-4 menu-display-heading py-4 px-4">Items</div>
             <div class="col-8 menu-display-buttons-container">
               <div class="row py-4">
-                <div class="col-4"></div>
-                <div class="col-4 d-flex justify-content-end">
+                <div class="col-12 d-flex add-cat-btn justify-content-end">
                   <button
                     type="button"
                     class="btn menu-display-btn menu-display-btn-category"
@@ -180,9 +179,7 @@ const Items = (props) => {
                   >
                     Add Category
                   </button>
-                </div>
-                <div class="col-4">
-                  <button type="button" class="btn menu-display-btn" onClick={() => {setActievId(''); openDishAddPopup(true); }}>
+                  <button type="button" class="btn menu-display-btn mx-4" onClick={() => {setActievId(''); openDishAddPopup(true); }}>
                     Add Item
                   </button>
                 </div>

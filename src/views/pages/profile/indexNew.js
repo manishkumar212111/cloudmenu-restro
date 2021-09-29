@@ -252,14 +252,14 @@ const Profile = (props) => {
     <>
       <div class="row">
         <div class="col-12">
-          <div class="row px-5 restaurant-details-container d-flex">
-            <div class="col-7 restaurant-details-form-container py-3 bg-white">
+          <div class="row px-5 px-xl-2 restaurant-details-container1 d-flex">
+            <div class="col-12 col-xl-7 restaurant-details-form-container py-3 mb-5 mb-xl-0 bg-white">
               <div class="row restaurant-details-form-heading py-3 px-4">
                 Restaurant Details
               </div>
 
               <div class="row py-4">
-                <div class="col-6 px-4">
+                <div class="col-12 col-md-6 px-4">
                   <div class="form-group mb-4">
                     <label for="restaurant-name-ar" class="input-label">
                       Restaurant Name English
@@ -319,7 +319,7 @@ const Profile = (props) => {
                     )}
                   </div>
                 </div>
-                <div class="col-6 px-4">
+                <div class="col-12 col-md-6 px-4">
                   <div class="form-group mb-4">
                     <label
                       for="restaurantLogoUpload"
@@ -404,7 +404,7 @@ const Profile = (props) => {
               </div>
 
               <div class="row mt-4">
-                <div class="col-6 px-4">
+                <div class="col-12 col-md-6 px-4">
                   <div class="form-group">
                     <div class="form-group mb-4">
                       <label for="table-no" class="input-label">
@@ -472,7 +472,7 @@ const Profile = (props) => {
                     </div>
                   </div>
                 </div>
-                <div class="col-6 px-4">
+                <div class="col-12 col-md-6 px-4">
                   <div class="form-group">
                     <div class="mb-4">
                       <div class="form-group mb-4">
@@ -529,7 +529,7 @@ const Profile = (props) => {
                 </button>
               </div>
             </div>
-            <div class="col-4 restaurant-details-right-container">
+            <div class="col-12 col-xl-4 restaurant-details-right-container mb-5 mb-xl-0">
               <div class="row restaurant-details-right-container-plan bg-white py-3">
                 <div class="restaurant-details-form-heading py-3 px-4">
                   My Plan
@@ -553,7 +553,7 @@ const Profile = (props) => {
                   Bank Details
                 </div>
                 <form action="" class="row py-4">
-                  <div class="col-6 px-4">
+                  <div class="col-12 col-md-6 px-4">
                     <div class="form-group mb-4">
                       <label for="bank-name" class="input-label">
                         Bank Name
@@ -586,7 +586,7 @@ const Profile = (props) => {
                       {/* {!errorObj.name.error && <CFormText className="help-block error">{errorObj.name.msg}</CFormText>} */}
                     </div>
                   </div>
-                  <div class="col-6 px-4">
+                  <div class="col-12 col-md-6 px-4">
                     <div class="form-group mb-4">
                       <label for="company" class="input-label">
                         Company Name

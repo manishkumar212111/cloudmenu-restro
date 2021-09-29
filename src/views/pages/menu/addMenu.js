@@ -170,7 +170,7 @@ const AddMenu = (props) => {
         <label class="form-label input-label">Choose Banner</label>
       </div>
 
-      <div class="form-group d-flex justify-content-space-between mb-4">
+      <div class="form-group d-flex justify-content-space-between mb-4 add-menu-images">
         {bannerImg.map((itm) => (
           <>
             <img
@@ -195,7 +195,7 @@ const AddMenu = (props) => {
         {props.menu_detail_loading ? (
           <CSpinner />
         ) : (
-          <button onClick={handleClick} type="button" class="btn add-menu-btn">
+          <button onClick={handleClick} type="button" class="btn add-dish-btn">
             NEXT
           </button>
         )}

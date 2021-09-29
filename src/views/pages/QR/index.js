@@ -65,9 +65,9 @@ const QR = () => {
   return (
     <>
       <div class="row">
-        <div class="col-10">
-          <div class="row px-5 restaurant-details-container d-flex">
-            <div class="col-6 restaurant-details-form-container py-3 bg-white">
+        <div class="col-12">
+          <div class="row px-4 restaurant-details-container1 d-flex">
+            <div class="col-12 col-xl-6 restaurant-details-form-container py-3 bg-white mb-4 mb-xl-0">
               <div class="row restaurant-details-form-heading py-3 px-4">
                 Generate QR code
               </div>
@@ -216,7 +216,7 @@ const QR = () => {
                 </button>
               </div>
             </div>
-            <div class={`col-5 restaurant-details-right-container `} >
+            <div class={`col-12 col-xl-5 restaurant-details-right-container `} >
               <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{width: parseInt(fieldObj.layoutSize) }}>
                 <div
                   id="my-qr"

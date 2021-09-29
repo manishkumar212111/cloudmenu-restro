@@ -51,7 +51,7 @@ const Menu = (props) => {
     <div class="row menu-display-container bg-white mt-4 px-5 py-5">
       {props.menuList &&
         props.menuList.map((itm) => (
-          <div class="col-3 add-menu-button p-4" style={{ cursor: "pointer" }}>
+          <div class="col-12 col-md-3 add-menu-button p-4" style={{ cursor: "pointer" }}>
             <div
               class="row justify-content-center align-items-center"
               onClick={() => props.handleMenuClick(itm)}
@@ -64,31 +64,32 @@ const Menu = (props) => {
               />
             </div>
             <div class="row add-menu-text mt-4 text-center justify-content-center">
-              {itm.name}
-
-              <CSwitch
-                style={{ width: 65 }}
-                color="success"
-                shape="pill"
-                // labelOff="DeActivate"
-                // labelOn="Activate"
-                checked={itm.restaurant.menu == itm.id}
-                onChange={(e) =>
-                  e.target.checked == true ? activateMenuClick(itm) : () => {}
-                }
-              />
-              <img
-                onClick={() => setSetting(itm)}
-                src={SettingIcon}
-                style={{ width: "2.8rem" }}
-                alt=""
-                class="menu-settings-icon"
-              />
+              <p>{itm.name}</p>
+              <div class="menu-name-setting">
+                <CSwitch
+                  className={`${itm.restaurant.menu == itm.id?"active":"switch-disable"}`}
+                  style={{ width: 65 }}
+                  color="success"
+                  shape="pill"
+                  // labelOff="DeActivate"
+                  // labelOn="Activate"
+                  checked={itm.restaurant.menu == itm.id}
+                  onChange={(e) =>
+                    e.target.checked == true ? activateMenuClick(itm) : () => {}
+                  }
+                />
+                <img
+                  onClick={() => setSetting(itm)}
+                  src={SettingIcon}
+                  alt=""
+                  class="menu-settings-icon"
+                />
+              </div>
             </div>
           </div>
         ))}
       <div
-        class="col-3 add-menu-button p-4"
+        class="col-12 col-md-3 add-menu-button p-4"
         style={{ cursor: "pointer" }}
         onClick={() => setAddOpen(true)}
       >

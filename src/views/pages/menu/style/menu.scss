@@ -73,3 +73,15 @@
     font-weight: 500;
     font-size: 1.1rem;
 }
+
+.menu-name-setting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.active .c-switch-slider::before {
+    left: -11px;
+}
+.c-switch-pill .c-switch-slider {
+    width: 50px;
+}

@@ -64,8 +64,8 @@ const Modifier = (props) => {
               </div>
               <div class="col-6 menu-display-buttons-container">
                 <div class="row py-4">
-                  <div class="col-7"></div>
-                  <div class="col-4 d-flex justify-content-end">
+                  <div class="col-6"></div>
+                  <div class="col-6 d-flex add-cat-btn justify-content-end">
                     <button
                       type="button"
                       onClick={() => {
