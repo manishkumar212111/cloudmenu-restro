@@ -25,7 +25,7 @@ import validateUtility from 'src/utils/ValidateUtility';
 const Login = (props) => {
   const [ mobile , setMobile ] = useState('8005804379');
   const [ password , setPassword ] = useState("Man@12345");
-  const [ccode , setccode] = useState("971");
+  const [ccode , setccode] = useState("966");
   useEffect(() => {
     if(props.userDetail && props.userDetail.user){
         typeof localStorage !== 'undefined' &&  localStorage.setItem('userDetail', JSON.stringify(props.userDetail))
@@ -60,8 +60,8 @@ const Login = (props) => {
                     <div className="col-4 col-md-3 form-group mb-4">
                         <div className="custom-selected">
                           <select className="form-input" name="ccode" value={ccode} onChange={(e) => setccode(e.target.value)}>
-                            <option value="971">+971</option>
-                            <option value="91">+91</option>
+                            <option value="966">966</option>
+                            <option value="91">91</option>
                           </select>
                         </div>
                       </div>

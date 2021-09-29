@@ -17,7 +17,7 @@ const Register = (props) => {
           case "name":
               return  validateUtility.required(value)
           case "mobile" :
-              return  validateUtility.mobile(value)
+              return  value.length > 9
           case "password" :
               // console.log(validateUtility.required(value) && validateUtility.minLength(value , 8) , value) && (!value.match(/\d/) || !value.match(/[a-zA-Z]/));
               return  validateUtility.required(value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);

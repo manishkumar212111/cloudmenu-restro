@@ -126,11 +126,23 @@ const Dashboard = (props) => {
                                     {
                                         label: 'Revenue',
                                         backgroundColor: '#f87979',
+                                        // data: [10,344,500]
                                         data: revenueInWeek.reverse().map(itm => itm.value)
                                     }
                                 ]}
                                 labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
                                 options={{
+                                    scales: {
+                                        yAxes: [{
+                                        ticks: {
+                                          max: revenueInWeek.reverse().map(itm => itm.value).sort().lastItem || 50,
+                                          min: 0,
+                                          stepSize: parseInt(revenueInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 0,
+                                          reverse: false,
+                                          beginAtZero: true
+                                        }
+                                      }]
+                                    },
                                 tooltips: {
                                     enabled: true
                                 }
@@ -161,6 +173,17 @@ const Dashboard = (props) => {
                                 ]}
                                 labels={orderInWeek.reverse().map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
                                 options={{
+                                    scales: {
+                                        yAxes: [{
+                                        ticks: {
+                                          max: orderInWeek.reverse().map(itm => itm.value).sort().lastItem || 50,
+                                          min: 0,
+                                          stepSize: parseInt(orderInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 1,
+                                          reverse: false,
+                                          beginAtZero: true
+                                        }
+                                      }]
+                                    },
                                     maintainAspectRatio: true,
                                     tooltips: {
                                         enabled: true
