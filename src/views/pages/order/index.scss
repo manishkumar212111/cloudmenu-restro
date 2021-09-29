@@ -148,25 +148,28 @@
 }
 
 .item-view-btn-details {
-    background-color: #2D2D2D;
+    background-color: #2D2D2D !important;
 }
 
 .item-view-btn-accept {
-    background-color: #67C117;
+    background-color: #67C117 !important;
 }
 
 .item-view-btn-serving {
-    background-color: #004A62;
+    background-color: #004A62 !important;
 }
 
 .item-view-btn-preparing {
-    background-color: #F7981D;
+    background-color: #F7981D !important;
 }
 
 .item-view-btn-complete {
-    background-color: #CA2DE6;
+    background-color: #CA2DE6 !important;
 }
 
 .item-view-btn-cancelled {
-    background-color:red;
+    background-color: #f00 !important;
+}
+.menu-display-header th {
+    font-size: 16px;
 }

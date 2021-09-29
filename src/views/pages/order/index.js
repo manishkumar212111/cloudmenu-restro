@@ -61,9 +61,9 @@ const OrderList = (props) => {
         </div>
 
         <div className="row menu-display-container bg-white mt-4">
-          <div >
-            <table className="col-12">
-              <tr className="row menu-display-header pt-3">
+          <div className="table-responsive">
+            <table className="table table-borderless">
+              <tr className="menu-display-header pt-3">
                 <th className="col-1 text-center menu-display-heading py-4">
                   Date/Time
                 </th>
@@ -85,14 +85,14 @@ const OrderList = (props) => {
                 <th className="col-1 text-center menu-display-heading py-4">
                   Pay
                 </th>
-                <th></th>
-                <th></th>
+                <th className="col-1 text-center menu-display-heading py-4">Details</th>
+                <th className="col-1 text-center menu-display-heading py-4">Status</th>
                 <th></th>
               </tr>
             {orderList &&
               orderList.length &&
               orderList.map((itm) => (
-                <tr className="row item-row py-4 align-items-center px-0">
+                <tr className="item-row py-4 align-items-center px-0">
                   <td className="col-1 text-center test py-4">
                      {moment(itm.createdAt).format("DD/MM/YYYY")} {moment(itm.createdAt).format("HH:mm")}
                   </td>

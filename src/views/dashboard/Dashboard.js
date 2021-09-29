@@ -65,103 +65,113 @@ const Dashboard = (props) => {
   />)
   }
   return (
-    <div class="col-12 col-sm-12 col-md-12 col-lg-11 px-4">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <div class="dashboard-container">
         <div class="row py-4">
-            <div class="ccol-12 col-sm-8 col-md-7 col-lg-5 mb-4 py-4 px-5 dashboard-details-container">
-                <div class="row dashboard-details-container-title mb-5">
-                    Today’s Revenue
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row dashboard-details-container-value">
-                            {data.todayRevenue || 0 } 
-                        </div>
-                        <div class="row">                                    
-                            {/* <button type="button" class="btn dashboard-details-container-btn">View All</button> */}
-                        </div>
-                    </div>
-                    <div class="col-6 d-flex justify-content-end">
-                        <img src={first} alt="" class="dashboard-details-container-icon" />
-                    </div>
-                </div>
-            </div>   
-            <div class="col-1"></div>             
-            <div class="col-12 col-sm-8 col-md-7 col-lg-5 mb-4 py-4 px-5 dashboard-details-container dashboard-details-container-orders">
-                <div class="row dashboard-details-container-title mb-5">
-                    Today’s Orders
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row dashboard-details-container-value">
-                        {data.todayOrder || 0 } 
+            <div class="row col-12 px-5">
+                <div class="col-12 col-lg-6 mb-4 py-4">
+                    <div class="dashboard-details-container">
+                        <div class="row dashboard-details-container-title mb-5">
+                            Today’s Revenue
                         </div>
                         <div class="row">
-                            {/* <button type="button" class="btn dashboard-details-container-btn dashboard-details-container-btn-orders">View All</button> */}
+                            <div class="col-6">
+                                <div class="row dashboard-details-container-value">
+                                    {data.todayRevenue || 0 } 
+                                </div>
+                                <div class="row">                                    
+                                    {/* <button type="button" class="btn dashboard-details-container-btn">View All</button> */}
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <img src={first} alt="" class="dashboard-details-container-icon" />
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 d-flex justify-content-end">
-                        <img src={second} alt="" class="dashboard-details-container-icon" />
+                </div>             
+                <div class="col-12 col-lg-6 mb-4 py-4">
+                    <div class="dashboard-details-container dashboard-details-container-orders">
+                        <div class="row dashboard-details-container-title mb-5">
+                            Today’s Orders
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row dashboard-details-container-value">
+                                {data.todayOrder || 0 } 
+                                </div>
+                                <div class="row">
+                                    {/* <button type="button" class="btn dashboard-details-container-btn dashboard-details-container-btn-orders">View All</button> */}
+                                </div>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <img src={second} alt="" class="dashboard-details-container-icon" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-8 col-md-7 col-lg-5 mb-4 py-4 px-5 dashboard-details-container dashboard-details-container-revenue">
-                <div class="row dashboard-details-container-title mb-4">
-                    Total Revenue Last 7 Days (SR {data.totalRevenue})
-                </div>
-                <div class="row">
-                <CCard>
-                    <CCardBody>
-                    <CChartBar
-                        datasets={[
-                            {
-                                label: 'Revenue',
-                                backgroundColor: '#f87979',
-                                data: revenueInWeek.reverse().map(itm => itm.value)
-                            }
-                        ]}
-                        labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
-                        options={{
-                        tooltips: {
-                            enabled: true
-                        }
-                        }}
-                    />
-                    </CCardBody>
-                </CCard>
+            <div class="row col-12 px-5">
+                <div class="col-12 col-lg-6 mb-4 py-4">
+                    <div class="dashboard-details-container dashboard-details-container-revenue">
+                        <div class="row dashboard-details-container-title mb-4">
+                            Total Revenue Last 7 Days (SR {data.totalRevenue})
+                        </div>
+                        <div class="row">
+                        <CCard>
+                            <CCardBody>
+                            <CChartBar
+                                datasets={[
+                                    {
+                                        label: 'Revenue',
+                                        backgroundColor: '#f87979',
+                                        data: revenueInWeek.reverse().map(itm => itm.value)
+                                    }
+                                ]}
+                                labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
+                                options={{
+                                tooltips: {
+                                    enabled: true
+                                }
+                                }}
+                            />
+                            </CCardBody>
+                        </CCard>
 
-                    {/* <img src={revenue} alt="" style={{width: "100%"}} /> */}
+                            {/* <img src={revenue} alt="" style={{width: "100%"}} /> */}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-12 col-sm-8 col-md-7 col-lg-5 mb-4 py-4 px-5 dashboard-details-container dashboard-details-container-orders dashboard-details-container-orders-bottom">
-                <div class="row dashboard-details-container-title mb-4">
-                    Total Orders Last 7 Days ({data.totalOrder})
-                </div>
-                <div class="row">
-                <CCard>
-                    <CCardBody>
-                    <CChartBar
-                        datasets={[
-                            {
-                                label: 'Order',
-                                backgroundColor: '#f87979',
-                                data: orderInWeek.reverse().map(itm => itm.value)
-                            }
-                        ]}
-                        labels={orderInWeek.reverse().map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
-                        options={{
-                            maintainAspectRatio: true,
-                            tooltips: {
-                                enabled: true
-                            }
-                        }}
-                    />
-                    </CCardBody>
-                </CCard>
+                <div class="col-12 col-lg-6 mb-4 py-4">
+                    <div class="dashboard-details-container dashboard-details-container-orders dashboard-details-container-orders-bottom">
+                        <div class="row dashboard-details-container-title mb-4">
+                            Total Orders Last 7 Days ({data.totalOrder})
+                        </div>
+                        <div class="row">
+                        <CCard>
+                            <CCardBody>
+                            <CChartBar
+                                datasets={[
+                                    {
+                                        label: 'Order',
+                                        backgroundColor: '#f87979',
+                                        data: orderInWeek.reverse().map(itm => itm.value)
+                                    }
+                                ]}
+                                labels={orderInWeek.reverse().map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
+                                options={{
+                                    maintainAspectRatio: true,
+                                    tooltips: {
+                                        enabled: true
+                                    }
+                                }}
+                            />
+                            </CCardBody>
+                        </CCard>
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
