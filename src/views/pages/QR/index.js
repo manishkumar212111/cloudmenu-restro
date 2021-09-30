@@ -22,7 +22,7 @@ const QR = () => {
     qrColor: "black",
     textSize: 16,
     text: "Qr Text Here",
-    layoutSize: 520
+    layoutSize: 420
   });
 
   const restaurantDetail =
