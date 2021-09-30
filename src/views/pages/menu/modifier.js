@@ -36,6 +36,7 @@ const Modifier = (props) => {
 
   useEffect(() => {
     setModifiers(props.modifierList);
+    setView(false);
     setHandleItm(false);
   }, [props.modifierList]);
 
@@ -46,7 +47,6 @@ const Modifier = (props) => {
   const handleEdit = (id) => {
     setView(true);
     setActievId(id);
-    setView(false);
   };
 
   console.log(props);
@@ -95,10 +95,10 @@ const Modifier = (props) => {
                   <div class="col-3 item-btns-col">
                     <div class="row align-items-center justify-content-center">
                       <div class="col-6 d-flex justify-content-end item-dropdown-container">
-                        <img src={menuIcon} alt="" class="menu-icon" onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} />
-                        <div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2">
-                            <div class="col-3" style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)}>
+                        <img style={{cursor: "pointer"}} src={menuIcon} alt="" class="menu-icon" onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} />
+                        {openHandleItem && <><div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
+                          <div style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)} class="row item-dropdown-row py-2">
+                            <div class="col-3">
                               <img
                                 src={editIcon}
                                 alt=""
@@ -113,12 +113,10 @@ const Modifier = (props) => {
                               Edit Modifier
                             </div>
                           </div>
-                          <div class="row item-dropdown-row py-2">
+                          <div style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)} class="row item-dropdown-row py-2">
                             <div class="row item-dropdown-row">
                               <div
-                              style={{cursor: "pointer"}}
                               class="col-3"
-                                onClick={() => handleDelete(itm.id)}
                               >
                                 <img
                                   src={crossIcon}
@@ -132,6 +130,9 @@ const Modifier = (props) => {
                             </div>
                           </div>
                         </div>
+                       <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleItm(false)}></div>
+                        
+                        </>}
                       </div>
                     </div>
                   </div>

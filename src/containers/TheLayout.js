@@ -12,7 +12,6 @@ import {connect } from 'react-redux';
 const TheLayout = (props) => {
   const [user , setUser] = useState({});
   useEffect(() => {
-    console.log("in useeffect")
     if(typeof localStorage !== 'undefined' && localStorage.getItem('userDetail')){
       const userDetail = JSON.parse(localStorage.getItem('userDetail')).user;
       setUser(userDetail); 
@@ -20,6 +19,7 @@ const TheLayout = (props) => {
       setUser(null);
     }
   }, [props.userDetail]);
+  
   return (
     user && user.status ? <>
     <div className="c-app c-default-layout">

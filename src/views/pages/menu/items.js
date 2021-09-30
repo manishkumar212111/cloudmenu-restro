@@ -133,11 +133,11 @@ const Items = (props) => {
                       {itm.name}
                       </div>
                     <div class="col-2">
-                    <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" class="menu-icon" />
+                    <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
                     </div>
-                    <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
+                    {openHandleCategory && <><div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
                          <div class={`item-dropdownCategory py-3 px-3 ${openHandleCategory == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2" onClick={() => handleEdit(itm.id, "category")}>
+                          <div class="row item-dropdown-row py-2" style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id, "category")}>
                             <div class="col-3" >
                               <img
                                 src={editIcon}
@@ -148,7 +148,7 @@ const Items = (props) => {
                             <div style={{cursor:"pointer"}}  class="col-8 item-dropdown-text px-0">Edit</div>
                           </div>
                           <div class="row item-dropdown-row py-2">
-                            <div class="row item-dropdown-row" onClick={() => handleDelete(itm.id, "category")}>
+                            <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id, "category")}>
                               <div class="col-3" >
                                 <img
                                   src={crossIcon}
@@ -162,7 +162,10 @@ const Items = (props) => {
                             </div>
                           </div>
                         </div>
-                       </div> 
+                       </div>
+                       <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleCategory(false)}></div>
+                       </>
+                       } 
                   </div>
                 ))}
         </div>
@@ -205,9 +208,9 @@ const Items = (props) => {
                         </button> */}
                       </div>
                       <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
-                        <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" class="menu-icon" />
-                        <div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2" onClick={() => handleEdit(itm.id)}>
+                        <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
+                        {openHandleItem && <><div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
+                          <div class="row item-dropdown-row py-2"  style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)}>
                             <div class="col-3" >
                               <img
                                 src={editIcon}
@@ -218,7 +221,7 @@ const Items = (props) => {
                             <div class="col-8 item-dropdown-text px-0">Edit Item</div>
                           </div>
                           <div class="row item-dropdown-row py-2">
-                            <div class="row item-dropdown-row" onClick={() => handleDelete(itm.id)}>
+                            <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id)}>
                               <div class="col-3" >
                                 <img
                                   src={crossIcon}
@@ -232,6 +235,7 @@ const Items = (props) => {
                             </div>
                           </div>
                         </div>
+                        <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleItm(false)}></div></>}
                       </div>
                     </div>
                   </div>

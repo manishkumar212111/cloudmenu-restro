@@ -30,17 +30,24 @@ export const loginUser = ( data ) => dispatch =>{
 
 export const logout = ( data ) => dispatch =>{
   try{
-
+    dispatch({
+      type: "USER_AUTH_ACTION",
+      data : true
+    });
     API.post('Logout' , data, '' , function(res){
       localStorage.removeItem('userDetail');
       dispatch({
         type: "LOGIN_USER",
         data : ""
       });
-      dispatch(setAlert("Logout successfull" , 'success'));    
+      // dispatch(setAlert("Logout successfull" , 'success'));    
       setTimeout(() => {
         window.location.href= '/#/'
-      },1000)
+      },500)
+      dispatch({
+        type: "USER_AUTH_ACTION",
+        data : true
+      });
     })
     
   } catch (err) {

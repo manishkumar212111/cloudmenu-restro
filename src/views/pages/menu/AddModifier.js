@@ -66,33 +66,37 @@ const AddModifier = (props) => {
     max: { error: true, msg: "It should be valid" },
     modifiers: { error: true, msg: "It should be valid" },
   });
-  useEffect(() => {
-    //   setIsEdit(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
-  }, []);
+  // useEffect(() => {
+  //   setfieldObj(defaultProps.fieldObj)
+  //   //   setIsEdit(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
+  // }, [props]);
 
   useEffect(() => {
-    if (props.id) {
+    if (props.id && props.id.length) {
       props.getModifierById(props.id);
       setIsEdit(props.id);
+    } else {
+    setfieldObj(defaultProps.fieldObj)
+
     }
   }, [props.id]);
 
   useEffect(() => {
-    props.fieldObj && props.fieldObj.id && setfieldObj(props.fieldObj);
-    if(props.fieldObj?.id){
+    props.fieldObj && props.fieldObj.id && props.id && setfieldObj(props.fieldObj);
+    if(props.fieldObj?.id && props.id){
       setShowMin(props.fieldObj.max && props.fieldObj.max > 0);
     }
   }, [props.fieldObj]);
 
   const handleChange = (e, key, value) => {
-    console.log(e.target);
+    console.log(e.target.value, value);
     let field = {};
     field[key] = typeof value !== "undefined" ? value : e.target.value;
     setfieldObj((fieldOb) => ({ ...fieldOb, ...field }));
 
     let errOb = {};
     errOb[key] = {
-      error: validateField(key, value ? value : e.target.value),
+      error: validateField(key, typeof value !== "undefined" ? value : e.target.value),
       msg: errorObj[key].msg,
     };
     setErrorObj((er) => ({ ...er, ...errOb }));
@@ -136,15 +140,10 @@ const AddModifier = (props) => {
       delete fieldObj.status;
       delete fieldObj.updatedAt;
       delete fieldObj.restaurant;
-      if(!showMin){
-        fieldObj.max=0;
-      }  
       props.updateModifierById(isEdit, fieldObj);
       return;
     }
-    if(!showMin){
-      fieldObj.max=0;
-    }
+    
     props.createModifier(fieldObj);
   };
 
@@ -265,7 +264,7 @@ const AddModifier = (props) => {
                         <input
                           type="radio"
                           id="modifier-require-true"
-                          checked={fieldObj.required}
+                          checked={fieldObj.isRequired}
                           onChange={(e) => handleChange(e, "isRequired", true)}
                           name="modifier-require"
                           class="custom-control-input"
@@ -283,7 +282,7 @@ const AddModifier = (props) => {
                         <input
                           type="radio"
                           id="modifier-require-false"
-                          checked={fieldObj.required}
+                          checked={!fieldObj.isRequired}
                           onChange={(e) => handleChange(e, "isRequired", false)}
                           name="modifier-require"
                           class="custom-control-input"
@@ -304,16 +303,25 @@ const AddModifier = (props) => {
                       How many items can the customer choose?
                     </label>
                   </div>
+                </div>
+
                   <CRow style={{marginTop: 10}}>
-                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
+                  {/* <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
                     <select class="form-select" placeholder="Select a range" onChange={(e) => handleSelectionChange(e)} aria-label="Default select example">
-                      {/* <option selected>Select A Range</option> */}
+                      <option selected>Select A Range</option>
                       <option value="select">Select</option>
                       <option value="select arange">Select a range</option>
                     </select>
-                  </div>
-                  {<div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
-                    <input
+                  </div> */}
+                  {fieldObj.isRequired && <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
+                    
+                    <select class="form-select form-control form-input form-input-min" placeholder="Select Min" value={fieldObj.min} onChange={(e) => handleChange(e, "min")} aria-label="Default select example">
+                      <option >Select minimum</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                    {/* <input
                       type="number"
                       class="form-control form-input form-input-min"
                       name="min"
@@ -322,15 +330,22 @@ const AddModifier = (props) => {
                       min="1"
                       id="modifier-items-min"
                       placeholder="Min"
-                    />
+                    /> */}
                     {!errorObj.min.error && (
                       <CFormText className="help-block error">
                         {errorObj.min.msg}
                       </CFormText>
                     )}
                   </div>}
-                  {Boolean(showMin) && <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
-                    <input
+                  <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
+                  <select class="form-select" placeholder="Select Max" value={fieldObj.max} onChange={(e) => handleChange(e, "max")} aria-label="Default select example">
+                      <option >Select maximum</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="3">4</option>
+                    </select>
+                    {/* <input
                       type="number"
                       class="form-control form-input form-input-max"
                       value={fieldObj.max}
@@ -339,15 +354,14 @@ const AddModifier = (props) => {
                       min="1"
                       id="modifier-items-max"
                       placeholder="Max"
-                    />
+                    /> */}
                     {!errorObj.max.error && (
                       <CFormText className="help-block error">
                         {errorObj.max.msg}
                       </CFormText>
                     )}
-                  </div>}
+                  </div>
                   </CRow>
-                </div>
 
                 <div class="form-group">
                   <div class="row">

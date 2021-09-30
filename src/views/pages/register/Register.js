@@ -7,9 +7,11 @@ const Register = (props) => {
   console.log(props);
   const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
   const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
-  const [errorObj , setErrorObj] = useState({ name : { error : true , msg : "Please enter valid email" } , 
+  const [errorObj , setErrorObj] = useState({ email : { error : true , msg : "Please enter valid email" } , 
                                               password : { error : true , msg : "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character" },
-                                              mobile : { error : true , msg : "Please enter valid mobile number" }
+                                              mobile : { error : true , msg : "Please enter valid mobile number" },
+                                              ccode : { error : true , msg : "Please enter valid mobile number" },
+                                              name : { error : true , msg : "Please enter valid name" }
                                            })
   const validateField = (key , value) => {
       value = value ? value : fieldobj[key] 
@@ -112,7 +114,7 @@ const Register = (props) => {
                   <div className="connect-btn mt-4">
                     {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>REGISTER</button>}
                   </div>
-                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="/#/register?plan=free">Login</a></p>
+                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="/#/login">Login</a></p>
               </div>
             </form>
           </div>

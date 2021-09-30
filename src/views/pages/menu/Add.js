@@ -507,7 +507,7 @@ const Add = (props) => {
             onClose={setModifier}
           >
             <CModalHeader closeButton>
-              <div class="col add-dish-header">Custumise Modifier</div>
+              <div class="col add-dish-header">Customise Modifier</div>
             </CModalHeader>
             <CModalBody>
               <ChooseModifers
