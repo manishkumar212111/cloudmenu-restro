@@ -121,7 +121,7 @@ const Items = (props) => {
   return (
     <>
       <div class="row menu-display-container bg-white mt-4">
-        <div class="col-3 categories-sidebar-container px-5 py-3">
+        <div class="col-md-6 col-xl-3 categories-sidebar-container px-5 py-3">
           <div class="row">
             <div class="category-tab-heading py-4 px-0 mb-4">Categories</div>
           </div>
@@ -169,10 +169,10 @@ const Items = (props) => {
                   </div>
                 ))}
         </div>
-        <div class="col-9">
+        <div class="col-md-6 col-xl-9">
           <div class="row menu-display-header pt-3">
-            <div class="col-4 menu-display-heading py-4 px-4">Items</div>
-            <div class="col-8 menu-display-buttons-container">
+            <div class="col-12 col-xl-4 menu-display-heading py-4 px-4">Items</div>
+            <div class="col-12 col-xl-8 menu-display-buttons-container">
               <div class="row py-4">
                 <div class="col-12 d-flex add-cat-btn justify-content-end">
                   <button
@@ -198,7 +198,6 @@ const Items = (props) => {
                     <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="item-img" />
                   </div>
                   <div class="col-3 item-name-col">{itm.title}</div>
-                  <div class="col-4"></div>
                   <div class="col-3 item-btns-col">
                     <div class="row align-items-center justify-content-end">
                       <div class="col-3"></div>

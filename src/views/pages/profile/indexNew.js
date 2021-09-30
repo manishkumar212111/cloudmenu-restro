@@ -253,7 +253,7 @@ const Profile = (props) => {
       <div class="row">
         <div class="col-12">
           <div class="row px-5 px-xl-2 restaurant-details-container1 d-flex">
-            <div class="col-12 col-xl-7 restaurant-details-form-container py-3 mb-5 mb-xl-0 bg-white">
+            <div class="col-12 col-xl-6 restaurant-details-form-container py-3 mb-5 mb-xl-0 bg-white">
               <div class="row restaurant-details-form-heading py-3 px-4">
                 Restaurant Details
               </div>
@@ -319,7 +319,7 @@ const Profile = (props) => {
                     )}
                   </div>
                 </div>
-                <div class="col-12 col-md-6 px-4">
+                <div class="col-12 col-md-4 px-4">
                   <div class="form-group mb-4">
                     <label
                       for="restaurantLogoUpload"
@@ -327,7 +327,7 @@ const Profile = (props) => {
                     >
                       Upload Logo
                     </label>
-                    <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
+                    <div class="imageUploadInput-container">
                       <input
                         class="form-control imageUploadInput"
                         type="file"
@@ -335,10 +335,7 @@ const Profile = (props) => {
                         name="logoImg"
                         onChange={(e) => handleFileUpload(e, "logoImg")}
                       />
-                      <div
-                        style={{ width: 260, height: 130 }}
-                        class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center"
-                      >
+                      <div class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center">
                         <img
                           src={
                             previewLogo
@@ -348,7 +345,6 @@ const Profile = (props) => {
                               : ImagUpload
                           }
                           alt=""
-                          style={{ width: 260, height: 130 }}
                           class="restaurantLogoUploadBackground-icon"
                         />
                       </div>
@@ -367,7 +363,7 @@ const Profile = (props) => {
                     >
                       Upload Banner
                     </label>
-                    <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
+                    <div class="imageUploadInput-container">
                       <input
                         class="form-control imageUploadInput"
                         type="file"
@@ -376,10 +372,7 @@ const Profile = (props) => {
                         onChange={(e) => handleFileUpload(e, "bannerImg")}
                       />
 
-                      <div
-                        style={{ width: 260, height: 130 }}
-                        class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center"
-                      >
+                      <div class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center">
                         <img
                           src={
                             previewBanner
@@ -389,7 +382,6 @@ const Profile = (props) => {
                               : ImagUpload
                           }
                           alt=""
-                          style={{ width: 260, height: 130 }}
                           class="restaurantLogoUploadBackground-icon"
                         />
                       </div>
@@ -529,7 +521,7 @@ const Profile = (props) => {
                 </button>
               </div>
             </div>
-            <div class="col-12 col-xl-4 restaurant-details-right-container mb-5 mb-xl-0">
+            <div class="col-12 col-xl-5 restaurant-details-right-container mb-5 mb-xl-0">
               <div class="row restaurant-details-right-container-plan bg-white py-3">
                 <div class="restaurant-details-form-heading py-3 px-4">
                   My Plan

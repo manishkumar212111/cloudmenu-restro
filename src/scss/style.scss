@@ -1100,7 +1100,6 @@ input.analytics-date-input {
   border-radius: 10px;
   border: 1px solid #7c7c7c;
 }
-
 .custom-overlay{
   // display: none;
   position: fixed;
@@ -1114,4 +1113,11 @@ input.analytics-date-input {
 
 .custom-overlay.custom-overlay-visible{
   display: block;
+}
+.menu-display-container td {
+  font-size: 14px;
+}
+.item-view-btn {
+  font-size: 14PX;
+  padding: 5px 0 !important;
 }

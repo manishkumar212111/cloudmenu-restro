@@ -338,7 +338,7 @@ const AddModifier = (props) => {
                     )}
                   </div>}
                   <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
-                  <select class="form-select" placeholder="Select Max" value={fieldObj.max} onChange={(e) => handleChange(e, "max")} aria-label="Default select example">
+                  <select class="form-select form-control form-input form-input-min" placeholder="Select Max" value={fieldObj.max} onChange={(e) => handleChange(e, "max")} aria-label="Default select example">
                       <option >Select maximum</option>
                       <option value="1">1</option>
                       <option value="2">2</option>

@@ -67,9 +67,9 @@ const Dashboard = (props) => {
   return (
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
       <div class="dashboard-container">
-        <div class="row py-4">
-            <div class="row col-12 px-5">
-                <div class="col-12 col-lg-6 mb-4 py-4">
+        <div class="row py-4 justify-content-center">
+            <div class="row col-12">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container">
                         <div class="row dashboard-details-container-title mb-5">
                             Today’s Revenue
@@ -89,7 +89,7 @@ const Dashboard = (props) => {
                         </div>
                     </div>
                 </div>             
-                <div class="col-12 col-lg-6 mb-4 py-4">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-orders">
                         <div class="row dashboard-details-container-title mb-5">
                             Today’s Orders
@@ -111,9 +111,9 @@ const Dashboard = (props) => {
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="row col-12 px-5">
-                <div class="col-12 col-lg-6 mb-4 py-4">
+        <div class="row justify-content-center">
+            <div class="row col-12">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-revenue">
                         <div class="row dashboard-details-container-title mb-4">
                             Total Revenue Last 7 Days (SR {data.totalRevenue})
@@ -155,7 +155,7 @@ const Dashboard = (props) => {
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 mb-4 py-4">
+                <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-orders dashboard-details-container-orders-bottom">
                         <div class="row dashboard-details-container-title mb-4">
                             Total Orders Last 7 Days ({data.totalOrder})

@@ -270,7 +270,7 @@ const Add = (props) => {
                   id="dropdownMenuButton"
                 >
                   <span onClick={() => setModifier(itm)}>
-                    {itm.name}
+                   {itm.name}
                   </span>
                   <img
                     onClick={() => handleDelete(index)}

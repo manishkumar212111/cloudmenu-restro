@@ -153,8 +153,6 @@ const AddMenu = (props) => {
                 ? fieldObj.coverImage
                 : ImagUpload)}
               alt=""
-              width={190}
-              height={120}
               class="imageUploadInputBackground-icon"
             />
           </div>

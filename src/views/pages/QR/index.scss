@@ -66,7 +66,8 @@
 .restaurant-details-form-heading {
     color: #606060;
     font-size: 20px;
-    border-bottom: 0.15rem solid #C4C4C4;
+    border-bottom: 1px solid #C4C4C4;
+    padding-top: 0 !important;
 }
 
 
@@ -170,11 +171,13 @@
 
 .plan-name {
     color: #DA3643;
-    font-weight: 700;
-    font-size: 4.2rem;
+    font-weight: 500;
+    font-size: 52px;
+    text-transform: uppercase;
 }
 
 .plan-date {
     color: #2D2D2D;
-    font-size: 1.5rem;
+    font-size: 22px;
+    font-weight: 400;
 }
