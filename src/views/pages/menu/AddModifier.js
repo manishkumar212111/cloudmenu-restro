@@ -403,7 +403,7 @@ const AddModifier = (props) => {
                         </div>
                         <div class="col-md-3">
                           <div class="row justify-content-md-center px-4 py-3 text-center">
-                            ${itm.price}
+                            SR {itm.price}
                           </div>
                         </div>
                         <div class="col-md-1">

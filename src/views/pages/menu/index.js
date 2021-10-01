@@ -57,7 +57,7 @@ const Index = (props) => {
     <div class="row">
       <div class="col-12 px-5">
         <div class="row menu-header">
-          <div class="col-6 menu-heading">Menu Management</div>
+          <div class="col-6 menu-heading">Menu Management {activeMenu.name ? `(${activeMenu.name})` : ""}</div>
           {/* <div
             class="col-6 menu-settings-container"
             onClick={() => setViewOpen(true)}
@@ -78,7 +78,7 @@ const Index = (props) => {
           </div>
           <div
             class="col-3 d-flex justify-content-center text-center"
-            // onClick={() => setActiveTab(1)}
+            onClick={() => {activeMenu && setActiveTab(1)}}
           >
             <div
               class={`menu-tab py-2 ${activeTab == 1 ? "menu-tab-active" : ""}`}

@@ -53,11 +53,15 @@ const Items = (props) => {
       JSON.parse(localStorage.getItem("userDetail"))
         ? JSON.parse(localStorage.getItem("userDetail")).restaurant
         : {};
-    if (restaurantDetail && restaurantDetail.id) {
+    if (restaurantDetail && restaurantDetail.id && category) {
       console.log("dfvndfj kjhkj");
-      props.getProductList({ restaurant: restaurantDetail.id, menu: currentMenu.id });
+      props.getProductList({ 
+        restaurant: restaurantDetail.id,
+        menu: currentMenu.id,
+        category: category 
+      });
     }
-  }, [props.getProductList]);
+  }, [props.getProductList, category]);
 
   useEffect(() => {
     props.getCategoryList({
@@ -68,6 +72,7 @@ const Items = (props) => {
   useEffect(() => {
     setHandleCategory(false);
     setCategory(props.categoryList);
+    setActiveCategory(props.categoryList && props.categoryList[0] ? props.categoryList[0].id : '');
     openCategoryAddPopup(false);
   }, [props.categoryList]);
 
@@ -93,6 +98,7 @@ const Items = (props) => {
 
     props.getProductList({ menu: currentMenu.id,category: category, page: page });
   };
+
   const handleDelete = (id , type) => {
     if(type === "category"){
       var retVal = window.confirm("Do you want to delete, it will delete all related product to this category ?");
@@ -114,7 +120,7 @@ const Items = (props) => {
       setSelectedCategory(id)
       return;
     }
-    
+    setHandleItm(false);
     openDishAddPopup(true);
     setActievId(id);
   };
