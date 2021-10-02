@@ -2,10 +2,10 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getModifierList = (options, cb) => dispatch =>{
+export const getModifierList = (options, cb, loader) => dispatch =>{
   try{
       options = options ? options : {page : 1, limit:12};
-      dispatch({
+      !loader && dispatch({
           type : "MODIFIER_DETAIL_LOADING",
           data : true
       })
@@ -16,6 +16,8 @@ export const getModifierList = (options, cb) => dispatch =>{
             ? JSON.parse(localStorage.getItem("userDetail")).restaurant
             : {};
         options.restaurant = restaurantDetail.id;
+        options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
+        options.page = options.page ? options.page : 1;
     API.get('modifierList' , options, '' , function(res){
       
       if(res && res.data){
@@ -28,7 +30,7 @@ export const getModifierList = (options, cb) => dispatch =>{
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
-      dispatch({
+        !loader && dispatch({
         type : "MODIFIER_DETAIL_LOADING",
         data : false
       })
@@ -78,6 +80,13 @@ export const deleteModifierById = (id , options) => dispatch =>{
             type : "MODIFIER_DETAIL_LOADING",
             data : true
         })
+        data.menu = data.menu ? data.menu : localStorage.getItem("currentMenu")    
+        let restaurantDetail =
+        localStorage.getItem("userDetail") &&
+        JSON.parse(localStorage.getItem("userDetail"))
+          ? JSON.parse(localStorage.getItem("userDetail")).restaurant
+          : {};
+        
       API.post('modifierList' , data , '' , function(res){
         if(res && res.data && res.data.id) {
             // dispatch(getModifierByUserId());

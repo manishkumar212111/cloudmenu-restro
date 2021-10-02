@@ -2,8 +2,9 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getCategoryList = (options = {}) => dispatch =>{
+export const getCategoryList = (options = {}, loading) => dispatch =>{
   try{
+    options = options ? options: {}
     let restaurantDetail =
       localStorage.getItem("userDetail") &&
       JSON.parse(localStorage.getItem("userDetail"))
@@ -12,7 +13,7 @@ export const getCategoryList = (options = {}) => dispatch =>{
     options.restaurant= restaurantDetail.id;    
     options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
 
-      dispatch({
+      !loading && dispatch({
           type : "CATEGORY_DETAIL_LOADING",
           data : true
       })
@@ -27,7 +28,7 @@ export const getCategoryList = (options = {}) => dispatch =>{
             res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
         }
 
-      dispatch({
+      !loading && dispatch({
         type : "CATEGORY_DETAIL_LOADING",
         data : false
       })

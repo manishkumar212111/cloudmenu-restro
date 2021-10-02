@@ -100,9 +100,9 @@ export const deleteProductById = (id , options) => dispatch =>{
     }
   }
 
-  export const getProductById = (productId) => dispatch =>{
+  export const getProductById = (productId, loader) => dispatch =>{
     try{
-        dispatch({
+        !loader && dispatch({
             type : "PRODUCT_DETAIL_LOADING",
             data : true
         })
@@ -116,7 +116,7 @@ export const deleteProductById = (id , options) => dispatch =>{
               //''
               res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
           }
-          dispatch({
+          !loader && dispatch({
               type : "PRODUCT_DETAIL_LOADING",
               data : false
           })

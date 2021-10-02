@@ -36,7 +36,9 @@ import ImagUpload from "./images/upload-image-icon.svg";
 import { Draggable } from "react-drag-reorder";
 
 import CIcon from "@coreui/icons-react";
-import CreatableSelect from "react-select/creatable";
+// import CreatableSelect from "react-select/creatable";
+import Select from 'react-select';
+
 import { useHistory } from "react-router-dom";
 import { BASE_URL } from "src/API/config";
 import AsyncSelect from "react-select/async";
@@ -44,6 +46,7 @@ import "./style/item.scss";
 import crossIcon from "./images/cross.svg";
 import ChooseModifers from "./chooseModifier";
 import DragAndDrop from "./DragAndDrop";
+import AddModifier from "./AddModifier";
 const defaultProps = {
   fieldObj: {
     title: "",
@@ -65,6 +68,8 @@ const Add = (props) => {
   const [preview, setPreview] = useState("");
   const [fieldObj, setfieldObj] = useState({});
   const [openModifier, setModifier] = useState(false);
+  const [openAddModifier, setAddModifier] = useState(false);
+  
   const [errorObj, setErrorObj] = useState({
     title: { error: true, msg: "It should be valid" },
     titleAr: { error: true, msg: "It should be valid" },
@@ -76,16 +81,14 @@ const Add = (props) => {
     category: { error: true, msg: "It should be valid" },
     calorie: { error: true, msg: "It should be valid" },
   });
-  useEffect(() => {
-    //   setIsEdit(props.match && props.match.params && props.match.params.id ? props.match.params.id : false)
-  }, []);
 
   useEffect(() => {
     if (props.id) {
-      props.getProductById(props.id);
+      props.getProductById(props.id, true);
       setIsEdit(props.id);
     }
   }, [props.id]);
+
 
   useEffect(() => {
     if (props.fieldObj && props.fieldObj.id && props.id) {
@@ -122,11 +125,16 @@ const Add = (props) => {
     };
     setErrorObj((er) => ({ ...er, ...errOb }));
   };
+  
   const handleModifierChange = (value) => {
+    console.log(value)
     let field = fieldObj.modifierGroup || [];
-    if (field.map((itm) => itm.id).indexOf(value.value.id) === -1) {
-      field.push(value.value);
-      setfieldObj((fieldOb) => ({ ...fieldOb, modifierGroup: field }));
+    if (field.map((itm) => itm.id).indexOf(value.id) === -1) {
+      if(!fieldObj.modifierGroup?.map((it) => it.id).indexOf(value.id) > -1){
+        field.push(value);
+        setfieldObj((fieldOb) => ({ ...fieldOb, modifierGroup: field }));
+      
+      }
     }
   };
 
@@ -135,29 +143,33 @@ const Add = (props) => {
     field.splice(index, 1);
     setfieldObj((fieldOb) => ({ ...fieldOb, modifierGroup: field }));
   };
-  const promiseOptions = (inputValue) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        let option = { page: 1, limit: 12 };
-        if (inputValue) {
-          option.name = inputValue;
-        }
-        props.getModifierList(option, function (res) {
-          if (res && res.results && res.results.length) {
-            resolve(
-              res.results.map((itm) => ({ label: itm.name, value: itm }))
-            );
-          } else {
-            resolve([]);
-          }
-        });
-        // resolve(filterColors(inputValue));
-      }, 1000);
-    });
+
+  useEffect(() => {
+    props.getModifierList({page:1, limit: 100}, '', true);
+  }, [props.getModifierList]);
+  
+  // const promiseOptions = (inputValue) =>
+  //   new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       let option = { page: 1, limit: 12 };
+  //       if (inputValue) {
+  //         option.name = inputValue;
+  //       }
+  //       props.getModifierList(option, function (res) {
+  //         if (res && res.results && res.results.length) {
+  //           resolve(
+  //             res.results.map((itm) => ({ label: itm.name, value: itm }))
+  //           );
+  //         } else {
+  //           resolve([]);
+  //         }
+  //       });
+  //       // resolve(filterColors(inputValue));
+  //     }, 1000);
+  //   });
 
   const validateField = (key, value) => {
     value = value ? value : fieldObj[key];
-    console.log(key, fieldObj.key);
     switch (key) {
       case "title":
       case "titleAr":
@@ -219,20 +231,23 @@ const Add = (props) => {
       modifierGroup: JSON.stringify(fieldObj.modifierGroup),
     });
   };
+  // useEffect(() => {
+  //   props.getCategoryList('', true);
+  // }, [props.getCategoryList]);
+
   useEffect(() => {
-    props.getCategoryList();
-  }, [props.getCategoryList]);
+    setAddModifier(false);
+  },[props.modifierList])
 
   useEffect(() => {
     setCategory(props.categoryList);
+    handleChange("", "category" , props.category)
+
   }, [props.categoryList]);
 
-  const handleCategoryChange = (inputValue, actionMeta) => {
-    if (inputValue && inputValue.value && !inputValue.__isNew__) {
-      handleChange("", "category", inputValue.value);
-    } else if (inputValue && inputValue.__isNew__) {
-      // window.open("/#/category/create?name=" + inputValue.value, "_blank");
-    }
+  const handleCategoryChange = (value) => {
+      handleChange("", "category", value.id);
+    
   };
   const handleCategoryInputChange = (inputValue, actionMeta) => {};
 
@@ -288,6 +303,13 @@ const Add = (props) => {
       ))}
       return h;
   }
+
+  const getSelectedCate = () => {
+    return props.categoryList.filter(itm => (itm.id == fieldObj.category))[0] || {};
+  }
+  
+
+  // console.log(selectCategory, "djbjhgjgh")
   return (
     <>
       <CRow>
@@ -330,21 +352,16 @@ const Add = (props) => {
 
                   <CFormGroup>
                     <CLabel htmlFor="titleAr">Select Category * </CLabel>
-                    <CreatableSelect
-                      isClearable
+                    <Select
+                      name="interested_industries"
+                      value={getSelectedCate()}
+                      getOptionLabel={ x => x.name}
+                      getOptionValue={ x => x.id}
+                    // getOptionLabel={ x => x.name}
+                      // value={""}
+                      // defaultValue={{ label: getSelectedCate().name, value: getSelectedCate().id}}
                       onChange={handleCategoryChange}
-                      onInputChange={handleCategoryInputChange}
-                      value={categoryList.map(
-                        (itm) =>
-                          itm.id == fieldObj.category && {
-                            label: itm.name,
-                            value: itm.id,
-                          }
-                      )}
-                      options={categoryList.map((itm) => ({
-                        label: itm.name,
-                        value: itm.id,
-                      }))}
+                      options={props.categoryList}
                     />
                     {/* <CInput id="titleAr" name="titleAr" value={fieldObj.titleAr} onChange={(e) => handleChange(e , 'titleAr')} placeholder="Enter title (arabic)" /> */}
                     {!errorObj.titleAr.error && (
@@ -389,7 +406,7 @@ const Add = (props) => {
                   <CFormGroup>
                     <CLabel htmlFor="sellingPrice">Price * </CLabel>
                     <CInput
-                      type="text"
+                      type="number"
                       id="sellingPrice"
                       name="sellingPrice"
                       value={fieldObj.sellingPrice}
@@ -474,15 +491,26 @@ const Add = (props) => {
                   <CFormGroup>
                     <CLabel htmlFor="productImg">Select Modifiers </CLabel>
 
-                    <AsyncSelect
-                      cacheOptions
-                      defaultOptions
-                      loadOptions={promiseOptions}
+                    <Select
+                      // isClearable
                       onChange={handleModifierChange}
+                      options={props.modifierList.map((itm) => ({
+                        ...itm,
+                        label: itm.name,
+                        value:itm.id
+                      }))}
                     />
                   </CFormGroup>
-                      <DragAndDrop htmlContent={renderModifier(fieldObj.modifierGroup)} items={fieldObj.modifierGroup}  handleChange={handleDragAndDrop}/>
+                  <DragAndDrop htmlContent={renderModifier(fieldObj.modifierGroup)} items={fieldObj.modifierGroup}  handleChange={handleDragAndDrop}/>
                   
+                  <div class="form-group px-4">
+                      <div class="row">
+                          <div style={{cursor: "pointer"}} onClick={() => setAddModifier(true)} class="d-flex justify-content-start dish-modifier-add-btn">
+                              + Add new modifier group
+                          </div>
+                      </div>
+                  </div>
+
                 </CCol>
                 <div class="form-group col-3 mx-auto d-flex justify-content-center">
                   {props.product_detail_loading ? (
@@ -515,6 +543,21 @@ const Add = (props) => {
                 handleSubmit={handleModifierSubmit}
                 itm={openModifier}
               />
+            </CModalBody>
+          </CModal>
+        )}
+
+        {openAddModifier && (
+          <CModal
+            show={openAddModifier}
+            className="modif"
+            onClose={setAddModifier}
+          >
+            <CModalHeader closeButton>
+              <div class="col add-dish-header">Add Modifier</div>
+            </CModalHeader>
+            <CModalBody>
+              <AddModifier /> 
             </CModalBody>
           </CModal>
         )}

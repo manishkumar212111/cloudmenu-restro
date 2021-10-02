@@ -262,7 +262,7 @@ const Items = (props) => {
             </div>
             </CModalHeader>
             <CModalBody>
-              <Add id={activeId} />
+              <Add categoryList={categoryList} id={activeId} category={category} />
             </CModalBody>
             <CModalFooter></CModalFooter>
           </CModal>

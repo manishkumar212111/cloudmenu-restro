@@ -5,6 +5,11 @@ self.addEventListener('push', event => {
       body: data.body,
     }
     event.waitUntil(
-      self.registration.showNotification(data.title, options)
+      self.registration.showNotification(data.title, options)      
     );
+
+    self.addEventListener('notificationclick', function (event) {
+      event.notification.close();
+      clients.openWindow("http://localhost:3000/#/order");
+    });
   })

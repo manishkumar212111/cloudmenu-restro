@@ -30,6 +30,11 @@ const Menu = (props) => {
   useEffect(() => {
     setAddOpen(false);
     setSetting(false)
+    props.menuList && props.menuList.map((itm) => {
+      if(itm.restaurant.menu == itm.id){
+        props.setActiveMenu(itm)
+      }
+    })
   }, [props.menuList]);
 
   const activateMenuClick = (itm) => {

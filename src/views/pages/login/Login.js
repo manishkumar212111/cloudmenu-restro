@@ -29,7 +29,22 @@ const Login = (props) => {
   useEffect(() => {
     if(props.userDetail && props.userDetail.user){
         typeof localStorage !== 'undefined' &&  localStorage.setItem('userDetail', JSON.stringify(props.userDetail))
-        window.location.href = '/';
+        
+        let userDetail = props.userDetail.user;
+        let restaurantDetail = props.userDetail.restaurant;
+        
+        if(userDetail.status){
+          console.log(userDetail);
+          if(restaurantDetail && restaurantDetail.status){
+            window.location.href = '/#/dashboard';
+          } else if(restaurantDetail && restaurantDetail.status == 0){
+            window.location.href = '/#/profile?id='+restaurantDetail.id;
+          } else {
+            window.location.href = '/#/profile'
+          }
+        }
+
+      
       }
       
   }, [props.userDetail])

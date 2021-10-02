@@ -1,17 +1,6 @@
 import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardFooter,
-  CCardHeader,
-  CCardSubtitle,
-  CCardText,
-  CCardTitle,
-  CCol,
-  CContainer,
   CModal,
   CModalBody,
-  CModalFooter,
   CModalHeader,
   CPagination,
   CRow,
@@ -30,8 +19,14 @@ const Modifier = (props) => {
   const [modifiers, setModifiers] = useState([]);
   const [openHandleItem , setHandleItm] = useState();
   const [page, setPage] = useState(1);
+  const [currentMenu, setCurrentMenu] = useState("");
+
   useEffect(() => {
-    props.getModifierList({ page: page, limit: 12 });
+    setCurrentMenu(props.currentMenu)
+  }, [props.currentMenu])
+  
+  useEffect(() => {
+    props.getModifierList({ page: page, limit: 12, menu: currentMenu.id });
   }, [props.getModifierList, page]);
 
   useEffect(() => {
@@ -80,7 +75,7 @@ const Modifier = (props) => {
                 </div>
               </div>
             </div>
-            {modifiers &&
+            {modifiers && modifiers.length ? 
               modifiers.map((itm) => (
                 <div class="row item-row py-4 align-items-center px-0">
                   <div class="col-3 item-name-col-1 text-center">
@@ -137,7 +132,8 @@ const Modifier = (props) => {
                     </div>
                   </div>
                 </div>
-              ))}
+              
+              )) : <div className={'mt-4 ml-4 '}>No modifiers available</div>}
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
@@ -155,7 +151,7 @@ const Modifier = (props) => {
             Add Modifier Group
           </div></CModalHeader>
           <CModalBody>
-            <AddModifier id={activeId} />
+            <AddModifier id={activeId} menu={currentMenu} />
           </CModalBody>
         </CModal>
       )}

@@ -52,7 +52,6 @@ const Index = (props) => {
         : {};
     if (restaurantDetail && restaurantDetail.id) {
       setRestaurant(restaurantDetail.id);
-      console.log("dfvndfj kjhkj");
       // props.getProductList({restaurant : restaurantDetail.id});
     }
   }, [props.getProductList]);
@@ -61,7 +60,12 @@ const Index = (props) => {
     setActiveMenu(itm);
     setActiveTab(1);
     localStorage.setItem("currentMenu", itm.id)
-  } 
+  }
+  
+  const handleAutoMenuSelect= (itm) => {
+    setActiveMenu(itm);
+    localStorage.setItem("currentMenu", itm.id)
+  }
 
   return (
     <div class="row">
@@ -98,7 +102,7 @@ const Index = (props) => {
           </div>
           <div
             class="col-3 d-flex justify-content-start text-left"
-            onClick={() => setActiveTab(2)}
+            onClick={() => {activeMenu && setActiveTab(2)}}
           >
             <div
               class={`menu-tab py-2 ${activeTab == 2 ? "menu-tab-active" : ""}`}
@@ -112,10 +116,10 @@ const Index = (props) => {
                      <Items currentMenu={activeMenu} />
                  }
                  {activeTab == 2 && 
-                     <Modifier />
+                     <Modifier currentMenu={activeMenu} />
                  }
                  {activeTab == 0 && 
-                    <Menu handleMenuClick = {handleMenuClick}/>
+                    <Menu setActiveMenu = {handleAutoMenuSelect} handleMenuClick = {handleMenuClick}/>
                  }
         {viewOpen && (
           <CModal show={viewOpen} onClose={setViewOpen}>
