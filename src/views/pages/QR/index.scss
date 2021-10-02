@@ -134,6 +134,10 @@
     border: 0.1rem solid #D8D8D8;
     cursor: pointer;
     z-index: 1;
+    overflow: hidden;
+}
+.restaurantLogoUploadBackground img {
+    width: 100%;
 }
 
 .state-dropdown-btn {

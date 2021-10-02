@@ -4,7 +4,9 @@ import './scss/style.scss';
 import { subscribeUser } from './subscription';
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { NotificationManager, NotificationContainer } from "react-notifications";
+import "react-notifications/lib/notifications.css";
+
 
 import { connect } from "react-redux";
 
@@ -28,14 +30,14 @@ const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 
 const App = (props) => {
     const [language, setLanguage] = useState("en");
+    
     useEffect(() => {
       let alerts = props.alerts || [];
       alerts !== null &&
       alerts.length > 0 &&
       alerts.map((alert, idx) => {
-        createNotification(`${alert.alertType}`, alert.msg);
+        return createNotification(`${alert.alertType}`, alert.msg);
       });
-
     } , [props.alerts]);
 
     useEffect(() => {
@@ -49,32 +51,34 @@ const App = (props) => {
         subscribeUser({id: userDetail?.id});
       }   
     }, [props.userDetail]);
-    const createNotification = (type, message) => {
+    const createNotification = (type, message, callback) => {
       console.log(type , message);
-      let configs = {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          }
+      
+      // let configs = {
+      //     position: "top-right",
+      //     autoClose: 5000,
+      //     hideProgressBar: false,
+      //     closeOnClick: false,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     }
       switch (type) {
         case "info":
-          return toast.info(message, configs);
+          return NotificationManager.info(message, "", 5000, callback);
         case "success":
-          return toast.success(message, configs);
+          return NotificationManager.success(message, "", 5000, callback);
         case "warning":
-          return toast.warn(message, configs);
+          return NotificationManager.warning(message, "", 5000, callback);
         case "danger":
-          return toast.error(message, configs);
+          return NotificationManager.error(message, "", 5000, callback);
+      
       }
     }
     console.log(props)
   return (
     <div className={language === "ar" ? "arabic-section" : ""} dir={language === "ar" ? "rtl": ""}>
-      <ToastContainer 
+      {/* <ToastContainer 
           position="top-right"
           autoClose={5000}
           hideProgressBar={false}
@@ -85,7 +89,8 @@ const App = (props) => {
           draggable
           pauseOnHover
           style={{zIndex : 99999}}
-      />
+      /> */}
+      <NotificationContainer />
       
       <HashRouter>
           <React.Suspense fallback={loading}>

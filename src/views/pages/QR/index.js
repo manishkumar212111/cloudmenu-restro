@@ -217,10 +217,10 @@ const QR = () => {
               </div>
             </div>
             <div class={`col-12 col-xl-5 restaurant-details-right-container `} >
-              <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{width: parseInt(fieldObj.layoutSize) }}>
+              <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{ }}>
                 <div
                   id="my-qr"
-                  style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10 }}
+                  style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10, width: parseInt(fieldObj.layoutSize)}}
                   class="row qr-container m-auto py-4"
                 >
                   <div class="col-12">
@@ -238,6 +238,7 @@ const QR = () => {
                         value={`https://arcane-citadel-48750.herokuapp.com/${restaurantDetail.id}/${fieldObj.tableNo}`}
                         className="qr-img"
                         size="300"
+                        level="H"
                         fgColor={fieldObj.qrColor}
                       />
                     </div>

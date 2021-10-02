@@ -269,6 +269,7 @@ const Add = (props) => {
                   class="btn saucedropdown-toggle dropdown-toggle form-input pl-3 dish-modifier-items-range-dropdown-btn"
                   id="dropdownMenuButton"
                 >
+                  <i class="cil-applications"></i>
                   <span onClick={() => setModifier(itm)}>
                    {itm.name}
                   </span>

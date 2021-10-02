@@ -204,11 +204,21 @@ const Profile = (props) => {
       delete fieldObj.id;
       delete fieldObj.createdAt;
       JSON.stringify(fieldObj.bankDetail);
-      props.UpdateRestaurantById(isEdit, {
-        ...fieldObj,
-        bankDetail: JSON.stringify(fieldObj.bankDetail),
-      });
-      return;
+
+      console.log(isEdit , "vbdfhbjj jh")
+      
+      let restaurantDetail =
+        localStorage.getItem("userDetail") &&
+        JSON.parse(localStorage.getItem("userDetail"))
+            ? JSON.parse(localStorage.getItem("userDetail")).restaurant
+            : {};
+        if (restaurantDetail && restaurantDetail.id) {
+          props.UpdateRestaurantById(restaurantDetail.id, {
+            ...fieldObj,
+            bankDetail: JSON.stringify(fieldObj.bankDetail),
+          });
+        }
+        return;
     }
     fieldObj.ccode = "+91";
     props.create(fieldObj);

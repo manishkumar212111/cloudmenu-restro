@@ -136,7 +136,32 @@ const AddMenu = (props) => {
         <label for="createMenuImageUpload" class="form-label input-label">
           Upload Image
         </label>
-        <div class="col-lg-5 col-md-5 col-sm-8 col-8 px-0">
+        <div class="imageUploadInput-container col-lg-5 col-md-5 col-sm-8 col-8 px-0">
+          <input
+            class="form-control imageUploadInput"
+            type="file"
+            id="coverImage"
+            name="coverImage"
+            onChange={(e) => handleFileUpload(e, "coverImage")}
+          />
+          <div class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center">
+            <img
+              src={preview
+                ? preview
+                : (fieldObj.coverImage
+                ? fieldObj.coverImage
+                : ImagUpload)}
+              alt=""
+              class="restaurantLogoUploadBackground-icon"
+            />
+          </div>
+        </div>
+        {!errorObj.coverImage.error && (
+            <CFormText className="help-block error">
+            {errorObj.coverImage.msg}
+            </CFormText>
+        )}
+        {/* <div class="col-lg-5 col-md-5 col-sm-8 col-8 px-0">
           <input
             class="form-control imageUploadInput"
             type="file"
@@ -156,12 +181,8 @@ const AddMenu = (props) => {
               class="imageUploadInputBackground-icon"
             />
           </div>
-          {!errorObj.coverImage.error && (
-            <CFormText className="help-block error">
-            {errorObj.coverImage.msg}
-            </CFormText>
-        )}
-        </div>
+          
+        </div> */}
       </div>
 
       <div class="form-group mb-4 px-2">
