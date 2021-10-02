@@ -70,12 +70,8 @@ const ForgotPassword = (props) => {
                       <div class="col-4 col-md-3 form-group mb-4">
                         <div class="custom-selected">
                           <select class="form-input" name="ccode" value={fieldobj.ccode} onChange={(e) => handleChange(e)}>
-                            <option value="966">+966</option>
-                            <option value="91">+91</option>
-                            <option value="55">+55</option>
-                            <option value="1">+1</option>
-                            <option value="56">+56</option>
-                            <option value="237">+237</option>
+                            <option value="966">966</option>
+                            <option value="91">91</option>
                           </select>
                         </div>
                       </div>

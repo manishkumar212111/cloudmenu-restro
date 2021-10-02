@@ -272,7 +272,7 @@ const Profile = (props) => {
                 <div class="col-12 col-md-6 px-4">
                   <div class="form-group mb-4">
                     <label for="restaurant-name-ar" class="input-label">
-                      Restaurant Name English
+                      Restaurant Name EN
                     </label>
                     <input
                       type="text"
@@ -281,7 +281,7 @@ const Profile = (props) => {
                       name="name"
                       value={fieldObj.name}
                       onChange={(e) => handleChange(e, "name")}
-                      placeholder="enter restaurant name arabic"
+                      placeholder="Enter restaurant EN"
                     />
                     {!errorObj.name.error && (
                       <CFormText className="help-block error">
@@ -292,7 +292,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <label for="restaurant-name-en" class="input-label">
-                      Restaurant Name Arabic
+                      Restaurant Name AR
                     </label>
                     <input
                       type="text"
@@ -301,7 +301,7 @@ const Profile = (props) => {
                       name="nameAr"
                       value={fieldObj.nameAr}
                       onChange={(e) => handleChange(e, "nameAr")}
-                      placeholder="enter restaurant name english"
+                      placeholder="Enter restaurant AR"
                     />
                     {!errorObj.nameAr.error && (
                       <CFormText className="help-block error">
@@ -504,7 +504,7 @@ const Profile = (props) => {
                       Tax - VAT %
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       class="form-control py-2 pl-3 form-input"
                       id="taxRate"
                       name="taxRate"

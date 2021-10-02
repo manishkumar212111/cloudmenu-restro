@@ -25,7 +25,7 @@ import validateUtility from 'src/utils/ValidateUtility';
 const Login = (props) => {
   const [ mobile , setMobile ] = useState('8005804379');
   const [ password , setPassword ] = useState("Man@12345");
-  const [ccode , setccode] = useState("966");
+  const [ccode , setccode] = useState("91");
   useEffect(() => {
     if(props.userDetail && props.userDetail.user){
         typeof localStorage !== 'undefined' &&  localStorage.setItem('userDetail', JSON.stringify(props.userDetail))

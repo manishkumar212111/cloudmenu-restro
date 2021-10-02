@@ -19,7 +19,7 @@ const Register = (props) => {
           case "name":
               return  validateUtility.required(value)
           case "mobile" :
-              return  value.length > 9
+              return  value.length >= 9
           case "password" :
               // console.log(validateUtility.required(value) && validateUtility.minLength(value , 8) , value) && (!value.match(/\d/) || !value.match(/[a-zA-Z]/));
               return  validateUtility.required(value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
@@ -97,8 +97,8 @@ const Register = (props) => {
                     <div className="col-4 col-md-4 form-group mb-4">
                       <div className="custom-selected">
                         <select className="form-input" name="ccode" value={fieldobj.ccode} onChange={(e) => handleChange(e)}>
-                          <option value="971">+971</option>
-                          <option value="91">+91</option>
+                          <option value="966">966</option>
+                          <option value="91">91</option>
                         </select>
                       </div>
                     </div>

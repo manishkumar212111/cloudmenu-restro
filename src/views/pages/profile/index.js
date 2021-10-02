@@ -437,7 +437,7 @@ const Profile = (props) => {
                       name="password"
                       value={fieldObj.password}
                       onChange={(e) => handleChange(e, "password")}
-                      placeholder="Enter Full address"
+                      placeholder="Enter Password"
                     />
                     {!errorObj.password.error && (
                       <CFormText className="help-block error">
