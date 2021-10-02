@@ -21,7 +21,7 @@ const Index = () => {
             if(restaurantDetail && restaurantDetail.status){
               window.location.href = '/#/dashboard';
             } else if(restaurantDetail && restaurantDetail.status == 0){
-              window.location.href = '/#/profile?id='+userDetail.restaurant.id;
+              window.location.href = '/#/profile?id='+restaurantDetail.id;
             } else {
               window.location.href = '/#/profile'
             }
