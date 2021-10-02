@@ -30,6 +30,15 @@ const Dashboard = (props) => {
     props.getHomePageData()
   }, [props.getHomePageData])
 
+  useEffect(() => {
+        let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+        let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+        
+        if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+            window.location.href = '/#/profile?id='+restaurantDetail.id;
+        }
+    }, [])
+
   const GetDays = (d,Mention_today=false, itm)=>{
     //Mention today mean the array will have today date 
     var DateArray = [];

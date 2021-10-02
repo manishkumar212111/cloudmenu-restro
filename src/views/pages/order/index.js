@@ -27,6 +27,15 @@ const OrderList = (props) => {
   const [showOrderDetail , setShowOrderDetail] = useState(false);
   const [actievMenu , setActiveMenu] = useState(false);
   useEffect(() => {
+    let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+    let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+    
+      if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+        window.location.href = '/#/profile?id='+restaurantDetail.id;
+      }
+}, [])
+
+  useEffect(() => {
     setOrderList(props.orderList);
     setActiveMenu(false);
   }, [props.orderList]);

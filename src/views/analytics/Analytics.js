@@ -41,6 +41,15 @@ const Dashboard = (props) => {
     props.getHomePageDataByDate({limit:12})
   }, [props.getHomePageDataByDate])
 
+  useEffect(() => {
+      let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+      let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+      
+        if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+          window.location.href = '/#/profile?id='+restaurantDetail.id;
+        }
+  }, [])
+
   useEffect(()=>{
     console.log(props.data)
     if(props?.data?.analytics){

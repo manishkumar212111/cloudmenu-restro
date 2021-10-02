@@ -34,6 +34,16 @@ const Index = (props) => {
   const [viewOpen, setViewOpen] = useState(false);
   const [restaurant, setRestaurant] = useState("");
   const [activeMenu , setActiveMenu] = useState("");
+  
+  useEffect(() => {
+      let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+      let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+      
+        if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+          window.location.href = '/#/profile?id='+restaurantDetail.id;
+        }
+  }, [])
+
   useEffect(() => {
     let restaurantDetail =
       localStorage.getItem("userDetail") &&

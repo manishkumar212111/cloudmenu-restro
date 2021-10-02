@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import QRCode from "qrcode.react";
 import { toJpeg } from "html-to-image";
 import * as htmlToImage from "html-to-image";
@@ -36,6 +36,14 @@ const QR = () => {
     field[key] = value ? value : e.target.value;
     setfieldObj((fieldOb) => ({ ...fieldOb, ...field }));
   };
+  useEffect(() => {
+      let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+      let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
+      
+        if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+          window.location.href = '/#/profile?id='+restaurantDetail.id;
+        }
+  }, [])
 
   const downloadImage = () => {
     var node = document.getElementById("my-qr");
