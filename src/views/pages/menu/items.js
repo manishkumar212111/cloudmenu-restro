@@ -203,7 +203,7 @@ const Items = (props) => {
                 activeProduct.map((itm) => (
                   <div class="row item-row py-4 px-4 align-items-center">
                   <div class="col-2 item-img-col">
-                    <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="item-img" />
+                    <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
                   </div>
                   <div class="col-3 item-name-col">{itm.title}</div>
                   <div class="col-3 item-btns-col">

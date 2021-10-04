@@ -95,12 +95,18 @@
     text-align: left;
     padding-left: 15% !important;
     display: inline-block;
+    position: relative;
 }
 
 .dish-modifier-items-range-dropdown-btn::after {
+    display: none;
+}
+.dish-modifier-items-range-dropdown-btn .drag-icon {
     position: absolute;
-    left: 1rem;
-    top: 45%;
+    left: 20px;
+}
+.dish-modifier-items-range-dropdown-btn:hover span {
+    color: #000000;
 }
 
 .cross-icon {
@@ -162,4 +168,7 @@
 }
 .add-cat-btn button {
     font-size: 14px;
+}
+.cat-item-img {
+    object-fit: cover;
 }

@@ -82,71 +82,72 @@ const Menu = (props) => {
             class="col-12 col-md-3 add-menu-button p-4"
             style={{ cursor: "pointer" }}
           >
-            <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
-              <img
-                onClick={() =>
-                  setMenuAction( openMenuAction == itm.id ? false : itm.id)
-                }
-                src={menuIcon}
-                alt=""
-                style={{ cursor: "pointer" }}
-                class="menu-icon"
-              />
-              {openMenuAction && (
-                <>
-                  <div
-                    class={`item-dropdown py-3 px-3 ${
-                      openMenuAction == itm.id ? "" : "d-none"
-                    }`}
-                  >
-                    {/* <div
-                      class="row item-dropdown-row py-2"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleEdit(itm.id)}
+            <div className="add-menu-wrapper">
+              <div class="delete-wrapper d-flex temp  justify-content-end item-dropdown-container">
+                <img
+                  onClick={() =>
+                    setMenuAction( openMenuAction == itm.id ? false : itm.id)
+                  }
+                  src={menuIcon}
+                  alt=""
+                  style={{ cursor: "pointer" }}
+                  class="menu-icon"
+                />
+                {openMenuAction && (
+                  <>
+                    <div
+                      class={`item-dropdown py-3 px-3 ${
+                        openMenuAction == itm.id ? "" : "d-none"
+                      }`}
                     >
-                      <div class="col-3">
-                        <img src={editIcon} alt="" class="item-dropdown-icon" />
-                      </div>
-                      <div class="col-8 item-dropdown-text px-0">Edit Item</div>
-                    </div> */}
-                    <div class="row item-dropdown-row py-2">
-                      <div
-                        class="row item-dropdown-row"
+                      {/* <div
+                        class="row item-dropdown-row py-2"
                         style={{ cursor: "pointer" }}
-                        onClick={() => handleDelete(itm.id , itm.restaurant.menu == itm.id)}
+                        onClick={() => handleEdit(itm.id)}
                       >
                         <div class="col-3">
-                          <img
-                            src={crossIcon}
-                            alt=""
-                            class="item-dropdown-icon"
-                          />
+                          <img src={editIcon} alt="" class="item-dropdown-icon" />
                         </div>
-                        <div class="col-8 item-dropdown-text px-1">
-                          Delete Item
+                        <div class="col-8 item-dropdown-text px-0">Edit Item</div>
+                      </div> */}
+                      <div class="row item-dropdown-row py-2">
+                        <div
+                          class="row item-dropdown-row"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => handleDelete(itm.id , itm.restaurant.menu == itm.id)}
+                        >
+                          <div class="col-3">
+                            <img
+                              src={crossIcon}
+                              alt=""
+                              class="item-dropdown-icon"
+                            />
+                          </div>
+                          <div class="col-8 item-dropdown-text px-1">
+                            Delete Item
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="custom-overlay"
-                    id="custom-overlay"
-                    onClick={() => setMenuAction(false)}
-                  ></div>
-                </>
-              )}
-            </div>
+                    <div
+                      class="custom-overlay"
+                      id="custom-overlay"
+                      onClick={() => setMenuAction(false)}
+                    ></div>
+                  </>
+                )}
+              </div>
 
-            <div
-              class="row justify-content-center align-items-center"
-              onClick={() => props.handleMenuClick(itm)}
-            >
-              <img
-                src={itm.bannerImage}
-                style={{ width: 264 }}
-                alt=""
-                class="add-menu-icon"
-              />
+              <div
+                class="row justify-content-center align-items-center"
+                onClick={() => props.handleMenuClick(itm)}
+              >
+                <img
+                  src={itm.bannerImage}
+                  alt=""
+                  class="add-menu-icon"
+                />
+              </div>
             </div>
             <div class="row add-menu-text mt-4 text-center justify-content-center">
               <p>{itm.name}</p>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import validateUtility from "../../../utils/ValidateUtility";
+import dragIcon from "./images/drag.svg"
 // import CKEditor from "ckeditor4-react";
 
 import { getModifierList } from "../../../actions/modifier";
@@ -284,7 +285,7 @@ const Add = (props) => {
                   class="btn saucedropdown-toggle dropdown-toggle form-input pl-3 dish-modifier-items-range-dropdown-btn"
                   id="dropdownMenuButton"
                 >
-                  <i class="cil-applications"></i>
+                  <img src={dragIcon} className="drag-icon" />
                   <span onClick={() => setModifier(itm)}>
                    {itm.name}
                   </span>

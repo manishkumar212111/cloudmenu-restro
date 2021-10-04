@@ -65,7 +65,7 @@
 }
 
 .add-menu-icon {
-    width: 7rem;
+    width: 100%;
 }
 
 .add-menu-text {
@@ -84,4 +84,16 @@
 }
 .c-switch-pill .c-switch-slider {
     width: 50px;
+}
+.add-menu-wrapper {
+    position: relative;
+}
+.delete-wrapper {
+    position: absolute !important;
+    background: #fff;
+    right: 5px;
+    top: 5px;
+    border-radius: 100%;
+    padding: 5px;
+    box-shadow: 0 2px 23px rgb(0 0 0 / 20%);
 }
