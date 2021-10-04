@@ -199,7 +199,7 @@ const Profile = (props) => {
     return (
       <>
         <CRow>
-          <CCol xs="12" sm="12" style={{ "margin-top": "10px" }}>
+          <CCol xs="8" sm="8" style={{ marginLeft: "auto",marginRight: "auto", marginBottom:"auto", marginTop: "10%" }}>
             <CCard>
               <CCardHeader>
                 Details Submission
@@ -207,7 +207,8 @@ const Profile = (props) => {
               </CCardHeader>
               <CCardBody>
                 Your restaurant successfully submitted for verification, once
-                verified you can start adding menus and start selling
+                verified you can start adding menus and start selling.<br></br>
+                For more information contact @ admin@cloudmenu.sa OR +966-542909820
               </CCardBody>
             </CCard>
           </CCol>

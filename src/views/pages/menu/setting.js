@@ -129,7 +129,7 @@ const Setting = (props) => {
                 </div>
                 <div class="form-group col-3 mx-auto d-flex justify-content-center">
 
-                        {props.loading ? <CSpinner /> : <button className="btn add-dish-btn" block color="primary" variant="outline"  onClick={handleClick} value="Submit">{props.setting ? "Update" : "Create"}</button>}
+                        {props.loading ? <CSpinner /> : <button className="btn add-dish-btn" block color="primary" variant="outline"  onClick={handleClick} value="Submit">{props?.settings?.id ? "Update" : "Create"}</button>}
                     </div>
                     </CCardBody>
                 </CCard>
