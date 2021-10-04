@@ -1,11 +1,12 @@
 const checkLogin = () => {
-    if(typeof window !== 'undefined'){
-        let user = window.localStorage.getItem('userDetail') ? JSON.parse(window.localStorage.getItem('userDetail')) : false;
-        if(!user)
-            return false;
-        return user;
+    let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
+    
+    if(userDetail.status){
+        return true;
+    } else {
+        return false;
+
     }
-    return false;
 }
 
 const getUserData = (key) => {

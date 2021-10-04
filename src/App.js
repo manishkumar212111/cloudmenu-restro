@@ -9,6 +9,7 @@ import "react-notifications/lib/notifications.css";
 
 
 import { connect } from "react-redux";
+import { checkLogin } from './utils/globals';
 
 const loading = (
   <div className="pt-3 text-center">
@@ -77,7 +78,7 @@ const App = (props) => {
     }
     console.log(props)
   return (
-    <div className={language === "ar" ? "arabic-section" : ""} dir={language === "ar" ? "rtl": ""}>
+    <div className={language === "ar" ? "arabic-section" : ""} dir={language === "ar" ? "rtl": ""} style={{zoom : checkLogin() ? "0.9" : "1" }}>
       {/* <ToastContainer 
           position="top-right"
           autoClose={5000}
