@@ -73,6 +73,7 @@ const Items = (props) => {
     setHandleCategory(false);
     setCategory(props.categoryList);
     setActiveCategory(props.categoryList && props.categoryList[0] ? props.categoryList[0].id : '');
+    localStorage.setItem("activeCategory", props.categoryList && props.categoryList[0] ? props.categoryList[0].id : '')
     openCategoryAddPopup(false);
   }, [props.categoryList]);
 
@@ -90,6 +91,7 @@ const Items = (props) => {
   const handleCategoryClick = (itm) => {
     setPage(1);
     setActiveCategory(itm.id);
+    localStorage.setItem("activeCategory", itm.id);
     props.getProductList({menu: currentMenu.id, category: itm.id, page: 1 });
   };
 

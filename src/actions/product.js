@@ -11,7 +11,7 @@ export const getProductList = (options = {}) => async dispatch =>{
             : {};
         options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
         options.restaurant= restaurantDetail.id;    
-      
+        options.category = options.category ? options.category : localStorage.getItem("activeCategory");
       dispatch({
           type : "PRODUCT_DETAIL_LOADING",
           data : true
