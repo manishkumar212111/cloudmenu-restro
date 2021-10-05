@@ -237,10 +237,10 @@ const QR = () => {
             </div>
             <div class={`col-12 col-xl-5 restaurant-details-right-container `} >
               <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{ }}>
-                <div id={mobileCheck()? "" : "my-qr"}>
+                <div>
 
                 <div
-                  id={mobileCheck()? "my-qr" : ""}
+                  id={"my-qr"}
                   style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10, width: parseInt(fieldObj.layoutSize)}}
                   class="row qr-container m-auto py-4"
                 >
