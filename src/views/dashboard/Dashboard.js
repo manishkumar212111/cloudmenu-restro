@@ -181,7 +181,7 @@ const Dashboard = (props) => {
                                         data: orderInWeek.reverse().map(itm => itm.value)
                                     }
                                 ]}
-                                labels={orderInWeek.reverse().map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
+                                labels={orderInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
                                 options={{
                                     scales: {
                                         yAxes: [{
