@@ -43,7 +43,7 @@ const defaultProps = {
     nameAr: "",
     isRequired: false,
     min: 1,
-    max: 20,
+    max: 1,
     modifiers: [],
   },
 };
@@ -76,8 +76,7 @@ const AddModifier = (props) => {
       props.getModifierById(props.id);
       setIsEdit(props.id);
     } else {
-    setfieldObj(defaultProps.fieldObj)
-
+      setfieldObj(fld => ({...defaultProps.fieldObj, modifiers: []}))
     }
   }, [props.id]);
 
@@ -343,7 +342,7 @@ const AddModifier = (props) => {
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
-                      <option value="3">4</option>
+                      <option value="4">4</option>
                     </select>
                     {/* <input
                       type="number"

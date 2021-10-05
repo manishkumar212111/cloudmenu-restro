@@ -108,7 +108,7 @@ const Modifier = (props) => {
                               Edit Modifier
                             </div>
                           </div>
-                          <div style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)} class="row item-dropdown-row py-2">
+                          <div style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id)} class="row item-dropdown-row py-2">
                             <div class="row item-dropdown-row">
                               <div
                               class="col-3"

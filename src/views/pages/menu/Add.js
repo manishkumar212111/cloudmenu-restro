@@ -404,40 +404,44 @@ const Add = (props) => {
                       </CFormText>
                     )}
                   </CFormGroup>
-                  <CFormGroup>
-                    <CLabel htmlFor="sellingPrice">Price * </CLabel>
-                    <CInput
-                      type="number"
-                      id="sellingPrice"
-                      name="sellingPrice"
-                      value={fieldObj.sellingPrice}
-                      onChange={(e) => handleChange(e, "sellingPrice")}
-                      placeholder="Enter Selling Price"
-                    />
-                    {!errorObj.sellingPrice.error && (
-                      <CFormText className="help-block error">
-                        {errorObj.sellingPrice.msg}
-                      </CFormText>
-                    )}
-                  </CFormGroup>
-
-                  <CFormGroup>
-                    <CLabel htmlFor="calorie">Calorie (per unit) </CLabel>
-                    <CInput
-                      type="number"
-                      id="calorie"
-                      name="calorie"
-                      value={fieldObj.calorie}
-                      onChange={(e) => handleChange(e, "calorie")}
-                      placeholder="Enter calorie"
-                    />
-                    {!errorObj.calorie.error && (
-                      <CFormText className="help-block error">
-                        {errorObj.calorie.msg}
-                      </CFormText>
-                    )}
-                  </CFormGroup>
-                  
+                  <CRow>
+                    <div className="col-6">
+                    <CFormGroup>
+                      <CLabel htmlFor="sellingPrice">Price * </CLabel>
+                      <CInput
+                        type="number"
+                        id="sellingPrice"
+                        name="sellingPrice"
+                        value={fieldObj.sellingPrice}
+                        onChange={(e) => handleChange(e, "sellingPrice")}
+                        placeholder="Add dish price"
+                      />
+                      {!errorObj.sellingPrice.error && (
+                        <CFormText className="help-block error">
+                          {errorObj.sellingPrice.msg}
+                        </CFormText>
+                      )}
+                    </CFormGroup>
+                    </div>
+                    <div className="col-6">      
+                    <CFormGroup>
+                      <CLabel htmlFor="calorie">Calorie (per unit) </CLabel>
+                      <CInput
+                        type="number"
+                        id="calorie"
+                        name="calorie"
+                        value={fieldObj.calorie}
+                        onChange={(e) => handleChange(e, "calorie")}
+                        placeholder="Add calories"
+                      />
+                      {!errorObj.calorie.error && (
+                        <CFormText className="help-block error">
+                          {errorObj.calorie.msg}
+                        </CFormText>
+                      )}
+                    </CFormGroup>
+                    </div>
+                  </CRow>
                   {/* <CFormGroup>
                     <CLabel htmlFor="sellingPriceAr">Price (Arabic) *</CLabel>
                     <CInput
@@ -489,8 +493,9 @@ const Add = (props) => {
                   </div>
                 </CCol>
                 <CCol sm="6">
+                  <p style={{ marginBottom : 24, fontSize: 18}}>MODIFIERS</p>
                   <CFormGroup>
-                    <CLabel htmlFor="productImg">Select Modifiers </CLabel>
+                    <CLabel htmlFor="modifierGroup">Add modifier group </CLabel>
 
                     <Select
                       // isClearable

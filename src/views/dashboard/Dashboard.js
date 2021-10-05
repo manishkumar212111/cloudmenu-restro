@@ -40,7 +40,8 @@ const Dashboard = (props) => {
     }, [])
 
   const GetDays = (d,Mention_today=false, itm)=>{
-    //Mention today mean the array will have today date 
+    //Mention today mean the array will have today date
+    const NameOfMonths = ["Jan", "Feb", "Mar" , "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] 
     var DateArray = [];
     var days=d;
     for(var i=0;i<days;i++){
@@ -50,8 +51,8 @@ const Dashboard = (props) => {
     var day =last.getDate();
     var month=last.getMonth()+1;
     var year=last.getFullYear();
-    const fulld = (Number(day)+'-'+Number(month)+'-'+Number(year)) // Format date as you like
-    var obj = {key: fulld , value: itm[fulld] || 0}
+    const fulld = (Number(day)+'-'+ Number(month)+'-'+Number(year)) // Format date as you like
+    var obj = {key: (Number(day)+'-'+ NameOfMonths[Number(month)-1]+'-'+Number(year)) , value: itm[fulld] || 0}
     DateArray.push(obj);
     }
     return DateArray;
@@ -146,7 +147,7 @@ const Dashboard = (props) => {
                                         ticks: {
                                           max: revenueInWeek.reverse().map(itm => itm.value).sort().lastItem || 50,
                                           min: 0,
-                                          stepSize: parseInt(revenueInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 0,
+                                          stepSize: parseInt(revenueInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 1,
                                           reverse: false,
                                           beginAtZero: true
                                         }
