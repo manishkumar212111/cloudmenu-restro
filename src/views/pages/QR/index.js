@@ -226,8 +226,10 @@ const QR = () => {
             </div>
             <div class={`col-12 col-xl-5 restaurant-details-right-container `} >
               <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{ }}>
+                <div id="my-qr">
+
                 <div
-                  id="my-qr"
+                  
                   style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10, width: parseInt(fieldObj.layoutSize)}}
                   class="row qr-container m-auto py-4"
                 >
@@ -243,7 +245,7 @@ const QR = () => {
                     </div>
                     <div style={{ padding: 15, backgroundColor: fieldObj.qrBackgroundColor, borderRadius: 10 }}>
                       <QRCode
-                        value={`https://arcane-citadel-48750.herokuapp.com/${restaurantDetail.id}/${fieldObj.tableNo}`}
+                        value={`https://arcane-citadel-48750.herokuapp.com/${restaurantDetail.id}/${Math.floor(100000 + Math.random() * 9000000000)}/${fieldObj.tableNo}`}
                         className="qr-img"
                         size="300"
                         level="H"
@@ -262,6 +264,8 @@ const QR = () => {
                       </div>
                     )}
                   </div>
+                </div>
+                
                 </div>
                 <div class="form-group d-flex justify-content-center mt-4">
                   <button

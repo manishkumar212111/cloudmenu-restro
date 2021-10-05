@@ -56,7 +56,7 @@ const AddModifier = (props) => {
   const [addNew, setAddNew] = useState(true);
   const [name, setName] = useState("");
   const [nameAr, setNameAr] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [showMin , setShowMin] = useState(0);
   const [errorObj, setErrorObj] = useState({
     name: { error: true, msg: "It should be valid" },
@@ -162,7 +162,7 @@ const AddModifier = (props) => {
     setErrorObj((er) => ({ ...er, ...errOb }));
 
     setName("");
-    setPrice("");
+    setPrice(0);
     setNameAr("");
   };
   

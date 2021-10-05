@@ -14,10 +14,9 @@ import "./index.scss";
 import Detail from "./detail";
 
 const statusObj = {
-  "Pending" : {current: "Accept", next : "Preparing" , class: "item-view-btn-accept"},
-  "Preparing" : {current: "Preparing", next : "Serving" , class: "item-view-btn-preparing"},
-  "Serving" : {current: "Serving", next : "Complete" , class: "item-view-btn-serving"},
-  "Complete" : {current: "Complete", next : "" , class: "item-view-btn-complete"},
+  "Pending" : {current: "Accept", next : "Accepted" , class: "item-view-btn-accept"},
+  "Accepted" : {current: "Preparing", next : "Completed" , class: "item-view-btn-preparing"},
+  "Completed" : {current: "Completed", next : "" , class: "item-view-btn-serving"},
   "Cancelled" : {current: "Cancelled", next : "" , class: "item-view-btn-cancelled"}
 }
 
@@ -124,9 +123,9 @@ const OrderList = (props) => {
                     {props.updatingOrder == itm.id ? <CSpinner /> : <button
                       type="button"
                       onClick={() => handleStatusChange(itm.id , statusObj[itm.status])}
-                      className={`btn item-view-btn ${statusObj[itm.status].class}`}
+                      className={`btn item-view-btn ${statusObj[itm.status]?.class}`}
                     >
-                      {statusObj[itm.status].current}
+                      {statusObj[itm.status]?.current}
                     </button>}
                   </td>
 
@@ -134,7 +133,7 @@ const OrderList = (props) => {
                     <div className="row align-items-center justify-content-center">
                       <div className="col-6 d-flex justify-content-end item-dropdown-container">
                         <img src={menu} alt="" className="menu-icon" onClick={() => setActiveMenu(actievMenu == itm.id ? false : itm.id)} />
-                        {(actievMenu == itm.id) && <div className="item-dropdown py-3 px-3">
+                        {(actievMenu == itm.id) && <> <div className="item-dropdown py-3 px-3">
                           <div className="row item-dropdown-row py-2">
                             <div className="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleStatusChange(itm.id, { next : "Cancelled"})}>
                               <div className="col-3">
@@ -149,7 +148,11 @@ const OrderList = (props) => {
                               </div>
                             </div>
                           </div>
-                        </div>}
+                          
+                        </div>
+                        <div class="custom-overlay" id="custom-overlay" onClick={() => setActiveMenu(false)}></div></>}
+
+                        
                       </div>
                     </div>
                   </td>
