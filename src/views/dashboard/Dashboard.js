@@ -137,7 +137,7 @@ const Dashboard = (props) => {
                                         label: 'Revenue',
                                         backgroundColor: '#f87979',
                                         // data: [10,344,500]
-                                        data: revenueInWeek.reverse().map(itm => itm.value)
+                                        data: revenueInWeek.map(itm => itm.value)
                                     }
                                 ]}
                                 labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
@@ -145,9 +145,9 @@ const Dashboard = (props) => {
                                     scales: {
                                         yAxes: [{
                                         ticks: {
-                                          max: revenueInWeek.reverse().map(itm => itm.value).sort().lastItem || 50,
+                                          max: revenueInWeek.map(itm => itm.value).sort().lastItem || 50,
                                           min: 0,
-                                          stepSize: parseInt(revenueInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 1,
+                                          stepSize: parseInt(revenueInWeek.map(itm => itm.value).sort().lastItem / 5) || 1,
                                           reverse: false,
                                           beginAtZero: true
                                         }
@@ -178,7 +178,7 @@ const Dashboard = (props) => {
                                     {
                                         label: 'Order',
                                         backgroundColor: '#f87979',
-                                        data: orderInWeek.reverse().map(itm => itm.value)
+                                        data: orderInWeek.map(itm => itm.value)
                                     }
                                 ]}
                                 labels={orderInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
@@ -186,9 +186,9 @@ const Dashboard = (props) => {
                                     scales: {
                                         yAxes: [{
                                         ticks: {
-                                          max: orderInWeek.reverse().map(itm => itm.value).sort().lastItem || 50,
+                                          max: orderInWeek.map(itm => itm.value).sort().lastItem || 50,
                                           min: 0,
-                                          stepSize: parseInt(orderInWeek.reverse().map(itm => itm.value).sort().lastItem / 5) || 1,
+                                          stepSize: parseInt(orderInWeek.map(itm => itm.value).sort().lastItem / 5) || 1,
                                           reverse: false,
                                           beginAtZero: true
                                         }
