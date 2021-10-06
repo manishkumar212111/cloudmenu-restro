@@ -15,8 +15,8 @@ import Detail from "./detail";
 
 const statusObj = {
   "Pending" : {current: "Accept", next : "Accepted" , class: "item-view-btn-accept"},
-  "Accepted" : {current: "Preparing", next : "Completed" , class: "item-view-btn-preparing"},
-  "Completed" : {current: "Completed", next : "" , class: "item-view-btn-serving"},
+  "Accepted" : {current: "Accepted", next : "Complete" , class: "item-view-btn-preparing"},
+  "Complete" : {current: "Complete", next : "" , class: "item-view-btn-serving"},
   "Cancelled" : {current: "Cancelled", next : "" , class: "item-view-btn-cancelled"}
 }
 

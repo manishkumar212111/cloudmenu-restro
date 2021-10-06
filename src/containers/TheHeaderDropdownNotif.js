@@ -64,14 +64,14 @@ const TheHeaderDropdownNotif = (props) => {
             </CDropdownItem>
           </>          
         )) : <>
-        <CDropdownItem
+        {/* <CDropdownItem
           header
           tag="div"
           className="text-center"
           color="light"
         >
           <strong>You have no new notifications</strong>
-        </CDropdownItem>
+        </CDropdownItem> */}
         
         </>}
         {/* <CDropdownItem

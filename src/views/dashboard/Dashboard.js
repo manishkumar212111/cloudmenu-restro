@@ -142,6 +142,7 @@ const Dashboard = (props) => {
                                 ]}
                                 labels={revenueInWeek.map(itm => itm.key.split("-")[0] + "-" + itm.key.split("-")[1])}
                                 options={{
+                                    
                                     scales: {
                                         yAxes: [{
                                         ticks: {
@@ -153,6 +154,7 @@ const Dashboard = (props) => {
                                         }
                                       }]
                                     },
+                                    
                                 tooltips: {
                                     enabled: true
                                 }
