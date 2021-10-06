@@ -17,6 +17,7 @@ import modifier from "./modifier";
 import language from "./language";
 import menu from "./menu";
 import order from "./order";
+import notification from "./notification";
 
 
 const initialState = {
@@ -49,7 +50,8 @@ const appReducers = combineReducers({
     modifier,
     language,
     menu,
-    order
+    order,
+    notification
 });
 
 const rootReducer = (state, action) => {

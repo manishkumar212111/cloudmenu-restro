@@ -71,6 +71,9 @@ const EndPoints = {
     modifierList:{
         url: 'api/modifier',
     },
+    Notification:{
+        url: 'api/notification',
+    },
     Enquiry: {
         url: 'api/common/enquiry',
     },

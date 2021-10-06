@@ -13,7 +13,7 @@ const initialState = {
         case 'ENQUIRY_DETAIL':
           return {...state , enquiryDetail : data , plan_detail_loading : false};
         case "ENQUIRY_LIST":
-          return {...state, enquirys :  data.results, totalPages : data.totalPages};
+          return {...state, notificationList :  data.results, totalPages : data.totalPages};
         
         default: return state;
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CBadge,
   CDropdown,
@@ -8,9 +8,35 @@ import {
   CProgress
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { connect } from 'react-redux'
+import { getNotifications , updateNotification} from 'src/actions/notification'
+import { useHistory } from 'react-router'
+const TheHeaderDropdownNotif = (props) => {
+  const history = useHistory();
+  const [notifications, setNotifications] = useState([]);
 
-const TheHeaderDropdownNotif = () => {
-  const itemsCount = 5
+  useEffect(() => {
+    props.getNotifications({isOpened: false})
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      props.getNotifications({isOpened: false})
+    }, 30000);
+  
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  }, [])
+
+  useEffect(() => {
+    setNotifications(props.notifications)
+  }, [props.notifications])
+  
+  const handleClick = (itm) => {
+      props.updateNotification(itm.id);
+      history.push("/order");
+  };
+
+  console.log(notifications)
   return (
     <CDropdown
       inNav
@@ -19,23 +45,36 @@ const TheHeaderDropdownNotif = () => {
     >
       <CDropdownToggle className="c-header-nav-link" caret={false}>
         <CIcon name="cil-bell"/>
-        <CBadge shape="pill" color="danger">{itemsCount}</CBadge>
+        <CBadge shape="pill" color="danger">{notifications.length}</CBadge>
       </CDropdownToggle>
-      <CDropdownMenu  placement="bottom-end" className="pt-0">
+      <CDropdownMenu  placement="bottom-end" className="pt-0" style={{maxHeight: 500, overflowY: "auto"}}>
         <CDropdownItem
           header
           tag="div"
           className="text-center"
           color="light"
         >
-          <strong>You have {itemsCount} notifications</strong>
+          <strong>You have {notifications.length} new notifications</strong>
         </CDropdownItem>
-        <CDropdownItem><CIcon name="cil-user-follow" className="mr-2 text-success" /> New user registered</CDropdownItem>
-        <CDropdownItem><CIcon name="cil-user-unfollow" className="mr-2 text-danger" /> User deleted</CDropdownItem>
-        <CDropdownItem><CIcon name="cil-chart-pie" className="mr-2 text-info" /> Sales report is ready</CDropdownItem>
-        <CDropdownItem><CIcon name="cil-basket" className="mr-2 text-primary" /> New client</CDropdownItem>
-        <CDropdownItem><CIcon name="cil-speedometer" className="mr-2 text-warning" /> Server overloaded</CDropdownItem>
+        {notifications.length ? notifications.map(itm => (
+          <><CDropdownItem style={{paddingTop: 10}} onClick={() => handleClick(itm)}>
+              
+              <h6><CIcon height="20" name="cil-speedometer" className="mr-2 text-warning" />{itm.title}</h6>
+              <p>{itm.description}</p>
+            </CDropdownItem>
+          </>          
+        )) : <>
         <CDropdownItem
+          header
+          tag="div"
+          className="text-center"
+          color="light"
+        >
+          <strong>You have no new notifications</strong>
+        </CDropdownItem>
+        
+        </>}
+        {/* <CDropdownItem
           header
           tag="div"
           color="light"
@@ -62,10 +101,20 @@ const TheHeaderDropdownNotif = () => {
           </div>
           <CProgress size="xs" color="danger" value={90} />
           <small className="text-muted">243GB/256GB</small>
-        </CDropdownItem>
+        </CDropdownItem> */}
       </CDropdownMenu>
     </CDropdown>
   )
 }
 
-export default TheHeaderDropdownNotif
+const mapStateToProps = ( state ) => ( {
+  notifications: state.notification.notifications,
+  loading : state.Home.loading
+} );
+
+const mapDispatchToProps = {
+  getNotifications,
+  updateNotification 
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )( TheHeaderDropdownNotif );
