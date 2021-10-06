@@ -22,11 +22,13 @@ import SettingIcon from "./images/settings.svg";
 import Setting from "./setting";
 import menuIcon from "./images/menu.svg";
 import crossIcon from "./images/cross.svg";
+import ConfirmPopup from "src/views/components/confirmPopup";
 
 const Menu = (props) => {
   const [addOpen, setAddOpen] = useState(false);
   const [openSetting, setSetting] = useState(false);
   const [openMenuAction, setMenuAction] = useState(false);
+  const [confirmWindow, setConfirmWindow] = useState("");
   useEffect(() => {
     props.getMenuList();
   }, [props.getMenuList]);
@@ -45,22 +47,20 @@ const Menu = (props) => {
   const activateMenuClick = (itm) => {
     props.activateMenu(itm.id);
   };
+  const handleDeleteCb = (id) => {
+    setConfirmWindow("");
+    setMenuAction(false);
+    props.deleteMenuById(id);
+  };
 
   const handleDelete = (id, status) => {
     if(status){
       props.setAlert("Active Menu can not be deleted", "danger")
       return;
     }
-    var retVal = window.confirm(
-      "Do you want to delete, it will delete all related category, product and modifiers of this menu"
-    );
-    if (retVal == true) {
-      setMenuAction(false);
-      props.deleteMenuById(id);
-      return;
-    } else {
-      return false;
-    }
+    setConfirmWindow({msg: "Do you want to delete, it will delete all related category, product and modifiers of this menu ?", id: id});
+    setMenuAction(false);
+    
   };
 
   const handleSettingCb = (setting) => {
@@ -76,6 +76,8 @@ const Menu = (props) => {
   }
   return (
     <div class="row menu-display-container bg-white mt-4 px-5 py-5">
+      {confirmWindow?.msg && <ConfirmPopup data={confirmWindow} handleSuccess={handleDeleteCb} onClose={setConfirmWindow} />}
+
       {props.menuList &&
         props.menuList.map((itm) => (
           <div

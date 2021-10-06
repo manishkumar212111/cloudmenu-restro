@@ -29,6 +29,7 @@ import CategoryForm from "../category/categoryForm";
 import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
 import crossIcon from "./images/cross.svg";
+import ConfirmPopup from "src/views/components/confirmPopup";
 
 const Items = (props) => {
   const [item, setItem] = useState([]);
@@ -44,6 +45,7 @@ const Items = (props) => {
   const [openHandleCategory , setHandleCategory] = useState();
   const [currentMenu , setCurrentMenu] = useState(props.currentMenu);
   const [selectedCategory , setSelectedCategory] = useState('');
+  const [confirmWindow, setConfirmWindow] = useState("");
   useEffect(() => {
     setCurrentMenu(props.currentMenu);
   }, [props.currentMenu])
@@ -101,16 +103,24 @@ const Items = (props) => {
     props.getProductList({ menu: currentMenu.id,category: category, page: page });
   };
 
+  const handleDeleteCb = (id) => {
+    setHandleCategory(false);
+    setConfirmWindow("");
+    props.deleteCategoryById(id);
+  };
+
   const handleDelete = (id , type) => {
     if(type === "category"){
-      var retVal = window.confirm("Do you want to delete, it will delete all related product to this category ?");
-      if( retVal == true ) {
-        setHandleCategory(false);
-        props.deleteCategoryById(id);
-        return;
-      } else {
-        return false;
-      }
+      setConfirmWindow({msg: "Do you want to delete, it will delete all related product to this category ?", id: id});
+     setHandleCategory(false);
+    return;
+      // var retVal = window.confirm();
+      
+      // if( retVal == true ) {
+      //   return;
+      // } else {
+      //   return false;
+      // }
     }
 
     props.deleteProductById(id);
@@ -129,6 +139,7 @@ const Items = (props) => {
   return (
     <>
       <div class="row menu-display-container bg-white mt-4">
+        {confirmWindow?.msg && <ConfirmPopup data={confirmWindow} handleSuccess={handleDeleteCb} onClose={setConfirmWindow} />}
         <div class="col-md-6 col-xl-4 categories-sidebar-container px-5 py-3">
           <div class="row">
             <div class="category-tab-heading py-4 px-0 mb-4">Categories</div>

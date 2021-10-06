@@ -45,7 +45,7 @@ const defaultProps = {
     state: "",
     city: "",
     currency: "",
-    taxRate: "",
+    taxRate: 15,
     taxStatus: "",
     bankDetail: {},
     logo_url: "",
@@ -108,7 +108,7 @@ const Profile = (props) => {
         state: props.fieldObj?.state,
         city: props.fieldObj?.city,
         currency: props.fieldObj?.currency,
-        taxRate: props.fieldObj?.taxRate,
+        taxRate: props.fieldObj?.taxRate || 15,
         taxStatus: props.fieldObj?.taxStatus,
         bankDetail: props.fieldObj?.bankDetail,
         logo_url: props.fieldObj?.logo_url,
@@ -510,7 +510,7 @@ const Profile = (props) => {
                       name="taxRate"
                       value={fieldObj.taxRate}
                       onChange={(e) => handleChange(e, "taxRate")}
-                      placeholder="add vat % ex - 15%"
+                      placeholder="add vat % ex - 15"
                     />
                     {!errorObj.taxRate.error && (
                       <CFormText className="help-block error">
