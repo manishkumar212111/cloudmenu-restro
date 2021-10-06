@@ -204,7 +204,7 @@ const Dashboard = (props) => {
               orders.results.map((itm) => (
                 <tr className="item-row py-4 align-items-center px-0">
                   <td className="col-1 text-center py-4">
-                     {moment(itm.createdAt).format("DD/MM/YYYY")}
+                     {moment(itm.createdAt).format("DD/MM/YYYY")} {" "}
                       {moment(itm.createdAt).format("HH:mm")}
                   </td>
                   <td className="col-1 text-right py-4">{itm.orderType}</td>

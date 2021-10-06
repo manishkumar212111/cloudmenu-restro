@@ -10,24 +10,37 @@ import {
 import CIcon from '@coreui/icons-react'
 import { connect } from 'react-redux'
 import { getNotifications , updateNotification} from 'src/actions/notification'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router';
+import MP3 from "./pristine-609.mp3"
 const TheHeaderDropdownNotif = (props) => {
   const history = useHistory();
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     props.getNotifications({isOpened: false})
+    
   }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       props.getNotifications({isOpened: false})
+      console.log("New notification")
     }, 30000);
   
     return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
   }, [])
 
   useEffect(() => {
+    console.log(props.notifications.length , notifications.length , props.notifications.length)
+    if(props.notifications.length != 0 && notifications.length < props.notifications.length){
+      document.getElementById("test").click()
+      const audio = new Audio(MP3);
+      audio.addEventListener('canplaythrough', (event) => {
+        // the audio is now playable; play it if permissions allow
+        // audio.muted=true
+        audio.play();
+      });
+    }
     setNotifications(props.notifications)
   }, [props.notifications])
   
@@ -40,10 +53,11 @@ const TheHeaderDropdownNotif = (props) => {
   return (
     <CDropdown
       inNav
+      id="test"
       className="c-header-nav-item mx-2"
       style={{marginTop: 7}}
     >
-      <CDropdownToggle className="c-header-nav-link" caret={false}>
+      <CDropdownToggle  className="c-header-nav-link" caret={false}>
         <CIcon name="cil-bell"/>
         <CBadge shape="pill" color="danger">{notifications.length}</CBadge>
       </CDropdownToggle>

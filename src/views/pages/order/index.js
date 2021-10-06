@@ -130,7 +130,7 @@ const OrderList = (props) => {
                   </td>
 
                   <td className="col-1 item-btns-col">
-                    <div className="row align-items-center justify-content-center">
+                    {itm.status !== "Cancelled" && itm.status !== "Complete" && <div className="row align-items-center justify-content-center">
                       <div className="col-6 d-flex justify-content-end item-dropdown-container">
                         <img src={menu} alt="" className="menu-icon" onClick={() => setActiveMenu(actievMenu == itm.id ? false : itm.id)} />
                         {(actievMenu == itm.id) && <> <div className="item-dropdown py-3 px-3">
@@ -154,7 +154,7 @@ const OrderList = (props) => {
 
                         
                       </div>
-                    </div>
+                    </div>}
                   </td>
                 </tr>
               ))}
