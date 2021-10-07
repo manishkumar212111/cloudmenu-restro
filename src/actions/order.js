@@ -11,6 +11,7 @@ export const getOrderList = (options = {}) => dispatch =>{
         : {};
     options.restaurant= restaurantDetail.id;    
     // options.sortBy = "orderNo:desc"
+    options.limit = 12;
       dispatch({
           type : "ORDER_DETAIL_LOADING",
           data : true
