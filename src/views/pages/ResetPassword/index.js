@@ -20,6 +20,7 @@ import CIcon from "@coreui/icons-react";
 import { connect } from "react-redux";
 
 import { resetPassword } from "../../../actions/auth";
+import { t } from "src/utils/language";
 
 const ResetPassword = (props) => {
   const token = props.match.params.token;

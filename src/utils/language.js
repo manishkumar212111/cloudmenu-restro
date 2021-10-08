@@ -1,10 +1,10 @@
 const translate = {
-  Home: "گھر",
+  "Home": "گھر",
   "How It Works": "How It Works",
-  Pricing: "Pricing",
+  "Pricing": "Pricing",
   "FAQ's": "FAQ's",
-  Benifits: "Benifits",
-  login: "login",
+  "Benifits": "Benifits",
+  "login": "login",
   "SCAN, ORDER & PAY": "SCAN, ORDER & PAY",
   "Your customers can order from their table by":
     "Your customers can order from their table by",
@@ -17,9 +17,9 @@ const translate = {
   "Register Now": "Register Now",
   "Login to your account": "Login to your account",
   "Phone Number": "Phone Number",
-  Password: "Password",
+  "Password": "Password",
   "forgot password ?": "forgot password ?",
-  LOGIN: "LOGIN",
+  "LOGIN": "LOGIN",
   "Don’t have an account?": "Don’t have an account?",
   "Register Here": "Register Here",
   "THANK YOU !": "THANK YOU !",
@@ -28,7 +28,7 @@ const translate = {
   "Register Yourself": "Register Yourself",
   "Your Name": "Your Name",
   "Already have an account?": "Already have an account?",
-  REGISTER: "REGISTER",
+  "REGISTER": "REGISTER",
   "Please enter valid email": "Please enter valid email",
   "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character":
     "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character",
@@ -67,6 +67,12 @@ const translate = {
   "Oct": "Oct",
   "Nov": "Nov",
   "Dec": "Dec",
+  "It should be valid" : "It should be valid",
+  "Category Name (English)" : "Category Name (English)",
+  "Enter category name": "Enter category name",
+  "Category Name (Arabic)" : "Category Name (Arabic)",
+  "Submit" : "Submit",
+  "Update" : "Update"
 };
 
 const t = (str) => {

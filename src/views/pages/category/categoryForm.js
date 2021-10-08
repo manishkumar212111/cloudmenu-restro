@@ -23,6 +23,7 @@ import {
   CRow,
   CSpinner,
 } from "@coreui/react";
+import { t } from "src/utils/language";
 
 const defaultProps = {
   fieldObj: {
@@ -44,8 +45,8 @@ const CategoryForm = (props) => {
     name: props.location?.search.split("=")[1],
   });
   const [errorObj, setErrorObj] = useState({
-    name: { error: true, msg: "It should be valid" },
-    nameAr: { error: true, msg: "It should be valid" },
+    name: { error: true, msg: t("It should be valid") },
+    nameAr: { error: true, msg: t("It should be valid") },
   });
   useEffect(() => {
     typeof props.id ? setIsEdit(props.id) : setIsEdit('');
@@ -131,7 +132,7 @@ const CategoryForm = (props) => {
         <div class="row justify-content-center">
           <div class="form-group mb-5 px-2">
             <label for="category-name" class="input-label">
-              Category Name (English) *
+              {t("Category Name (English)")} *
             </label>
 
             <CInput
@@ -140,7 +141,7 @@ const CategoryForm = (props) => {
               name="name"
               value={fieldObj.name}
               onChange={(e) => handleChange(e, "name")}
-              placeholder="Enter category name"
+              placeholder={t("Enter category name")}
             />
             {!errorObj.name.error && (
               <CFormText className="help-block error">
@@ -150,7 +151,7 @@ const CategoryForm = (props) => {
           </div>
           <div class="form-group mb-5 px-2">
             <label for="category-name" class="input-label">
-              Category Name (Arabic)*
+              {t("Category Name (Arabic)")}*
             </label>
 
             <CInput
@@ -159,7 +160,7 @@ const CategoryForm = (props) => {
               name="nameAr"
               value={fieldObj.nameAr}
               onChange={(e) => handleChange(e, "nameAr")}
-              placeholder="Enter category name"
+              placeholder={t("Enter category name")}
             />
             {!errorObj.name.error && (
               <CFormText className="help-block error">
@@ -181,7 +182,7 @@ const CategoryForm = (props) => {
                 onClick={handleClick}
                 value="Submit"
               >
-                {isEdit ? "Update" : "Submit"}
+                {isEdit ? t("Update") : t("Submit")}
               </CButton>
             )}{" "}
           </div>
