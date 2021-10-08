@@ -27,6 +27,7 @@ import {
 const defaultProps = {
   fieldObj: {
     name: "",
+    nameAr: ""
   },
 };
 
@@ -44,6 +45,7 @@ const CategoryForm = (props) => {
   });
   const [errorObj, setErrorObj] = useState({
     name: { error: true, msg: "It should be valid" },
+    nameAr: { error: true, msg: "It should be valid" },
   });
   useEffect(() => {
     typeof props.id ? setIsEdit(props.id) : setIsEdit('');
@@ -93,13 +95,15 @@ const CategoryForm = (props) => {
     switch (key) {
       case "name":
         return validateUtility.required(value);
-      default:
+      case "nameAr":
+        return validateUtility.required(value);
+        default:
         return true;
     }
   };
 
   const handleClick = () => {
-    let requiredObj = ["name"];
+    let requiredObj = ["name", "nameAr"];
     let errOb = errorObj;
 
     let status = true;
@@ -115,10 +119,10 @@ const CategoryForm = (props) => {
     if (isEdit) {
       delete fieldObj.id;
       delete fieldObj.createdAt;
-      props.updateCategoryById(isEdit, { name: fieldObj.name });
+      props.updateCategoryById(isEdit, { name: fieldObj.name , nameAr: fieldObj.nameAr});
       return;
     }
-    props.createCategory({ name: fieldObj.name});
+    props.createCategory({ name: fieldObj.name, nameAr: fieldObj.nameAr});
   };
 
   return (
@@ -127,7 +131,7 @@ const CategoryForm = (props) => {
         <div class="row justify-content-center">
           <div class="form-group mb-5 px-2">
             <label for="category-name" class="input-label">
-              Category Name *
+              Category Name (English) *
             </label>
 
             <CInput
@@ -141,6 +145,25 @@ const CategoryForm = (props) => {
             {!errorObj.name.error && (
               <CFormText className="help-block error">
                 {errorObj.name.msg}
+              </CFormText>
+            )}
+          </div>
+          <div class="form-group mb-5 px-2">
+            <label for="category-name" class="input-label">
+              Category Name (Arabic)*
+            </label>
+
+            <CInput
+              id="name"
+              class="form-control py-3 pl-3 form-input"
+              name="nameAr"
+              value={fieldObj.nameAr}
+              onChange={(e) => handleChange(e, "nameAr")}
+              placeholder="Enter category name"
+            />
+            {!errorObj.name.error && (
+              <CFormText className="help-block error">
+                {errorObj.nameAr.msg}
               </CFormText>
             )}
           </div>
