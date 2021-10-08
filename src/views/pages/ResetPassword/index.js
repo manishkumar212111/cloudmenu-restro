@@ -29,8 +29,8 @@ const ResetPassword = (props) => {
     repeat_password: "",
   });
   const [errorObj, setErrorObj] = useState({
-    repeat_password: { error: true, msg: "Repeated password is not same" },
-    password : { error : true , msg : "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character" }
+    repeat_password: { error: true, msg: t("Repeated password is not same") },
+    password : { error : true , msg : t("Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character") }
   });
   const validateField = (key, value) => {
     value = value ? value : fieldobj[key];
@@ -86,7 +86,7 @@ const ResetPassword = (props) => {
             />
           </div>
           <div class="main-form">
-            <h5>Create New Password</h5>
+            <h5>{t("Create New Password")}</h5>
             <div class="row">
               <span className="error">
                 {!errorObj.password.error && errorObj.password.msg}
@@ -96,7 +96,7 @@ const ResetPassword = (props) => {
                 <CInput
                   type="password"
                   className="form-input"
-                  placeholder="Enter Password"
+                  placeholder={t("Enter Password")}
                   name="password"
                   value={fieldobj.password}
                   onChange={(e) => handleChange(e)}
@@ -113,7 +113,7 @@ const ResetPassword = (props) => {
                 <CInput
                   className="form-input"
                   type="password"
-                  placeholder="Repeat Password"
+                  placeholder={t("Repeat Password")}
                   name="repeat_password"
                   value={fieldobj.repeat_password}
                   onChange={(e) => handleChange(e)}
@@ -127,7 +127,7 @@ const ResetPassword = (props) => {
                 disabled={props.login_user_loading}
                 onClick={handleClick}
               >
-                Reset Password
+                {t("Reset Password")}
               </button>
             </div>
           </div>

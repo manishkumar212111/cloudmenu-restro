@@ -3,15 +3,17 @@ import validateUtility from "../../../utils/ValidateUtility"
 import { connect } from 'react-redux';
 import { registerUser } from "../../../actions/auth"
 import { CSpinner } from '@coreui/react';
+import { t } from "../../../utils/language";
+
 const Register = (props) => {
   console.log(props);
   const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
   const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
-  const [errorObj , setErrorObj] = useState({ email : { error : true , msg : "Please enter valid email" } , 
-                                              password : { error : true , msg : "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character" },
-                                              mobile : { error : true , msg : "Please enter valid mobile number" },
-                                              ccode : { error : true , msg : "Please enter valid mobile number" },
-                                              name : { error : true , msg : "Please enter valid name" }
+  const [errorObj , setErrorObj] = useState({ email : { error : true , msg : t("Please enter valid email") } , 
+                                              password : { error : true , msg : t("Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character") },
+                                              mobile : { error : true , msg : t("Please enter valid mobile number") },
+                                              ccode : { error : true , msg : t("Please enter valid mobile number") },
+                                              name : { error : true , msg : t("Please enter valid name") }
                                            })
   const validateField = (key , value) => {
       value = value ? value : fieldobj[key] 
@@ -72,8 +74,8 @@ const Register = (props) => {
           </div>
           <div class="main-form thank-you-page">
             <img src="https://ik.imagekit.io/lcq5etn9k/restro/tick_bHZRtBg2f1.png?updatedAt=1628352123585" class="img-fluid mb-5" alt="" />
-            <h3>THANK YOU !</h3>
-            <p>for your registration, your account will be activated in less than 24 hours</p>
+            <h3>{t("THANK YOU !")}</h3>
+            <p>{t("for your registration, your account will be activated in less than 24 hours")}</p>
           </div>
         </div>
       </div>
@@ -88,10 +90,10 @@ const Register = (props) => {
             </div>
             <form>
               <div className="main-form">
-                <h5>Register Yourself ({planName})</h5> 
+                <h5>{t("Register Yourself")} ({planName})</h5> 
                   <div className="row">
                     <div className="col-md-12 form-group mb-4">
-                      <input placeholder="Your Name" type="text" className="form-input" name="name" value={fieldobj.name} onChange={(e) => handleChange(e)}/>
+                      <input placeholder={t("Your Name")} type="text" className="form-input" name="name" value={fieldobj.name} onChange={(e) => handleChange(e)}/>
                       <span className="error">{!errorObj.name.error && errorObj.name.msg}</span>
                     </div>
                     <div className="col-4 col-md-4 form-group mb-4">
@@ -103,18 +105,18 @@ const Register = (props) => {
                       </div>
                     </div>
                     <div className="col-8 col-md-8 form-group mb-4">
-                      <input type="text" placeholder="Phone Number"  data-vu-type="number" onKeyPress={(e) => validateUtility.stopDefault(e)} className="form-input" name="mobile" value={fieldobj.mobile} onChange={(e) => handleChange(e)} />
+                      <input type="text" placeholder={t("Phone Number")}  data-vu-type="number" onKeyPress={(e) => validateUtility.stopDefault(e)} className="form-input" name="mobile" value={fieldobj.mobile} onChange={(e) => handleChange(e)} />
                       <span className="error">{!errorObj.mobile.error && errorObj.mobile.msg}</span>
                     </div>
                     <div className="col-md-12 form-group mb-2">
-                      <input placeholder="Password" type="password" className="form-input" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} />
+                      <input placeholder={t("Password")} type="password" className="form-input" name="password" value={fieldobj.password} onChange={(e) => handleChange(e)} />
                       <span className="error">{!errorObj.password.error && errorObj.password.msg}</span>
                     </div>
                   </div>
                   <div className="connect-btn mt-4">
-                    {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>REGISTER</button>}
+                    {props.registerLoading ? <div style={{width: "60%" , marginLeft: "40%"}}><CSpinner color="info" /> </div>:<button type="button" className="trans-btn" onClick={handleClick}>{t("REGISTER")}</button>}
                   </div>
-                  <p className="login-bot mt-4 mb-0">Already have an account? <a href="/#/login">Login</a></p>
+                  <p className="login-bot mt-4 mb-0">{t("Already have an account?")} <a href="/#/login">{t("Login")}</a></p>
               </div>
             </form>
           </div>

@@ -2,7 +2,7 @@ import React , { useEffect , useState} from 'react'
 import { Link } from 'react-router-dom';
 import { loginUser } from "../../../actions/auth";
 import { connect } from "react-redux";
-
+import { t } from "../../../utils/language";
 import {
   CButton,
   CCard,
@@ -69,7 +69,7 @@ const Login = (props) => {
               <img class="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
             </div>
             <div class="main-form">
-              <h5>Login to your account</h5>
+              <h5>{t("Login to your account")}</h5>
               <form>
                 <div class="row">
                     <div className="col-4 col-md-3 form-group mb-4">
@@ -81,19 +81,19 @@ const Login = (props) => {
                         </div>
                       </div>
                     <div class="col-8 col-md-9 form-group mb-4">
-                      <input placeholder="Phone Number" type="text" data-vu-type="number" onKeyPress={(e) => validateUtility.stopDefault(e)}  class="form-input" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                      <input placeholder={t("Phone Number")} type="text" data-vu-type="number" onKeyPress={(e) => validateUtility.stopDefault(e)}  class="form-input" value={mobile} onChange={(e) => setMobile(e.target.value)} />
                     </div>
                   <div class="col-md-12 form-group mb-2">
-                    <input placeholder="Password" type="password" class="form-input"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input placeholder={t("Password")} type="password" class="form-input"  value={password} onChange={(e) => setPassword(e.target.value)} />
                   </div>
                   <div class="col-md-12">
-                    <a href="/#/forget-password" class="forgot-link">forgot password ?</a>
+                    <a href="/#/forget-password" class="forgot-link">{t("forgot password ?")}</a>
                   </div>
                 </div>
                 <div class="connect-btn mt-4">
-                  {props.loginLoading ? <div style={{width: "60%" , marginLeft: "43%"}}><CSpinner color="info" /> </div> : <button type="button" class="trans-btn" href="#" onClick={handleLogin}>LOGIN</button>}
+                  {props.loginLoading ? <div style={{width: "60%" , marginLeft: "43%"}}><CSpinner color="info" /> </div> : <button type="button" class="trans-btn" href="#" onClick={handleLogin}>{t("LOGIN")}</button>}
                 </div>
-                <p class="login-bot mt-4 mb-0">Don’t have an account? <a href="/#/register">Register Here</a></p>
+                <p class="login-bot mt-4 mb-0">{t("Don’t have an account?")} <a href="/#/register">{t("Register Here")}</a></p>
               </form>
             </div>
           </div>

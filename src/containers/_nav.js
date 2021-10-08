@@ -5,11 +5,11 @@ import restaurant from "./images/restaurant.png";
 import qr from "./images/qr.png";
 import dashboard from "./images/dashboard.png";
 import order from "./images/order.png";
-
+import { t } from "../utils/language";
 const _nav =  [
   {
     _tag: 'CSidebarNavItem',
-    name: 'Dashboard',
+    name: t('Dashboard'),
     to: '/dashboard',
     icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={dashboard} />
 
@@ -20,7 +20,7 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Restaurant',
+    name: t('Restaurant'),
     to: '/profile/update',
     icon: <img style={{flex: "0 0 21px", marginRight: 8 , marginLeft : 0}} className="c-sidebar-nav-icon" src={restaurant} />
     // badge: {
@@ -30,7 +30,7 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Orders',
+    name: t('Orders'),
     to: '/order',
     icon: <img style={{flex: "0 0 21px", marginRight: 8 , marginLeft : 0}} className="c-sidebar-nav-icon" src={order} />
     // badge: {
@@ -50,7 +50,7 @@ const _nav =  [
   // },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Menu Management',
+    name: t('Menu Management'),
     to: '/menu-management',
     icon: <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={menu} />
     // badge: {
@@ -60,7 +60,7 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Manage QR',
+    name: t('Manage QR'),
     to: '/qr',
     icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={qr} />
     // badge: {
@@ -70,7 +70,7 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Analytics',
+    name: t('Analytics'),
     to: '/analytics',
     icon:  <img style={{flex: "0 0 21px", marginRight: 8, marginLeft : 0}} className="c-sidebar-nav-icon" src={menu} />
     // badge: {

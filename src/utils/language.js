@@ -1,25 +1,79 @@
 const translate = {
-    "Home" : "گھر",
-    "How It Works" : "How It Works",
-    "Pricing" : "Pricing",
-    "FAQ's" : "FAQ's",
-    "Benifits" : "Benifits",
-    "login" : "login",
-    "SCAN, ORDER & PAY" : "SCAN, ORDER & PAY",
-    "Your customers can order from their table by" : "Your customers can order from their table by",
-    "simply scanning a QR code" : "simply scanning a QR code",
-    "Try it for free" : "Try it for free",
-    "View Plans" : "View Plans",
-    "Mobile scan code order" : "Mobile scan code order",
-    "Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions" : "Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions",
-    "Register Now" : "Register Now"
-}
+  Home: "گھر",
+  "How It Works": "How It Works",
+  Pricing: "Pricing",
+  "FAQ's": "FAQ's",
+  Benifits: "Benifits",
+  login: "login",
+  "SCAN, ORDER & PAY": "SCAN, ORDER & PAY",
+  "Your customers can order from their table by":
+    "Your customers can order from their table by",
+  "simply scanning a QR code": "simply scanning a QR code",
+  "Try it for free": "Try it for free",
+  "View Plans": "View Plans",
+  "Mobile scan code order": "Mobile scan code order",
+  "Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions":
+    "Turn on the scan QR code function in any software. Including skip-the-line, online ordering, self-service plus dishes, changing table, call attendant and other functions",
+  "Register Now": "Register Now",
+  "Login to your account": "Login to your account",
+  "Phone Number": "Phone Number",
+  Password: "Password",
+  "forgot password ?": "forgot password ?",
+  LOGIN: "LOGIN",
+  "Don’t have an account?": "Don’t have an account?",
+  "Register Here": "Register Here",
+  "THANK YOU !": "THANK YOU !",
+  "for your registration, your account will be activated in less than 24 hours":
+    "for your registration, your account will be activated in less than 24 hours",
+  "Register Yourself": "Register Yourself",
+  "Your Name": "Your Name",
+  "Already have an account?": "Already have an account?",
+  REGISTER: "REGISTER",
+  "Please enter valid email": "Please enter valid email",
+  "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character":
+    "Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character",
+  "Please enter valid mobile number": "Please enter valid mobile number",
+  "Please enter valid name": "Please enter valid name",
+  "Repeated password is not same": "Repeated password is not same",
+  "Create New Password": "Create New Password",
+  "Enter Password": "Enter Password",
+  "Repeat Password": "Repeat Password",
+  "Reset Password": "Reset Password",
+  "Dashboard": "Dashboard",
+  "Restaurant": "Restaurant",
+  "Orders": "Orders",
+  "Menu Management": "Menu Management",
+  "Manage QR": "Manage QR",
+  "Analytics": "Analytics",
+  "You have": "You have",
+  "new notifications": "new notifications",
+  "Logout": "Logout",
+  "Today’s Revenue": "Today’s Revenue",
+  "Today’s Orders": "Today’s Orders",
+  "Total Revenue Last 7 Days": "Total Revenue Last 7 Days",
+  "SR": "SR",
+  "Revenue": "Revenue",
+  "Total Orders Last 7 Days": "Total Orders Last 7 Days",
+  "Order": "Order",
+  "Jan": "Jan",
+  "Feb": "Feb",
+  "Mar": "Mar",
+  "Apr": "Apr",
+  "May": "May",
+  "Jun": "Jun",
+  "Jul": "Jul",
+  "Aug": "Aug",
+  "Sep": "Sep",
+  "Oct": "Oct",
+  "Nov": "Nov",
+  "Dec": "Dec",
+};
 
 const t = (str) => {
-    let lang = localStorage.getItem("language") || "en";
-    return  lang == "ar" ? translate[str] : str;
-}
+  let lang = localStorage.getItem("language") || "en";
+  return lang == "ar" ? translate[str] : str;
+};
 
 module.exports = {
-    t
-}
+  t,
+};

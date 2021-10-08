@@ -12,6 +12,7 @@ import { connect } from 'react-redux'
 import { getNotifications , updateNotification} from 'src/actions/notification'
 import { useHistory } from 'react-router';
 import MP3 from "./pristine-609.mp3"
+import { t } from 'src/utils/language'
 const TheHeaderDropdownNotif = (props) => {
   const history = useHistory();
   const [notifications, setNotifications] = useState([]);
@@ -68,7 +69,7 @@ const TheHeaderDropdownNotif = (props) => {
           className="text-center"
           color="light"
         >
-          <strong>You have {notifications.length} new notifications</strong>
+          <strong>{t("You have")} {notifications.length} {t("new notifications")}</strong>
         </CDropdownItem>
         {notifications.length ? notifications.map(itm => (
           <><CDropdownItem style={{paddingTop: 10}} onClick={() => handleClick(itm)}>

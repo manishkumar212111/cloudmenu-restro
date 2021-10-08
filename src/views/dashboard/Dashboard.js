@@ -16,6 +16,7 @@ import second from "./images/report.svg";
 import revenue from "./images/revenue.png";
 import order from "./images/orders.png";
 import { CChartBar, CChartDoughnut } from '@coreui/react-chartjs';
+import { t } from 'src/utils/language';
 
 //generete Label
 
@@ -41,7 +42,7 @@ const Dashboard = (props) => {
 
   const GetDays = (d,Mention_today=false, itm)=>{
     //Mention today mean the array will have today date
-    const NameOfMonths = ["Jan", "Feb", "Mar" , "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] 
+    const NameOfMonths = [t("Jan"), t("Feb"), t("Mar") , t("Apr"), t("May"), t("Jun"), t("Jul"), t("Aug"), t("Sep"), t("Oct"), t("Nov"), t("Dec")] 
     var DateArray = [];
     var days=d;
     for(var i=0;i<days;i++){
@@ -82,7 +83,7 @@ const Dashboard = (props) => {
                 <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container">
                         <div class="row dashboard-details-container-title mb-5">
-                            Today’s Revenue
+                            {t("Today’s Revenue")}
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -102,7 +103,7 @@ const Dashboard = (props) => {
                 <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-orders">
                         <div class="row dashboard-details-container-title mb-5">
-                            Today’s Orders
+                            {t("Today’s Orders")}
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -126,7 +127,7 @@ const Dashboard = (props) => {
                 <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-revenue">
                         <div class="row dashboard-details-container-title mb-4">
-                            Total Revenue Last 7 Days (SR {data.totalRevenue})
+                            {t("Total Revenue Last 7 Days")} (t{("SR")} {data.totalRevenue})
                         </div>
                         <div class="row">
                         <CCard>
@@ -134,7 +135,7 @@ const Dashboard = (props) => {
                             <CChartBar
                                 datasets={[
                                     {
-                                        label: 'Revenue',
+                                        label: t('Revenue'),
                                         backgroundColor: '#f87979',
                                         // data: [10,344,500]
                                         data: revenueInWeek.map(itm => itm.value)
@@ -170,7 +171,7 @@ const Dashboard = (props) => {
                 <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-orders dashboard-details-container-orders-bottom">
                         <div class="row dashboard-details-container-title mb-4">
-                            Total Orders Last 7 Days ({data.totalOrder})
+                            {t("Total Orders Last 7 Days")} ({data.totalOrder})
                         </div>
                         <div class="row">
                         <CCard>
@@ -178,7 +179,7 @@ const Dashboard = (props) => {
                             <CChartBar
                                 datasets={[
                                     {
-                                        label: 'Order',
+                                        label: t('Order'),
                                         backgroundColor: '#f87979',
                                         data: orderInWeek.map(itm => itm.value)
                                     }

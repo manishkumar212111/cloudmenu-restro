@@ -10,6 +10,7 @@ import {
   CImg
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { t } from 'src/utils/language';
 
 const TheHeaderDropdown = (props) => {
 
@@ -55,7 +56,7 @@ const TheHeaderDropdown = (props) => {
           className="text-center c-header-nav-link"
         >
           <span  style={{cursor: "pointer"}} onClick={logout}>
-            <strong>Logout</strong>
+            <strong>{t("Logout")}</strong>
           </span>
         </CDropdownItem>
       </CDropdownMenu>
