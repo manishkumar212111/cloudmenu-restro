@@ -25,6 +25,7 @@ import order from "./images/orders.png";
 import { CChartBar, CChartDoughnut } from '@coreui/react-chartjs';
 import moment from 'moment';
 import Detail from '../pages/order/detail';
+import { t } from 'src/utils/language';
 
 //generete Label
 
@@ -101,7 +102,7 @@ const Dashboard = (props) => {
               <div class=" d-flex date-container justify-content-end">
                 <div class="col-4">
                   <div class="row">
-                    Start Date
+                    {t("Start Date")}
                   </div>
                   <div class="row">
                     <input type="date" value={from} onChange={(e) => handleFromDateSelect(e.target.value)} name="" id="" class="analytics-date-input" />
@@ -110,7 +111,7 @@ const Dashboard = (props) => {
                 <div class="col-1"></div>
                 <div class="col-4">
                   <div class="row">
-                    End Date
+                  {t("End Date")}
                   </div>
                   <div class="row">
                     <input type="date" name="" value={to} onChange={(e) => handleDateSelect(e.target.value)} id="" class="analytics-date-input" />
@@ -125,7 +126,7 @@ const Dashboard = (props) => {
             <div class="col-12 col-lg-6 mb-4 py-4">
               <div class="dashboard-details-container">
                 <div class="row dashboard-details-container-title mb-5">
-                    Total Revenue
+                    {t("Total Revenue")}
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -145,7 +146,7 @@ const Dashboard = (props) => {
             <div class="col-12 col-lg-6 mb-4 py-4">
               <div class="dashboard-details-container dashboard-details-container-orders">
                 <div class="row dashboard-details-container-title mb-5">
-                    Total Orders
+                    {t("Total Orders")}
                 </div>
                 <div class="row">
                     <div class="col-6">
@@ -167,7 +168,7 @@ const Dashboard = (props) => {
         <div className="row">
       <div className="col-12 px-5">
         <div className="row menu-header">
-          <div className="col-6 menu-heading">Orders</div>
+          <div className="col-6 menu-heading">{t("Orders")}</div>
         </div>
 
         <div className="row menu-display-container bg-white mt-4">
@@ -175,27 +176,27 @@ const Dashboard = (props) => {
             <table className="table table-borderless">
               <tr className="menu-display-header pt-3">
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Date/Time
+                  {t("Date/Time")}
                 </th>
                 <th className="col-1 text-right menu-display-heading py-4">
-                  Type
+                  {t("Type")}
                 </th>
                 <th className="col-2 text-center menu-display-heading py-4">
-                  Order Number
+                  {t("Order Number")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Table No
+                  {t("Table No")}
                 </th>
                 <th className="col-2 text-center menu-display-heading py-4">
-                  Payment Type
+                  {t("Payment Type")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Status
+                  {t("Status")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Pay
+                  {t("Pay")}
                 </th>
-                <th className="col-1 text-center menu-display-heading py-4">Details</th>
+                <th className="col-1 text-center menu-display-heading py-4">{t("Details")}</th>
                 {/* <th className="col-1 text-center menu-display-heading py-4">Status</th> */}
                 <th></th>
               </tr>
@@ -207,7 +208,7 @@ const Dashboard = (props) => {
                      {moment(itm.createdAt).format("DD/MM/YYYY")} {" "}
                       {moment(itm.createdAt).format("HH:mm")}
                   </td>
-                  <td className="col-1 text-right py-4">{itm.orderType}</td>
+                  <td className="col-1 text-right py-4">{t(itm.orderType)}</td>
                   <td className="col-2 text-center py-4">{itm.orderNo}</td>
                   <td className="col-1 text-center py-4">{itm.tableNo || "NA"}</td>
                   <td className="col-2 text-center py-4">{itm.paymentType}</td>
@@ -219,7 +220,7 @@ const Dashboard = (props) => {
                       className="btn item-view-btn item-view-btn-details"
                       onClick={() =>setShowOrderDetail(itm)}
                     >
-                      Details
+                      {t("Details")}
                     </button>
                   </td>
                 </tr>

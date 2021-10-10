@@ -13,6 +13,7 @@ import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
 import crossIcon from "./images/cross.svg";
 import "./style/modifier.scss"
+import { t } from "src/utils/language";
 const Modifier = (props) => {
   const [viewOpen, setView] = useState(false);
   const [activeId, setActievId] = useState("");
@@ -52,10 +53,10 @@ const Modifier = (props) => {
           <div class="col-12">
             <div class="row menu-display-header pt-3">
               <div class="col-3 text-center menu-display-heading py-4 px-4">
-                Name
+                {t("Name")}
               </div>
               <div class="col-3 text-center menu-display-heading py-4 px-4">
-                Items
+                {t("Items")}
               </div>
               <div class="col-6 menu-display-buttons-container">
                 <div class="row py-4">
@@ -69,7 +70,7 @@ const Modifier = (props) => {
                       }}
                       class="btn menu-display-btn menu-display-btn-category"
                     >
-                      Add Modifier
+                      {t("Add Modifier")}
                     </button>
                   </div>
                 </div>
@@ -79,12 +80,12 @@ const Modifier = (props) => {
               modifiers.map((itm) => (
                 <div class="row item-row py-4 align-items-center px-0">
                   <div class="col-3 item-name-col-1 text-center">
-                    {itm.name}
+                    {localStorage.getItem("language") == "en" ? itm.name : itm.nameAr}
                   </div>
                   <div class="col-5 text-left item-name-col">
                     {itm.modifiers &&
                       itm.modifiers.length &&
-                      itm.modifiers.map((it) => it.name).join(", ")}
+                      itm.modifiers.map((it) => localStorage.getItem("language") == "en" ? it.name : it.nameAr ).join(", ")}
                   </div>
                   <div class="col-1"></div>
                   <div class="col-3 item-btns-col">
@@ -105,7 +106,7 @@ const Modifier = (props) => {
                               class="col-8 item-dropdown-text px-0"
                               
                             >
-                              Edit Modifier
+                              {t("Edit Modifier")}
                             </div>
                           </div>
                           <div style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id)} class="row item-dropdown-row py-2">
@@ -120,7 +121,7 @@ const Modifier = (props) => {
                                 />
                               </div>
                               <div class="col-8 item-dropdown-text px-1">
-                                Delete Modifier
+                                {t("Delete Modifier")}
                               </div>
                             </div>
                           </div>
@@ -133,7 +134,7 @@ const Modifier = (props) => {
                   </div>
                 </div>
               
-              )) : <div className={'mt-4 ml-4 '}>No modifiers available</div>}
+              )) : <div className={'mt-4 ml-4 '}>{t("No modifiers available")}</div>}
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
@@ -148,7 +149,7 @@ const Modifier = (props) => {
       {viewOpen && (
         <CModal show={viewOpen} className="modif" onClose={setView}>
           <CModalHeader closeButton><div class="col py-3 px-4 modifier-group-header">
-            Add Modifier Group
+            {t("Add Modifier Group")}
           </div></CModalHeader>
           <CModalBody>
             <AddModifier id={activeId} menu={currentMenu} />

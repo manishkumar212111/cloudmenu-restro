@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { t } from "src/utils/language";
 import "./style/chooseModifier.scss";
 
 const ChooseModifers = (props) => {
@@ -49,7 +50,7 @@ const ChooseModifers = (props) => {
         
         <div class="form-group d-flex justify-content-start">
           <button type="button" class="btn choose-modifiers-btn" onClick={() => props.handleSubmit({...props.itm, modifiers: modifiers})}>
-            SAVE
+            {t("SAVE")}
           </button>
         </div>
       </div>

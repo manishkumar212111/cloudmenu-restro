@@ -15,6 +15,7 @@ import {
   CSpinner,
 } from "@coreui/react";
 import "./index.scss";
+import { t } from "src/utils/language";
 const QR = () => {
   const [loading, setLoading] = useState(false);
   const [fieldObj, setfieldObj] = useState({
@@ -79,7 +80,7 @@ const QR = () => {
 
   console.log(fieldObj);
   if (!restaurantDetail) {
-    return <div>Your restaurant is not approved to generet qr code</div>;
+    return <div>{t("Your restaurant is not approved to generete qr code")}</div>;
   }
   return (
     <>
@@ -88,14 +89,14 @@ const QR = () => {
           <div class="row px-4 restaurant-details-container1 d-flex">
             <div class="col-12 col-xl-6 restaurant-details-form-container py-3 bg-white mb-4 mb-xl-0">
               <div class="row restaurant-details-form-heading py-3 px-4">
-                Generate QR code
+                {t("Generate QR code")}
               </div>
 
               <div class="row py-4">
                 <div class="col-12 px-4">
                   <div class="form-group mb-4">
                     <label for="table-no" class="input-label">
-                      Table Number
+                      {t("Table Number")}
                     </label>
                     <input
                       type="text"
@@ -104,13 +105,13 @@ const QR = () => {
                       name="tableNo"
                       value={fieldObj.tableNo}
                       onChange={(e) => handleChange(e, "tableNo")}
-                      placeholder="Enter Table No"
+                      placeholder={t("Enter Table No")}
                     />
                   </div>
 
                   <div class="form-group mb-4">
                     <label for="qr-text" class="input-label">
-                      Text
+                      {t("Text")}
                     </label>
                     <input
                       id="text"
@@ -118,7 +119,7 @@ const QR = () => {
                       name="text"
                       value={fieldObj.text}
                       onChange={(e) => handleChange(e, "text")}
-                      placeholder="add text on QR"
+                      placeholder={t("Add text on QR")}
                     />
                   </div>
                 </div>
@@ -128,7 +129,7 @@ const QR = () => {
                 <div class="col-4 px-4">
                   <div class="form-group mb-5">
                     <label for="textcolor" class="input-label mb-3">
-                      Text Color
+                      {t("Text Color")}
                     </label>
                     <input
                       class="form-control form-input color-picker"
@@ -137,7 +138,7 @@ const QR = () => {
                       name="textColor"
                       value={fieldObj.textColor}
                       onChange={(e) => handleChange(e, "textColor")}
-                      placeholder="Enter text color"
+                      placeholder={t("Enter text color")}
                     />
                   </div>
                 </div>
@@ -145,7 +146,7 @@ const QR = () => {
                  
                 <div class="form-group mb-5">
                     <label for="textsize" class="input-label mb-3">
-                      Text Size{" "}
+                      {t("Text Size")}{" "}
                     </label>
                     <input
                       class="form-control py-2 pl-3 form-input"
@@ -154,7 +155,7 @@ const QR = () => {
                       name="textSize"
                       value={fieldObj.textSize}
                       onChange={(e) => handleChange(e, "textSize")}
-                      placeholder="Enter text size"
+                      placeholder={t("Enter text size")}
                     />
                   </div>
                 </div>
@@ -163,7 +164,7 @@ const QR = () => {
                  
                 <div class="form-group mb-5">
                     <label for="textsize" class="input-label mb-3">
-                      Layout Size
+                      {t("Layout Size")}
                     </label>
                     <input
                       class="form-control py-2 pl-3 form-input"
@@ -174,7 +175,7 @@ const QR = () => {
                       max="750"
                       value={fieldObj.layoutSize}
                       onChange={(e) => parseInt(e.target.value) < 750 && handleChange(e, "layoutSize")}
-                      placeholder="Enter layout size"
+                      placeholder={t("Enter layout size")}
                     />
                   </div>
                 </div>
@@ -185,7 +186,7 @@ const QR = () => {
 
                 <div class="form-group mb-5">
                     <label for="bgcolor" class="input-label mb-3">
-                      Background Color
+                      {t("Background Color")}
                     </label>
                     <input
                       class="form-control form-input color-picker"
@@ -201,7 +202,7 @@ const QR = () => {
                   <div class="col-3 px-4">
                     <div class="form-group mb-5">
                       <label for="qrcolor" class="input-label mb-3">
-                        QR Color
+                        {t("QR Color")}
                       </label>
                       <input
                         class="form-control form-input color-picker"
@@ -216,7 +217,7 @@ const QR = () => {
                   <div class="col-5 px-4">
                     <div class="form-group mb-5">
                       <label for="qrcolor" class="input-label mb-3">
-                        QR Background Color
+                        {t("QR Background Color")}
                       </label>
                       <input
                         class="form-control form-input color-picker"
@@ -231,7 +232,7 @@ const QR = () => {
               </div>
               <div class="form-group d-flex justify-content-center mt-4">
                 <button type="button" class="btn update-btn">
-                  GENERATE QR
+                  {t("GENERATE QR")}
                 </button>
               </div>
             </div>
@@ -271,7 +272,7 @@ const QR = () => {
                           fontSize: parseInt(fieldObj.textSize),
                         }}
                       >
-                        Table Number : {fieldObj.tableNo}
+                        {t("Table Number")} : {fieldObj.tableNo}
                       </div>
                     )}
                   </div>
@@ -284,7 +285,7 @@ const QR = () => {
                     onClick={downloadImage}
                     class="btn update-btn"
                   >
-                    DOWNLOAD QR
+                    {t("DOWNLOAD QR")}
                   </button>}
                 </div>
               </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "src/utils/language";
 import "./detail.scss";
 const Detail = (props) => {
   const getSingleProductCount = (finalProduct) => {
@@ -23,13 +24,13 @@ const Detail = (props) => {
     <div className="row justify-content-center order">
       <div className="col-12 col-sm-12 py-3 order-details-container">
         <div className="row py-4">
-          <div className="col-2 text-center order-col-heading">Quantity</div>
+          <div className="col-2 text-center order-col-heading">{t("Quantity")}</div>
 
-          <div className="col-3 text-center order-col-heading">Dish</div>
+          <div className="col-3 text-center order-col-heading">{t("Dish")}</div>
 
-          <div className="col-5 text-center order-col-heading">Addons</div>
+          <div className="col-5 text-center order-col-heading">{t("Addons")}</div>
 
-          <div className="col-2 text-center order-col-heading">Price</div>
+          <div className="col-2 text-center order-col-heading">{t("Price")}</div>
         </div>
         {props.productDetail &&
           Object.keys(props.productDetail.products).map((itm) =>
@@ -40,7 +41,7 @@ const Detail = (props) => {
                 </div>
 
                 <div className="col-3 text-center order-col-value">
-                  {props.productDetail.products[itm][item].title}
+                  {localStorage.getItem("language") == "en" ?  props.productDetail.products[itm][item].title : props.productDetail.products[itm][item].titleAr}
                 </div>
 
                 <div className="col-5 text-center order-col-value">
@@ -52,7 +53,7 @@ const Detail = (props) => {
                       <>
                         {data} :{" "}
                         {props.productDetail.products[itm][item].modifiers[data]
-                          .map((dta) => dta.title)
+                          .map((dta) => localStorage.getItem("language") == "en" ? dta.title : dta.titleAr)
                           .join(", ")}
                         ,{" "}
                       </>
@@ -75,7 +76,7 @@ const Detail = (props) => {
 
           <div class="col-8 text-center order-col-value"></div>
 
-          <div class="col-2 text-right order-col-value">Sub Total</div>
+          <div class="col-2 text-right order-col-value">{t("Sub Total")}</div>
 
           <div class="col-2 text-center ">
             SR {props.productDetail.subTotalAmount}
@@ -86,7 +87,7 @@ const Detail = (props) => {
 
           <div class="col-8 text-center order-col-value"></div>
 
-          <div class="col-2 text-right order-col-value">Tax</div>
+          <div class="col-2 text-right order-col-value">{t("Tax")}</div>
 
           <div class="col-2 text-center ">
             SR {props.productDetail.tax}
@@ -96,19 +97,19 @@ const Detail = (props) => {
         <div class="row py-4">
           <div class="col-8 text-center order-col-value"></div>
 
-          <div class="col-2 text-right order-col-value"><b>Total</b></div>
+          <div class="col-2 text-right order-col-value"><b>{t("Total")}</b></div>
 
           <div class="col-2 text-center order-col-total">
             SR {props.productDetail.totalAmount}
           </div>
         </div>
 
-        <div className="mb-2 order-last-heading px-3">Payment Method</div>
+        <div className="mb-2 order-last-heading px-3">{t("Payment Method")}</div>
         <div className="order-last-value px-3 mb-4">
           {props.productDetail.paymentType}
         </div>
 
-        {props.productDetail.orderNote && <div className="mb-2 order-last-heading px-3">Comments</div>}
+        {props.productDetail.orderNote && <div className="mb-2 order-last-heading px-3">{t("Comments")}</div>}
         <div className="order-last-value px-3 mb-4">
           {props.productDetail.orderNote}
         </div>

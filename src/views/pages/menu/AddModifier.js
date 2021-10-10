@@ -36,6 +36,7 @@ import "./style/addModifier.scss";
 import CreatableSelect from "react-select/creatable";
 import { BASE_URL } from "src/API/config";
 import items from "./items";
+import { t } from "src/utils/language";
 
 const defaultProps = {
   fieldObj: {
@@ -59,12 +60,12 @@ const AddModifier = (props) => {
   const [price, setPrice] = useState(0);
   const [showMin , setShowMin] = useState(0);
   const [errorObj, setErrorObj] = useState({
-    name: { error: true, msg: "It should be valid" },
-    nameAr: { error: true, msg: "It should be valid" },
-    isRequired: { error: true, msg: "It should be valid" },
-    min: { error: true, msg: "It should be valid" },
-    max: { error: true, msg: "It should be valid" },
-    modifiers: { error: true, msg: "It should be valid" },
+    name: { error: true, msg: t("It should be valid") },
+    nameAr: { error: true, msg: t("It should be valid") },
+    isRequired: { error: true, msg: t("It should be valid") },
+    min: { error: true, msg: t("It should be valid") },
+    max: { error: true, msg: t("It should be valid") },
+    modifiers: { error: true, msg: t("It should be valid") },
   });
   // useEffect(() => {
   //   setfieldObj(defaultProps.fieldObj)
@@ -211,7 +212,7 @@ const AddModifier = (props) => {
                   <CCol sm="6">
                     <CFormGroup className="form-group mb-4 px-2">
                       <CLabel className="input-label" htmlFor="name">
-                        Name *
+                        {t("Name")} *
                       </CLabel>
                       <CInput
                         className="form-control py-3 pl-3 form-input"
@@ -219,7 +220,7 @@ const AddModifier = (props) => {
                         name="name"
                         value={fieldObj.name}
                         onChange={(e) => handleChange(e, "name")}
-                        placeholder="Enter name"
+                        placeholder={t("Enter name")}
                       />
                       {!errorObj.name.error && (
                         <CFormText className="help-block error">
@@ -231,14 +232,14 @@ const AddModifier = (props) => {
                   <CCol sm="6">
                     <CFormGroup className="form-group mb-4 px-2">
                       <CLabel className="input-label" htmlFor="nameAr">
-                        Name (Arabic) *{" "}
+                        {t("Name (Arabic)")} *{" "}
                       </CLabel>
                       <CInput
                         id="nameAr"
                         name="nameAr"
                         value={fieldObj.nameAr}
                         onChange={(e) => handleChange(e, "nameAr")}
-                        placeholder="Enter name (arabic)"
+                        placeholder={t("Enter name (arabic)")}
                         className="form-control py-3 pl-3 form-input"
                       />
                       {!errorObj.nameAr.error && (
@@ -252,7 +253,7 @@ const AddModifier = (props) => {
 
                 <div class="form-group mb-0 px-2">
                   <label for="modifier-require" class="input-label">
-                    Is this required ?
+                    {t("Is this required ?")}
                   </label>
                 </div>
 
@@ -272,7 +273,7 @@ const AddModifier = (props) => {
                           class="custom-control-label"
                           for="modifier-require-true"
                         >
-                          required
+                          {t("required")}
                         </label>
                       </div>
                     </div>
@@ -290,7 +291,7 @@ const AddModifier = (props) => {
                           class="custom-control-label"
                           for="modifier-require-false"
                         >
-                          optional
+                          {t("optional")}
                         </label>
                       </div>
                     </div>
@@ -299,7 +300,7 @@ const AddModifier = (props) => {
                 <div class="form-row px-2">
                   <div class="form-group pl-1 mb-0">
                     <label for="modifier-items-range" class="input-label pl-0">
-                      How many items can the customer choose?
+                      {t("How many items can the customer choose?")}
                     </label>
                   </div>
                 </div>
@@ -315,7 +316,7 @@ const AddModifier = (props) => {
                   {fieldObj.isRequired && <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
                     
                     <select class="form-select form-control form-input form-input-min" placeholder="Select Min" value={fieldObj.min} onChange={(e) => handleChange(e, "min")} aria-label="Default select example">
-                      <option >Select minimum</option>
+                      <option >{t("Select minimum")}</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -338,7 +339,7 @@ const AddModifier = (props) => {
                   </div>}
                   <div class="col-4 col-sm-4 col-md-4 col-lg-4 mb-4">
                   <select class="form-select form-control form-input form-input-min" placeholder="Select Max" value={fieldObj.max} onChange={(e) => handleChange(e, "max")} aria-label="Default select example">
-                      <option >Select maximum</option>
+                      <option >{t("Select maximum")}</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -366,22 +367,22 @@ const AddModifier = (props) => {
                   <div class="row">
                     <div class="col-md-4">
                       <div class="row justify-content-md-center px-4 py-3 text-body text-center modifier-heading-last">
-                        Name (AR)
+                        {t("Name (AR)")}
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row justify-content-md-center px-4 py-3 text-body text-center modifier-heading-last">
-                        Name (EN)
+                        {t("Name (EN)")}
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="row justify-content-md-center px-4 py-3 text-body text-center modifier-heading-last">
-                        Price
+                        {t("Price")}
                       </div>
                     </div>
                     <div class="col-md-1">
                       <div class="row justify-content-md-center px-4 py-3 text-body text-center modifier-heading-last">
-                        Action
+                        {t("Action")}
                       </div>
                     </div>
                   </div>
@@ -458,7 +459,7 @@ const AddModifier = (props) => {
                           onClick={handleSubmit}
                           style={{ marginTop: 22, cursor: "pointer" }}
                         >
-                          Add
+                          {t("Add")}
                           {/* <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                             </div>
                             <div><img

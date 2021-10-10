@@ -43,6 +43,7 @@ const App = (props) => {
 
     useEffect(() => {
       setLanguage(props.language)
+      document.dir=props.language == "ar" ? "rtl" : "ltr";
     }, [props.language]);
 
     useEffect(() => {

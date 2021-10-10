@@ -23,6 +23,7 @@ import Setting from "./setting";
 import menuIcon from "./images/menu.svg";
 import crossIcon from "./images/cross.svg";
 import ConfirmPopup from "src/views/components/confirmPopup";
+import { t } from "src/utils/language";
 
 const Menu = (props) => {
   const [addOpen, setAddOpen] = useState(false);
@@ -126,7 +127,7 @@ const Menu = (props) => {
                             />
                           </div>
                           <div class="col-8 item-dropdown-text px-1">
-                            Delete Item
+                            {t("Delete Item")}
                           </div>
                         </div>
                       </div>
@@ -187,13 +188,13 @@ const Menu = (props) => {
           <img src={Add} alt="" style={{ width: 150 }} class="add-menu-icon" />
         </div>
         <div class="row add-menu-text mt-4 text-center justify-content-center">
-          Add Menu
+          {t("Add Menu")}
         </div>
       </div>
       {addOpen && (
         <CModal show={addOpen} onClose={setAddOpen}>
           <CModalHeader closeButton>
-            <div class="col add-dish-header">Add Menu</div>
+            <div class="col add-dish-header">{t("Add Menu")}</div>
           </CModalHeader>
           <CModalBody>
             <AddMenu />
@@ -204,7 +205,7 @@ const Menu = (props) => {
         <CModal show={openSetting} onClose={setSetting}>
           <CModalHeader closeButton>
             <div class="col add-dish-header">
-              Menu Settings ({openSetting.name})
+              {t("Menu Settings")} ({openSetting.name})
             </div>
           </CModalHeader>
           <CModalBody>

@@ -12,6 +12,7 @@ import settings from "./images/settings.svg";
 import moment from 'moment';
 import "./index.scss";
 import Detail from "./detail";
+import { t } from "src/utils/language";
 
 const statusObj = {
   "Pending" : {current: "Accept", next : "Accepted" , class: "item-view-btn-accept"},
@@ -65,7 +66,7 @@ const OrderList = (props) => {
     <div className="row">
       <div className="col-12 px-5">
         <div className="row menu-header">
-          <div className="col-6 menu-heading">Orders</div>
+          <div className="col-6 menu-heading">{t("Orders")}</div>
         </div>
 
         <div className="row menu-display-container bg-white mt-4">
@@ -73,28 +74,28 @@ const OrderList = (props) => {
             <table className="table table-borderless">
               <tr className="menu-display-header pt-3">
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Date/Time
+                  {("Date/Time")}
                 </th>
                 <th className="col-1 text-right menu-display-heading py-4">
-                  Type
+                  {t("Type")}
                 </th>
                 <th className="col-2 text-center menu-display-heading py-4">
-                  Order Number
+                  {t("Order Number")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Table No
+                  {("Table No")}
                 </th>
                 <th className="col-2 text-center menu-display-heading py-4">
-                  Payment Type
+                  {t("Payment Type")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Status
+                  {t("Status")}
                 </th>
                 <th className="col-1 text-center menu-display-heading py-4">
-                  Pay
+                  {t("Pay")}
                 </th>
-                <th className="col-1 text-center menu-display-heading py-4">Details</th>
-                <th className="col-1 text-center menu-display-heading py-4">Status</th>
+                <th className="col-1 text-center menu-display-heading py-4">{t("Details")}</th>
+                <th className="col-1 text-center menu-display-heading py-4">{t("Status")}</th>
                 <th></th>
               </tr>
             {orderList &&
@@ -104,7 +105,7 @@ const OrderList = (props) => {
                   <td className="col-1 text-center test py-4">
                      {moment(itm.createdAt).format("DD/MM/YYYY")} {moment(itm.createdAt).format("HH:mm")}
                   </td>
-                  <td className="col-1 text-right test py-4">{itm.orderType}</td>
+                  <td className="col-1 text-right test py-4">{t(itm.orderType)}</td>
                   <td className="col-2 text-center test py-4">{itm.orderNo}</td>
                   <td className="col-1 text-center test py-4">{itm.tableNo || "NA"}</td>
                   <td className="col-2 text-center test py-4">{itm.paymentType}</td>
@@ -116,7 +117,7 @@ const OrderList = (props) => {
                       className="btn item-view-btn item-view-btn-details"
                       onClick={() =>setShowOrderDetail(itm)}
                     >
-                      Details
+                      {t("Details")}
                     </button>
                   </td>
                   <td className="col-1 px-4">
@@ -125,7 +126,7 @@ const OrderList = (props) => {
                       onClick={() => handleStatusChange(itm.id , statusObj[itm.status])}
                       className={`btn item-view-btn ${statusObj[itm.status]?.class}`}
                     >
-                      {statusObj[itm.status]?.current}
+                      {t(statusObj[itm.status]?.current)}
                     </button>}
                   </td>
 
@@ -144,7 +145,7 @@ const OrderList = (props) => {
                                 />
                               </div>
                               <div className="col-8 item-dropdown-text px-1">
-                                Cancel Order
+                                {t("Cancel Order")}
                               </div>
                             </div>
                           </div>

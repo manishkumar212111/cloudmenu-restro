@@ -28,6 +28,7 @@ import Setting from "./setting";
 import "./style/index.scss";
 import SettingIcon from "./images/settings.svg";
 import Menu from "./menu";
+import { t } from "src/utils/language";
 
 const Index = (props) => {
   const [activeTab, setActiveTab] = useState(0);
@@ -71,7 +72,7 @@ const Index = (props) => {
     <div class="row">
       <div class="col-12 px-5">
         <div class="row menu-header">
-          <div class="col-6 menu-heading">Menu Management</div>
+          <div class="col-6 menu-heading">{t("Menu Management")}</div>
           {/* <div
             class="col-6 menu-settings-container"
             onClick={() => setViewOpen(true)}
@@ -87,7 +88,7 @@ const Index = (props) => {
             <div
               class={`menu-tab py-2 ${activeTab == 0 ? "menu-tab-active" : ""}`}
             >
-              Menus
+              {t("Menus")}
             </div>
           </div>
           <div
@@ -97,7 +98,7 @@ const Index = (props) => {
             <div
               class={`menu-tab py-2 ${activeTab == 1 ? "menu-tab-active" : ""}`}
             >
-              Categories and items
+              {t("Categories and items")}
             </div>
           </div>
           <div
@@ -107,7 +108,7 @@ const Index = (props) => {
             <div
               class={`menu-tab py-2 ${activeTab == 2 ? "menu-tab-active" : ""}`}
             >
-              Modifiers
+              {t("Modifiers")}
             </div>
           </div>
         </div>

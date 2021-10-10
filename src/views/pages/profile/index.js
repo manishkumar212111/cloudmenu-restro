@@ -34,6 +34,7 @@ import { Draggable } from "react-drag-reorder";
 
 import CIcon from "@coreui/icons-react";
 import { BASE_URL } from "src/API/config";
+import { t } from "src/utils/language";
 
 const defaultProps = {
   fieldObj: {
@@ -63,17 +64,17 @@ const Profile = (props) => {
 
   const [fieldObj, setfieldObj] = useState(defaultProps.fieldObj);
   const [errorObj, setErrorObj] = useState({
-    name: { error: true, msg: "It should be valid" },
-    manager_name: { error: true, msg: "It should be valid" },
-    coverImage: { error: true, msg: "It should be valid" },
-    full_address: { error: true, msg: "It should be valid" },
-    mobile: { error: true, msg: "It should be valid" },
-    email: { error: true, msg: "It should be valid" },
-    ccode: { error: true, msg: "It should be valid" },
-    city: { error: true, msg: "It should be valid" },
-    state: { error: true, msg: "It should be valid" },
-    password: { error: true, msg: "It should be valid" },
-    businessDoc: { error: true, msg: "It should be valid" },
+    name: { error: true, msg: t("It should be valid") },
+    manager_name: { error: true, msg: t("It should be valid") },
+    coverImage: { error: true, msg: t("It should be valid") },
+    full_address: { error: true, msg: t("It should be valid") },
+    mobile: { error: true, msg: t("It should be valid") },
+    email: { error: true, msg: t("It should be valid") },
+    ccode: { error: true, msg: t("It should be valid") },
+    city: { error: true, msg: t("It should be valid") },
+    state: { error: true, msg: t("It should be valid") },
+    password: { error: true, msg: t("It should be valid") },
+    businessDoc: { error: true, msg: t("It should be valid") },
   });
   useEffect(() => {
     setIsEdit(
@@ -202,13 +203,12 @@ const Profile = (props) => {
           <CCol xs="8" sm="8" style={{ marginLeft: "auto",marginRight: "auto", marginBottom:"auto", marginTop: "10%" }}>
             <CCard>
               <CCardHeader>
-                Details Submission
+                {t("Details Submission")}
                 {/* <small> Form</small> */}
               </CCardHeader>
               <CCardBody>
-                Your restaurant successfully submitted for verification, once
-                verified you can start adding menus and start selling.<br></br>
-                For more information contact @ admin@cloudmenu.sa OR +966-542909820
+                {t("Your restaurant successfully submitted for verification, once verified you can start adding menus and start selling.")}<br></br>
+                {t("For more information contact @ admin@cloudmenu.sa OR +966-542909820")}
               </CCardBody>
             </CCard>
           </CCol>
@@ -223,13 +223,13 @@ const Profile = (props) => {
           <div class="row px-5 restaurant-details-container d-flex">
             <div class="col-7 restaurant-details-form-container py-3 bg-white">
               <div class="row restaurant-details-form-heading py-3 px-4">
-                Restaurant Onboarding
+                {t("Restaurant Onboarding")}
               </div>
               <div class="row py-4">
                 <div class="col-6 px-4">
                   <div class="form-group mb-4">
                     <label for="restaurant-name-ar" class="input-label">
-                      Restaurant Name
+                      {t("Restaurant Name")}
                     </label>
                     <input
                       type="text"
@@ -238,7 +238,7 @@ const Profile = (props) => {
                       name="name"
                       value={fieldObj.name}
                       onChange={(e) => handleChange(e, "name")}
-                      placeholder="enter restaurant name arabic"
+                      placeholder={t("Enter restaurant name")}
                     />
                     {!errorObj.name.error && (
                       <CFormText className="help-block error">
@@ -248,7 +248,7 @@ const Profile = (props) => {
                   </div>
                   <CFormGroup class="form-group mb-4">
                     <CLabel htmlFor="manager_name" class="input-label">
-                      Manager Name{" "}
+                      {t("Manager Name")}
                     </CLabel>
                     <CInput
                       id="manager_name"
@@ -256,7 +256,7 @@ const Profile = (props) => {
                       name="manager_name"
                       value={fieldObj.manager_name}
                       onChange={(e) => handleChange(e, "manager_name")}
-                      placeholder="Enter Manager name"
+                      placeholder={t("Enter Manager name")}
                     />
                     {!errorObj.manager_name.error && (
                       <CFormText className="help-block error">
@@ -266,7 +266,7 @@ const Profile = (props) => {
                   </CFormGroup>
                   <div class="form-group mb-4">
                     <CLabel htmlFor="mobile" class="input-label">
-                      Mobile No.{" "}
+                      {t("Mobile No.")}
                     </CLabel>
                     <CInput
                       id="mobile"
@@ -276,7 +276,7 @@ const Profile = (props) => {
                       onKeyPress={(e) => validateUtility.stopDefault(e)}
                       value={fieldObj.mobile}
                       onChange={(e) => handleChange(e, "mobile")}
-                      placeholder="Enter Mobile No."
+                      placeholder={t("Enter Mobile No.")}
                     />
                     {!errorObj.mobile.error && (
                       <CFormText className="help-block error">
@@ -287,7 +287,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <CLabel htmlFor="full_address" class="input-label">
-                      Full Address *
+                      {t("Full Address")} *
                     </CLabel>
                     <CInput
                       id="full_address"
@@ -295,7 +295,7 @@ const Profile = (props) => {
                       name="full_address"
                       value={fieldObj.full_address}
                       onChange={(e) => handleChange(e, "full_address")}
-                      placeholder="Enter Full address"
+                      placeholder={t("Enter Full address")}
                     />
                     {!errorObj.full_address.error && (
                       <CFormText className="help-block error">
@@ -306,7 +306,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <CLabel htmlFor="city" class="input-label">
-                      City *{" "}
+                      {t("City")} *{" "}
                     </CLabel>
                     <CInput
                       id="city"
@@ -314,7 +314,7 @@ const Profile = (props) => {
                       class="form-control py-2 pl-3 form-input"
                       value={fieldObj.city}
                       onChange={(e) => handleChange(e, "city")}
-                      placeholder="Enter city name"
+                      placeholder={t("Enter city name")}
                     />
                     {!errorObj.city.error && (
                       <CFormText className="help-block error">
@@ -325,7 +325,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <CLabel htmlFor="state" class="input-label">
-                      State *{" "}
+                      {t("State")} *{" "}
                     </CLabel>
                     <CInput
                       id="state"
@@ -333,7 +333,7 @@ const Profile = (props) => {
                       class="form-control py-2 pl-3 form-input"
                       value={fieldObj.state}
                       onChange={(e) => handleChange(e, "state")}
-                      placeholder="Enter State name"
+                      placeholder={t("Enter State name")}
                     />
                     {!errorObj.state.error && (
                       <CFormText className="help-block error">
@@ -344,7 +344,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <CLabel htmlFor="email" class="input-label">
-                      Email *{" "}
+                      {t("Email")} *{" "}
                     </CLabel>
                     <CInput
                       type="email"
@@ -353,7 +353,7 @@ const Profile = (props) => {
                       class="form-control py-2 pl-3 form-input"
                       value={fieldObj.email}
                       onChange={(e) => handleChange(e, "email")}
-                      placeholder="Email"
+                      placeholder={t("Email")}
                     />
                     {!errorObj.email.error && (
                       <CFormText className="help-block error">
@@ -370,7 +370,7 @@ const Profile = (props) => {
                       for="restaurantLogoUpload"
                       class="form-label input-label"
                     >
-                      Upload Cover Image *
+                      {t("Upload Cover Image")} *
                     </label>
                     <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
                       <input
@@ -409,7 +409,7 @@ const Profile = (props) => {
                       for="restaurantLogoUpload"
                       class="form-label input-label"
                     >
-                      Upload Business Document *
+                      {t("Upload Business Document")} *
                     </label>
                     <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
                       <input
@@ -429,7 +429,7 @@ const Profile = (props) => {
                   </div>
                   <div class="form-group mb-4">
                     <CLabel htmlFor="full_address" class="input-label">
-                      Password *
+                      {t("Password")} *
                     </CLabel>
                     <CInput
                       id="full_address"
@@ -438,7 +438,7 @@ const Profile = (props) => {
                       name="password"
                       value={fieldObj.password}
                       onChange={(e) => handleChange(e, "password")}
-                      placeholder="Enter Password"
+                      placeholder={t("Enter Password")}
                     />
                     {!errorObj.password.error && (
                       <CFormText className="help-block error">
@@ -456,7 +456,7 @@ const Profile = (props) => {
                   onClick={handleClick}
                   class="btn update-btn"
                 >
-                  UPDATE
+                  {t("UPDATE")}
                 </button>
               </div>
             </div>

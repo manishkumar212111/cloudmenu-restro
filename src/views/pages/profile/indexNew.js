@@ -35,6 +35,7 @@ import { Draggable } from "react-drag-reorder";
 
 import CIcon from "@coreui/icons-react";
 import { BASE_URL } from "src/API/config";
+import { t } from "src/utils/language";
 
 const defaultProps = {
   fieldObj: {
@@ -65,18 +66,18 @@ const Profile = (props) => {
   const [plan, setPlan] = useState({});
   const [upgradeMessage, setUpgradeMessage] = useState(false);  
   const [errorObj, setErrorObj] = useState({
-    name: { error: true, msg: "It should be valid" },
-    nameAr: { error: true, msg: "It should be valid" },
-    noOfTable: { error: true, msg: "It should be valid" },
-    coverImage: { error: true, msg: "It should be valid" },
-    state: { error: true, msg: "It should be valid" },
-    city: { error: true, msg: "It should be valid" },
-    currency: { error: true, msg: "It should be valid" },
-    taxStatus: { error: true, msg: "It should be valid" },
-    taxRate: { error: true, msg: "It should be valid" },
-    bankDetail: { error: true, msg: "It should be valid" },
-    logoImg: { error: true, msg: "It should be valid" },
-    bannerImg: { error: true, msg: "It should be valid" },
+    name: { error: true, msg: t("It should be valid") },
+    nameAr: { error: true, msg: t("It should be valid") },
+    noOfTable: { error: true, msg: t("It should be valid") },
+    coverImage: { error: true, msg: t("It should be valid") },
+    state: { error: true, msg: t("It should be valid") },
+    city: { error: true, msg: t("It should be valid") },
+    currency: { error: true, msg: t("It should be valid") },
+    taxStatus: { error: true, msg: t("It should be valid") },
+    taxRate: { error: true, msg: t("It should be valid") },
+    bankDetail: { error: true, msg: t("It should be valid") },
+    logoImg: { error: true, msg: t("It should be valid") },
+    bannerImg: { error: true, msg: t("It should be valid") },
   });
   useEffect(() => {
     setIsEdit(
@@ -245,12 +246,11 @@ const Profile = (props) => {
           <CCol xs="12" sm="12" style={{ "margin-top": "10px" }}>
             <CCard>
               <CCardHeader>
-                Details Submission
+                {t("Details Submission")}
                 {/* <small> Form</small> */}
               </CCardHeader>
               <CCardBody>
-                Your restaurant successfully submitted for verification, once
-                verified you can start adding menus and start selling
+                Your restaurant successfully submitted for verification, once verified you can start adding menus and start selling
               </CCardBody>
             </CCard>
           </CCol>
@@ -265,14 +265,14 @@ const Profile = (props) => {
           <div class="row px-5 px-xl-2 restaurant-details-container1 d-flex">
             <div class="col-12 col-xl-6 restaurant-details-form-container py-3 mb-5 mb-xl-0 bg-white">
               <div class="row restaurant-details-form-heading py-3 px-4">
-                Restaurant Details
+                {t("Restaurant Details")}
               </div>
 
               <div class="row py-4">
                 <div class="col-12 col-md-6 px-4">
                   <div class="form-group mb-4">
                     <label for="restaurant-name-ar" class="input-label">
-                      Restaurant Name EN
+                      {t("Restaurant Name EN")}
                     </label>
                     <input
                       type="text"
@@ -281,7 +281,7 @@ const Profile = (props) => {
                       name="name"
                       value={fieldObj.name}
                       onChange={(e) => handleChange(e, "name")}
-                      placeholder="Enter restaurant EN"
+                      placeholder={t("Restaurant Name EN")}
                     />
                     {!errorObj.name.error && (
                       <CFormText className="help-block error">
@@ -292,7 +292,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <label for="restaurant-name-en" class="input-label">
-                      Restaurant Name AR
+                      {t("Restaurant Name AR")}
                     </label>
                     <input
                       type="text"
@@ -301,7 +301,7 @@ const Profile = (props) => {
                       name="nameAr"
                       value={fieldObj.nameAr}
                       onChange={(e) => handleChange(e, "nameAr")}
-                      placeholder="Enter restaurant AR"
+                      placeholder={t("Enter restaurant AR")}
                     />
                     {!errorObj.nameAr.error && (
                       <CFormText className="help-block error">
@@ -312,7 +312,7 @@ const Profile = (props) => {
 
                   <div class="form-group mb-4">
                     <label for="table-no" class="input-label">
-                      Number of Tables
+                      {t("Number of Tables")}
                     </label>
                     <input
                       type="text"
@@ -335,7 +335,7 @@ const Profile = (props) => {
                       for="restaurantLogoUpload"
                       class="form-label input-label"
                     >
-                      Upload Logo
+                      {t("Upload Logo")}
                     </label>
                     <div class="imageUploadInput-container">
                       <input
@@ -371,7 +371,7 @@ const Profile = (props) => {
                       for="restaurantBannerUpload"
                       class="form-label input-label"
                     >
-                      Upload Banner
+                      {t("Upload Banner")}
                     </label>
                     <div class="imageUploadInput-container">
                       <input
@@ -410,7 +410,7 @@ const Profile = (props) => {
                   <div class="form-group">
                     <div class="form-group mb-4">
                       <label for="table-no" class="input-label">
-                        State
+                        {t("State")}
                       </label>
                       <input
                         type="text"
@@ -419,7 +419,7 @@ const Profile = (props) => {
                         name="state"
                         value={fieldObj.state}
                         onChange={(e) => handleChange(e, "state")}
-                        placeholder="State"
+                        placeholder={t("State")}
                       />
                       {!errorObj.state.error && (
                         <CFormText className="help-block error">
@@ -430,7 +430,7 @@ const Profile = (props) => {
                   </div>
                   <div class="form-group mb-5">
                     <label for="currency" class="input-label">
-                      Currency
+                      {t("Currency")}
                     </label>
                     <input
                       type="text"
@@ -439,7 +439,7 @@ const Profile = (props) => {
                       name="currency"
                       value={fieldObj.currency}
                       onChange={(e) => handleChange(e, "currency")}
-                      placeholder="add currency"
+                      placeholder={t("Add currency")}
                     />
                     {!errorObj.currency.error && (
                       <CFormText className="help-block error">
@@ -453,7 +453,7 @@ const Profile = (props) => {
                         class="form-check-label form-check-switch-label"
                         for="flexSwitchCheckDefault"
                       >
-                        Activate Tax
+                        {t("Activate Tax")}
                       </label>
                     </div>
                     <div class="col-4 d-flex justify-content-end px-4">
@@ -479,7 +479,7 @@ const Profile = (props) => {
                     <div class="mb-4">
                       <div class="form-group mb-4">
                         <label for="table-no" class="input-label">
-                          City
+                          {t("City")}
                         </label>
                         <input
                           type="text"
@@ -489,7 +489,7 @@ const Profile = (props) => {
                           onChange={(e) => handleChange(e, "city")}
                           class="form-control py-2 pl-3 form-input"
                           id="city"
-                          placeholder="Enter City"
+                          placeholder={t("Enter City")}
                         />
                         {!errorObj.city.error && (
                           <CFormText className="help-block error">
@@ -501,7 +501,7 @@ const Profile = (props) => {
                   </div>
                   <div class="form-group mb-4">
                     <label for="vat" class="input-label">
-                      Tax - VAT %
+                      {t("Tax - VAT %")}
                     </label>
                     <input
                       type="number"
@@ -510,7 +510,7 @@ const Profile = (props) => {
                       name="taxRate"
                       value={fieldObj.taxRate}
                       onChange={(e) => handleChange(e, "taxRate")}
-                      placeholder="add vat % ex - 15"
+                      placeholder={t("Add vat % ex - 15")}
                     />
                     {!errorObj.taxRate.error && (
                       <CFormText className="help-block error">
@@ -527,38 +527,38 @@ const Profile = (props) => {
                   onClick={handleClick}
                   class="btn update-btn"
                 >
-                  UPDATE
+                  {t("UPDATE")}
                 </button>
               </div>
             </div>
             <div class="col-12 col-xl-5 restaurant-details-right-container mb-5 mb-xl-0">
               <div class="row restaurant-details-right-container-plan bg-white py-3">
                 <div class="restaurant-details-form-heading py-3 px-4">
-                  My Plan
+                  {t("My Plan")}
                 </div>
                   <div class="plan-name text-center py-2">{plan?.name}</div>
                   <div class="plan-date text-center py-3">
-                    Ending on 24/05/2022
+                    {t("Ending on")} 24/05/2022
                   </div>
                   <div class="form-group d-flex justify-content-center mt-4">
                     <button type="button" class="btn update-btn" onClick={handleUpgrade}>
-                      UPGRADE
+                      {t("UPGRADE")}
                     </button><br></br>
 
                   </div>
-                  {upgradeMessage && <div style={{color: "green", textAlign: "center"}}> Your request have been submitted, Soon you will get a call.</div>}
+                  {upgradeMessage && <div style={{color: "green", textAlign: "center"}}> {t("Your request have been submitted, Soon you will get a call.")}</div>}
 
               </div>
 
               <div class="row restaurant-details-right-container-plan bg-white py-3 mt-5">
                 <div class="restaurant-details-form-heading py-3 px-4">
-                  Bank Details
+                  {t("Bank Details")}
                 </div>
                 <form action="" class="row py-4">
                   <div class="col-12 col-md-6 px-4">
                     <div class="form-group mb-4">
                       <label for="bank-name" class="input-label">
-                        Bank Name
+                        {t("Bank Name")}
                       </label>
                       <input
                         type="text"
@@ -567,14 +567,14 @@ const Profile = (props) => {
                         name="bankName"
                         value={fieldObj.bankDetail.bankName}
                         onChange={(e) => handleBankChange(e, "bankName")}
-                        placeholder="add bank name"
+                        placeholder={t("Add bank name")}
                       />
                       {/* {!errorObj.name.error && <CFormText className="help-block error">{errorObj.name.msg}</CFormText>} */}
                     </div>
 
                     <div class="form-group mb-4">
                       <label for="iban" class="input-label">
-                        IBAN
+                        {t("IBAN")}
                       </label>
                       <input
                         type="text"
@@ -583,7 +583,7 @@ const Profile = (props) => {
                         name="IBAN"
                         value={fieldObj.bankDetail.IBAN}
                         onChange={(e) => handleBankChange(e, "IBAN")}
-                        placeholder="loan information"
+                        placeholder={t("Loan information")}
                       />
                       {/* {!errorObj.name.error && <CFormText className="help-block error">{errorObj.name.msg}</CFormText>} */}
                     </div>
@@ -591,7 +591,7 @@ const Profile = (props) => {
                   <div class="col-12 col-md-6 px-4">
                     <div class="form-group mb-4">
                       <label for="company" class="input-label">
-                        Company Name
+                        {t("Company Name")}
                       </label>
                       <input
                         type="text"
@@ -600,7 +600,7 @@ const Profile = (props) => {
                         name="companyName"
                         value={fieldObj.bankDetail.companyName}
                         onChange={(e) => handleBankChange(e, "companyName")}
-                        placeholder="add company name"
+                        placeholder={t("Add company name")}
                       />
                     </div>
                   </div>

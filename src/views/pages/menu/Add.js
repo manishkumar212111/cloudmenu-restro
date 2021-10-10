@@ -48,6 +48,7 @@ import crossIcon from "./images/cross.svg";
 import ChooseModifers from "./chooseModifier";
 import DragAndDrop from "./DragAndDrop";
 import AddModifier from "./AddModifier";
+import { t } from "src/utils/language";
 const defaultProps = {
   fieldObj: {
     title: "",
@@ -72,15 +73,15 @@ const Add = (props) => {
   const [openAddModifier, setAddModifier] = useState(false);
   
   const [errorObj, setErrorObj] = useState({
-    title: { error: true, msg: "It should be valid" },
-    titleAr: { error: true, msg: "It should be valid" },
-    description: { error: true, msg: "It should be valid" },
-    descriptionAr: { error: true, msg: "It should be valid" },
-    sellingPrice: { error: true, msg: "It should be valid" },
-    sellingPriceAr: { error: true, msg: "It should be valid" },
+    title: { error: true, msg: t("It should be valid") },
+    titleAr: { error: true, msg: t("It should be valid") },
+    description: { error: true, msg: t("It should be valid") },
+    descriptionAr: { error: true, msg: t("It should be valid") },
+    sellingPrice: { error: true, msg: t("It should be valid") },
+    sellingPriceAr: { error: true, msg: t("It should be valid") },
     productImg: { error: true, msg: "Product Image is required" },
-    category: { error: true, msg: "It should be valid" },
-    calorie: { error: true, msg: "It should be valid" },
+    category: { error: true, msg: t("It should be valid") },
+    calorie: { error: true, msg: t("It should be valid") },
   });
 
   useEffect(() => {
@@ -287,7 +288,7 @@ const Add = (props) => {
                 >
                   <img src={dragIcon} className="drag-icon" />
                   <span onClick={() => setModifier(itm)}>
-                   {itm.name}
+                   {localStorage.getItem("language") == "en" ?  itm.name : itm.nameAr}
                   </span>
                   <img
                     onClick={() => handleDelete(index)}
@@ -320,13 +321,13 @@ const Add = (props) => {
               <CRow>
                 <CCol sm="6">
                   <CFormGroup>
-                    <CLabel htmlFor="title">Title *</CLabel>
+                    <CLabel htmlFor="title">{t("Title")} *</CLabel>
                     <CInput
                       id="title"
                       name="title"
                       value={fieldObj.title}
                       onChange={(e) => handleChange(e, "title")}
-                      placeholder="Enter title"
+                      placeholder={t("Enter title")}
                     />
                     {!errorObj.title.error && (
                       <CFormText className="help-block error">
@@ -336,13 +337,13 @@ const Add = (props) => {
                   </CFormGroup>
 
                   <CFormGroup>
-                    <CLabel htmlFor="titleAr">title (Arabic) * </CLabel>
+                    <CLabel htmlFor="titleAr">{t("title (Arabic)")} * </CLabel>
                     <CInput
                       id="titleAr"
                       name="titleAr"
                       value={fieldObj.titleAr}
                       onChange={(e) => handleChange(e, "titleAr")}
-                      placeholder="Enter title (arabic)"
+                      placeholder={t("Enter title (arabic)")}
                     />
                     {!errorObj.titleAr.error && (
                       <CFormText className="help-block error">
@@ -352,7 +353,7 @@ const Add = (props) => {
                   </CFormGroup>
 
                   <CFormGroup>
-                    <CLabel htmlFor="titleAr">Select Category * </CLabel>
+                    <CLabel htmlFor="titleAr">{t("Select Category")} * </CLabel>
                     <Select
                       name="interested_industries"
                       value={getSelectedCate()}
@@ -373,13 +374,13 @@ const Add = (props) => {
                   </CFormGroup>
 
                   <CFormGroup>
-                    <CLabel htmlFor="description">Description * </CLabel>
+                    <CLabel htmlFor="description">{t("Description")} * </CLabel>
                     <CTextarea
                       id="description"
                       name="description"
                       value={fieldObj.description}
                       onChange={(e) => handleChange(e, "description")}
-                      placeholder="Enter description"
+                      placeholder={t("Enter description")}
                     />
                     {!errorObj.description.error && (
                       <CFormText className="help-block error">
@@ -389,14 +390,14 @@ const Add = (props) => {
                   </CFormGroup>
                   <CFormGroup>
                     <CLabel htmlFor="descriptionAr">
-                      Description (Arabic) *{" "}
+                      {t("Description (Arabic)")} *{" "}
                     </CLabel>
                     <CTextarea
                       id="descriptionAr"
                       name="descriptionAr"
                       value={fieldObj.descriptionAr}
                       onChange={(e) => handleChange(e, "descriptionAr")}
-                      placeholder="Enter Description ( Arabic )"
+                      placeholder={t("Enter Description ( Arabic )")}
                     />
                     {!errorObj.descriptionAr.error && (
                       <CFormText className="help-block error">
@@ -407,14 +408,14 @@ const Add = (props) => {
                   <CRow>
                     <div className="col-6">
                     <CFormGroup>
-                      <CLabel htmlFor="sellingPrice">Price * </CLabel>
+                      <CLabel htmlFor="sellingPrice">{t("Price")} * </CLabel>
                       <CInput
                         type="number"
                         id="sellingPrice"
                         name="sellingPrice"
                         value={fieldObj.sellingPrice}
                         onChange={(e) => handleChange(e, "sellingPrice")}
-                        placeholder="Add dish price"
+                        placeholder={t("Add dish price")}
                       />
                       {!errorObj.sellingPrice.error && (
                         <CFormText className="help-block error">
@@ -425,14 +426,14 @@ const Add = (props) => {
                     </div>
                     <div className="col-6">      
                     <CFormGroup>
-                      <CLabel htmlFor="calorie">Calorie (per unit) </CLabel>
+                      <CLabel htmlFor="calorie">{t("Calorie (per unit)")} </CLabel>
                       <CInput
                         type="number"
                         id="calorie"
                         name="calorie"
                         value={fieldObj.calorie}
                         onChange={(e) => handleChange(e, "calorie")}
-                        placeholder="Add calories"
+                        placeholder={t("Add calories")}
                       />
                       {!errorObj.calorie.error && (
                         <CFormText className="help-block error">
@@ -458,7 +459,7 @@ const Add = (props) => {
                     )}
                   </CFormGroup> */}
                   <div class="form-group mb-4">
-                    <CLabel htmlFor="sellingPriceAr">Product Image *</CLabel>
+                    <CLabel htmlFor="sellingPriceAr">{t("Product Image")} *</CLabel>
                     <div class="col-lg-8 col-md-10 col-sm-11 col-11 px-0 imageUploadInput-container">
                       <input
                         class="form-control imageUploadInput"
@@ -493,9 +494,9 @@ const Add = (props) => {
                   </div>
                 </CCol>
                 <CCol sm="6">
-                  <p style={{ marginBottom : 24, fontSize: 18}}>MODIFIERS</p>
+                  <p style={{ marginBottom : 24, fontSize: 18}}>{t("MODIFIERS")}</p>
                   <CFormGroup>
-                    <CLabel htmlFor="modifierGroup">Add modifier group </CLabel>
+                    <CLabel htmlFor="modifierGroup">{t("Add modifier group")} </CLabel>
 
                     <Select
                       // isClearable
@@ -512,7 +513,7 @@ const Add = (props) => {
                   <div class="form-group px-4">
                       <div class="row">
                           <div style={{cursor: "pointer"}} onClick={() => setAddModifier(true)} class="d-flex justify-content-start dish-modifier-add-btn">
-                              + Add new modifier group
+                              {t("+ Add new modifier group")}
                           </div>
                       </div>
                   </div>
@@ -542,7 +543,7 @@ const Add = (props) => {
             onClose={setModifier}
           >
             <CModalHeader closeButton>
-              <div class="col add-dish-header">Customise Modifier</div>
+              <div class="col add-dish-header">{t("Customise Modifier")}</div>
             </CModalHeader>
             <CModalBody>
               <ChooseModifers
@@ -560,7 +561,7 @@ const Add = (props) => {
             onClose={setAddModifier}
           >
             <CModalHeader closeButton>
-              <div class="col add-dish-header">Add Modifier</div>
+              <div class="col add-dish-header">{t("Add Modifier")}</div>
             </CModalHeader>
             <CModalBody>
               <AddModifier /> 

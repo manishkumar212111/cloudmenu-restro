@@ -7,6 +7,7 @@ import validateUtility from "src/utils/ValidateUtility";
 import { BASE_URL } from "src/API/config";
 import { CFormText, CSpinner } from "@coreui/react";
 import Setting from "./setting";
+import { t } from "src/utils/language";
 
 const bannerImg = [
   "https://ik.imagekit.io/lcq5etn9k/restro/banner/banner4_r3DuezKF5.png",
@@ -27,9 +28,9 @@ const AddMenu = (props) => {
   const [preview, setPreview] = useState("");
   const [step , setStep] = useState(0);
   const [errorObj, setErrorObj] = useState({
-    name: { error: true, msg: "It should be valid" },
-    bannerImage: { error: true, msg: "It should be valid" },
-    coverImage: { error: true, msg: "It should be valid" },
+    name: { error: true, msg: t("It should be valid") },
+    bannerImage: { error: true, msg: t("It should be valid") },
+    coverImage: { error: true, msg: t("It should be valid") },
   });
 
   const handleChange = (e, key, value) => {
@@ -115,7 +116,7 @@ const AddMenu = (props) => {
     step == 0 ? <>
       <div class="form-group mb-4 px-2 addMenu">
         <label for="menu-name" class="input-label">
-          Menu Name
+          {t("Menu Name")}
         </label>
         <input
           type="text"
@@ -123,7 +124,7 @@ const AddMenu = (props) => {
           name="name"
           value={fieldObj.name}
           onChange={(e) => handleChange(e, "name")}
-          placeholder="Enter menu name"
+          placeholder={t("Enter menu name")}
         />
         {!errorObj.name.error && (
           <CFormText className="help-block error">
@@ -134,7 +135,7 @@ const AddMenu = (props) => {
 
       <div class="form-group mb-4 px-2">
         <label for="createMenuImageUpload" class="form-label input-label">
-          Upload Image
+          {t("Upload Image")}
         </label>
         <div class="imageUploadInput-container col-lg-5 col-md-5 col-sm-8 col-8 px-0">
           <input
@@ -186,7 +187,7 @@ const AddMenu = (props) => {
       </div>
 
       <div class="form-group mb-4 px-2">
-        <label class="form-label input-label">Choose Banner</label>
+        <label class="form-label input-label">{t("Choose Banner")}</label>
       </div>
 
       <div class="form-group d-flex justify-content-space-between mb-4 add-menu-images">
@@ -215,7 +216,7 @@ const AddMenu = (props) => {
           <CSpinner />
         ) : (
           <button onClick={handleClick} type="button" class="btn add-dish-btn">
-            NEXT
+            {t("NEXT")}
           </button>
         )}
       </div>

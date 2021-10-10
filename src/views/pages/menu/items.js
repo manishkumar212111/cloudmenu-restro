@@ -30,6 +30,7 @@ import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
 import crossIcon from "./images/cross.svg";
 import ConfirmPopup from "src/views/components/confirmPopup";
+import { t } from "src/utils/language";
 
 const Items = (props) => {
   const [item, setItem] = useState([]);
@@ -142,14 +143,14 @@ const Items = (props) => {
         {confirmWindow?.msg && <ConfirmPopup data={confirmWindow} handleSuccess={handleDeleteCb} onClose={setConfirmWindow} />}
         <div class="col-md-6 col-xl-4 categories-sidebar-container px-5 py-3">
           <div class="row">
-            <div class="category-tab-heading py-4 px-0 mb-4">Categories</div>
+            <div class="category-tab-heading py-4 px-0 mb-4">{t("Categories")}</div>
           </div>
           {(categoryList &&
                 categoryList.length > 0) &&
                 categoryList.map((itm) => (
                   <div class="row" >
                     <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
-                      {itm.name}
+                      {localStorage.getItem("language") == "en" ? itm.name : itm.nameAr}
                       </div>
                     <div class="col-2">
                     <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
@@ -176,7 +177,7 @@ const Items = (props) => {
                                 />
                               </div>
                               <div style={{cursor:"pointer"}} class="col-8 item-dropdown-text px-1">
-                                Delete
+                                {t("Delete")}
                               </div>
                             </div>
                           </div>
@@ -199,10 +200,10 @@ const Items = (props) => {
                     class="btn menu-display-btn menu-display-btn-category"
                     onClick={() => {openCategoryAddPopup(true); setSelectedCategory('') }}
                   >
-                    Add Category
+                    {t("Add Category")}
                   </button>
                   <button type="button" class="btn menu-display-btn mx-4" onClick={() => {setActievId(''); openDishAddPopup(true); }}>
-                    Add Item
+                    {t("Add Item")}
                   </button>
                 </div>
               </div>
@@ -216,7 +217,7 @@ const Items = (props) => {
                   <div class="col-2 item-img-col">
                     <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
                   </div>
-                  <div class="col-3 item-name-col">{itm.title}</div>
+                  <div class="col-3 item-name-col">{localStorage.getItem("language") == "en" ? itm.title : itm.titleAr}</div>
                   <div class="col-3 item-btns-col">
                     <div class="row align-items-center justify-content-end">
                       <div class="col-3"></div>
@@ -248,7 +249,7 @@ const Items = (props) => {
                                 />
                               </div>
                               <div class="col-8 item-dropdown-text px-1">
-                                Delete Item
+                                {t("Delete Item")}
                               </div>
                             </div>
                           </div>
@@ -258,7 +259,7 @@ const Items = (props) => {
                     </div>
                   </div>
                 </div>       
-                )) : <>No dish available</>) : <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>}
+                )) : <>{t("No dish available")}</>) : <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>}
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
@@ -271,7 +272,7 @@ const Items = (props) => {
           <CModal show={addDishPopup} className="temp" onClose={openDishAddPopup}>
             <CModalHeader closeButton>
             <div class="col add-dish-header">
-                Add Dish
+                {t("Add Dish")}
             </div>
             </CModalHeader>
             <CModalBody>
@@ -282,7 +283,7 @@ const Items = (props) => {
         )}
         {addCategoryPopup && (
           <CModal show={addCategoryPopup} onClose={openCategoryAddPopup}>
-            <CModalHeader closeButton>Add Category</CModalHeader>
+            <CModalHeader closeButton>{t("Add Category")}</CModalHeader>
             <CModalBody>
               <CategoryForm id={selectedCategory}/>
             </CModalBody>
@@ -292,7 +293,7 @@ const Items = (props) => {
 
         {viewOpen && (
           <CModal show={viewOpen} onClose={setViewOpen}>
-            <CModalHeader closeButton>Dish Detail</CModalHeader>
+            <CModalHeader closeButton>{t("Dish Detail")}</CModalHeader>
             <CModalBody>
               <View item={viewOpen} />
             </CModalBody>
