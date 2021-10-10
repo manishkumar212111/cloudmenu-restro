@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode.react";
+import { exportComponentAsJPEG, exportComponentAsPDF, exportComponentAsPNG } from 'react-component-export-image';
+
 import { toJpeg } from "html-to-image";
 import * as htmlToImage from "html-to-image";
 import {
@@ -17,6 +19,7 @@ import {
 import "./index.scss";
 import { t } from "src/utils/language";
 const QR = () => {
+  let ref= useRef();
   const [loading, setLoading] = useState(false);
   const [fieldObj, setfieldObj] = useState({
     backgroundColor: "white",
@@ -50,15 +53,20 @@ const QR = () => {
 
   const downloadImage = () => {
     setLoading(true);
-    var node = document.getElementById("my-qr");
-    htmlToImage.toJpeg(node, { quality: 1 }).then(function (dataUrl) {
-      var link = document.createElement("a");
-      link.download = "my-image-name.jpeg";
-      link.href = dataUrl;
-      link.click();
+    // var node = document.getElementById("my-qr");
+    // htmlToImage.toJpeg(node, { quality: 0.9 }).then(function (dataUrl) {
+    //   console.log(dataUrl)
+    //   var link = document.createElement("a");
+    //   link.download = "my-image-name.jpeg";
+    //   link.href = dataUrl;
+    //   link.click();
+    // setLoading(false);
+
+    // });
+
+    exportComponentAsJPEG(ref);
     setLoading(false);
 
-    });
   };
 
   const printDiv = (divName) => {
@@ -172,9 +180,9 @@ const QR = () => {
                       id="layoutSize"
                       name="layoutSize"
                       min="250"
-                      max="750"
+                      max="600"
                       value={fieldObj.layoutSize}
-                      onChange={(e) => parseInt(e.target.value) < 750 && handleChange(e, "layoutSize")}
+                      onChange={(e) => parseInt(e.target.value) < 601 && handleChange(e, "layoutSize")}
                       placeholder={t("Enter layout size")}
                     />
                   </div>
@@ -236,14 +244,14 @@ const QR = () => {
                 </button>
               </div>
             </div>
-            <div class={`col-12 col-xl-5 restaurant-details-right-container `} >
-              <div class="row restaurant-details-right-container-plan bg-white py-5 px-4" style={{ }}>
-                <div>
-
+            <div class={`col-12 col-xl-5 restaurant-details-right-container `} style={{maxWidth: "inherit"}}>
+              <div class="row restaurant-details-right-container-plan bg-white  py-5 px-4" style={{ }}>
+                
                 <div
-                  id={"my-qr"}
+                  ref={ref}
+                  id="my-qr"
                   style={{ backgroundColor: fieldObj.backgroundColor, borderRadius: 10, width: parseInt(fieldObj.layoutSize)}}
-                  class="row qr-container m-auto py-4"
+                  class="row m-auto qr-container py-4 px-4"
                 >
                   <div class="col-12">
                     <div
@@ -278,10 +286,10 @@ const QR = () => {
                   </div>
                 </div>
                 
-                </div>
                 <div class="form-group d-flex justify-content-center mt-4">
                   {loading ? <CSpinner /> : <button
                     type="button"
+                    // onClick={() => }
                     onClick={downloadImage}
                     class="btn update-btn"
                   >
