@@ -12,7 +12,9 @@ import { connect } from 'react-redux'
 import { getNotifications , updateNotification} from 'src/actions/notification'
 import { useHistory } from 'react-router';
 import MP3 from "./pristine-609.mp3"
-import { t } from 'src/utils/language'
+import { t } from 'src/utils/language';
+
+var temp = 0;
 const TheHeaderDropdownNotif = (props) => {
   const history = useHistory();
   const [notifications, setNotifications] = useState([]);
@@ -24,6 +26,7 @@ const TheHeaderDropdownNotif = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      temp = 1;
       props.getNotifications({isOpened: false})
       console.log("New notification")
     }, 30000);
@@ -32,8 +35,7 @@ const TheHeaderDropdownNotif = (props) => {
   }, [])
 
   useEffect(() => {
-    console.log(props.notifications.length , notifications.length , props.notifications.length)
-    if(props.notifications.length != 0 && notifications.length < props.notifications.length){
+    if(props.notifications?.length != 0 && notifications?.length < props.notifications?.length && temp == 1){
       document.getElementById("test").click()
       const audio = new Audio(MP3);
       audio.addEventListener('canplaythrough', (event) => {
