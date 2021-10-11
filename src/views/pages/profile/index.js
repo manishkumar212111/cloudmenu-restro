@@ -196,7 +196,7 @@ const Profile = (props) => {
       />
     );
   }
-  if (props.restaurantOnbordingMessage || isEdit) {
+  if (props.restaurantOnbordingMessage || props?.fieldObj?.id) {
     return (
       <>
         <CRow>
