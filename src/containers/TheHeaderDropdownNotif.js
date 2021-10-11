@@ -62,7 +62,7 @@ const TheHeaderDropdownNotif = (props) => {
     >
       <CDropdownToggle  className="c-header-nav-link" caret={false}>
         <CIcon name="cil-bell"/>
-        <CBadge shape="pill" color="danger">{notifications.length}</CBadge>
+        <CBadge shape="pill" color="danger">{notifications?.length}</CBadge>
       </CDropdownToggle>
       <CDropdownMenu  placement="bottom-end" className="pt-0" style={{maxHeight: 500, overflowY: "auto"}}>
         <CDropdownItem
@@ -71,9 +71,9 @@ const TheHeaderDropdownNotif = (props) => {
           className="text-center"
           color="light"
         >
-          <strong>{t("You have")} {notifications.length} {t("new notifications")}</strong>
+          <strong>{t("You have")} {notifications?.length} {t("new notifications")}</strong>
         </CDropdownItem>
-        {notifications.length ? notifications.map(itm => (
+        {notifications?.length ? notifications?.map(itm => (
           <><CDropdownItem style={{paddingTop: 10}} onClick={() => handleClick(itm)}>
               
               <h6><CIcon height="20" name="cil-speedometer" className="mr-2 text-warning" />{itm.title}</h6>
