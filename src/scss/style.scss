@@ -405,7 +405,7 @@ body {
   }
   .banner-text h2 {
     font-weight: 700;
-    font-size: 65px;
+    font-size: 45px;
     margin-bottom: 20px;
   }
   .banner-text p {
@@ -421,15 +421,15 @@ body {
   }
   @media (max-width: 1199px) {
     .banner-text h2 {
-      font-size: 50px;
+      font-size: 30px;
     }
   }
   @media (max-width: 991px) {
     .banner-text h2 {
-      font-size: 40px;
+      font-size: 20px;
     }
     .banner-text p {
-      font-size: 18px;
+      font-size: 15px;
     }
     .banner-text p br {
       display: none;
@@ -437,7 +437,7 @@ body {
   }
   @media (max-width: 767px) {
     .banner-text h2 {
-      font-size: 30px;
+      font-size: 18px;
     }
     .trans-btn {
       width: 100% !important;

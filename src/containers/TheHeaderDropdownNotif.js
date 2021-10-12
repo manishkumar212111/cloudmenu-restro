@@ -20,9 +20,9 @@ const TheHeaderDropdownNotif = (props) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
+    temp =0;
     props.getNotifications({isOpened: false})
-    
-  }, []);
+  }, [props.getNotifications]);
 
   useEffect(() => {
     const interval = setInterval(() => {

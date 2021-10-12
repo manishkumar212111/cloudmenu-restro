@@ -31,7 +31,7 @@ const ResetPassword = (props) => {
   });
   const [errorObj, setErrorObj] = useState({
     repeat_password: { error: true, msg: t("Repeated password is not same") },
-    password : { error : true , msg : t("Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character") }
+    password : { error : true , msg : t("Please enter min 6 chars") }
   });
   const validateField = (key, value) => {
     value = value ? value : fieldobj[key];

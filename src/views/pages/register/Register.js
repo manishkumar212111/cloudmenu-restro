@@ -10,7 +10,7 @@ const Register = (props) => {
   const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
   const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
   const [errorObj , setErrorObj] = useState({ email : { error : true , msg : t("Please enter valid email") } , 
-                                              password : { error : true , msg : t("Please enter min 8 chars and at least one uppercase letter, one lowercase letter, one number and one special character") },
+                                              password : { error : true , msg : t("Please enter min 6 chars") },
                                               mobile : { error : true , msg : t("Please enter valid mobile number") },
                                               ccode : { error : true , msg : t("Please enter valid mobile number") },
                                               name : { error : true , msg : t("Please enter valid name") }
@@ -23,8 +23,9 @@ const Register = (props) => {
           case "mobile" :
               return  value.length >= 9
           case "password" :
+                return value.length >=6;
               // console.log(validateUtility.required(value) && validateUtility.minLength(value , 8) , value) && (!value.match(/\d/) || !value.match(/[a-zA-Z]/));
-              return  validateUtility.required(value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
+              // return  validateUtility.required(value) && /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value);
           default :
               return true;
       }

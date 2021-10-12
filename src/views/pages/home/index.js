@@ -4,9 +4,9 @@ import Header from 'src/containers/Header';
 import Contact from 'src/views/components/contact';
 import { t } from "../../../utils/language";
 const steps = [
-  {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
-  {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
-  {content: "Find QR Code placed on your table, for quick scanning of food menu." ,title: "Discover QR Code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"}
+  {content: "your customers can scan the QR code from their table." ,title: "Scan QR code", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
+  {content: "Your customers will browse the menu and select the items they want." ,title: "view the menu", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"},
+  {content: "Your customer will place the order and the restaurant will be notified immediately about the order details." ,title: "order contactless", img: "https://ik.imagekit.io/lcq5etn9k/restro/how-it-work_zIJSWix154l2.jpg?updatedAt=1628352123284"}
 
 ]
 const Index = () => {
@@ -36,8 +36,8 @@ const Index = () => {
             <div className="row align-items-center">
               <div className="col-md-7 order-2 order-md-1">
                 <div className="banner-text">
-                  <h2>{t("SCAN, ORDER & PAY")}</h2>
-                  <p>{t("Your customers can order from their table by")} <br></br>{t("simply scanning a QR code")}</p>
+                  <h2>{t("Improve customer experience and reduce cost at your Restaurant")}</h2>
+                  <p>{t("your customers can order from their table by simply scanning QR code and")}<br></br> {t("ordering without the need for a mobile app")}.</p>
                   <div className="banner-btn mt-4">
                     <div className="connect-btn mb-4 mb-md-0">
                       <a className="trans-btn" href="/#/pricing">{t("Try it for free")}</a>
@@ -79,8 +79,8 @@ const Index = () => {
           <section id="how-it-works-section" className="how-it-work">
             <div className="container-fluid">
               <div className="title-para">
-                <h3>How It Works</h3>
-                <p>Hospitality is changing. Your customers can now tap scan a smart QR code with their own device, order food and drink, pay and either have the order brought to their table or receive an sms notifying them that the order is ready.</p>
+                <h3>{t("How It Works")}</h3>
+                <p>{t("Hospitality is changing. Your customers can now tap scan a smart QR code with their own device, order food and drink, pay and either have the order brought to their table or receive an sms notifying them that the order is ready")}.</p>
               </div>
               <div className="row align-items-center">
                 <div className="col-md-6">
@@ -118,44 +118,76 @@ const Index = () => {
                 <div className="col-md-4 mb-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/contact-less_d889PlaaI.png?updatedAt=1628352084477" alt="" />
-                    <h5>Contactless Ordering</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                    <h5>Increase sales</h5>
+                    <p>Increase your sales by improving the ordering experience and reducing the waiting time.</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/reduced-staff_8ttrjkBSH.png?updatedAt=1628352093416" alt="" />
-                    <h5>Reduced Staff Demand</h5>
-                    <p>ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam </p>
+                    <h5>Reduce cost</h5>
+                    <p>CloudMenu will help you reduce costs at your restaurant by reducing the number of waiters needed to serve your customers.</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/improved-efficiency_A8KUOdkK7.png?updatedAt=1628352095701" alt="" />
-                    <h5>Improved Efficiency</h5>
-                    <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <h5>Improve customer experience</h5>
+                    <p>your customers do not need to wait in lines or wait for the waiter to serve them they can simply order from their table.</p>
                   </div>
                 </div>
       
                 <div className="col-md-4 mb-4 mb-md-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/menu-adjustment_v_DeAwmaV4z9.png?updatedAt=1628352097181" alt="" />
-                    <h5>Menu Adjustments</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                    <h5>Social distancing</h5>
+                    <p>CloudMenu will help you implement social distancing at your restaurant by avoiding crowds at the cashier.</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4 mb-md-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/electronic-payment_YlGhJeruVpg.png?updatedAt=1628352094340" alt="" />
-                    <h5>Electronic Payment</h5>
-                    <p>ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam </p>
+                    <h5>Improve efficiency</h5>
+                    <p>By reducing the amount of time for waiters and cashiers to take the orders from the customers.</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4 mb-md-4">
                   <div className="benifit-item">
                     <img src="https://ik.imagekit.io/lcq5etn9k/restro/lower-risk_b7oQY3cXM.png?updatedAt=1628352097156" alt="" />
-                    <h5>Lower Risk of Mistakes</h5>
-                    <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <h5>Faster service</h5>
+                    <p>Serve your customers faster by reducing the waiting queues and improving ordering efficiency.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img src="https://ik.imagekit.io/lcq5etn9k/restro/graphic-4_Vy2dl8-XV.svg?updatedAt=1628352120816" className="img-fluid graphic graphic-4" alt="" />
+          </section>
+
+          <section id="benifits" className="main-benifit">
+            <div className="container-fluid">
+              <div className="title-para">
+                <h3>The Main Features</h3>
+              </div>
+              <div className="row">
+                <div className="col-md-4 mb-4 mb-md-4">
+                  <div className="benifit-item">
+                    <img src="https://ik.imagekit.io/lcq5etn9k/restro/menu-adjustment_v_DeAwmaV4z9.png?updatedAt=1628352097181" alt="" />
+                    <h5>Online payment</h5>
+                    <p>Your customers can pay online with their credit card</p>
+                  </div>
+                </div>
+                <div className="col-md-4 mb-4 mb-md-4">
+                  <div className="benifit-item">
+                    <img src="https://ik.imagekit.io/lcq5etn9k/restro/electronic-payment_YlGhJeruVpg.png?updatedAt=1628352094340" alt="" />
+                    <h5>zero commission</h5>
+                    <p>We do not take any commission for transactions.</p>
+                  </div>
+                </div>
+                <div className="col-md-4 mb-4 mb-md-4">
+                  <div className="benifit-item">
+                    <img src="https://ik.imagekit.io/lcq5etn9k/restro/lower-risk_b7oQY3cXM.png?updatedAt=1628352097156" alt="" />
+                    <h5>Menu Management</h5>
+                    <p>you can customize your menu and you can have multiple menus</p>
                   </div>
                 </div>
               </div>
@@ -246,19 +278,6 @@ const Index = () => {
                 </div>
               </div>
             </div>
-          </section>
-      
-          <section className="call-to-action">
-            <div className="container-fluid">
-              <div className="title-para">
-                <h3>Elevate Your Restaurant Operations with a QR Code Menu</h3>
-                <p>Give your customers a superior dine-in experience! Cloud Menu creates custom QR Codes for your restaurant. Cloud Menu software is designed to help restaurants run their operations much more efficiently than before.</p>
-              </div>
-              <div className="call-btn">
-                <a className="trans-btn" href="login.html">Get Started</a>
-              </div>
-            </div>
-            <div className="overlay"></div>
           </section>
       
           <section id="connect-us" className="connect-us">
