@@ -13,6 +13,8 @@ import { getNotifications , updateNotification} from 'src/actions/notification'
 import { useHistory } from 'react-router';
 import MP3 from "./pristine-609.mp3"
 import { t } from 'src/utils/language';
+import moment from 'moment'
+import { cilClock } from '@coreui/icons'
 
 var temp = 0;
 const TheHeaderDropdownNotif = (props) => {
@@ -77,7 +79,8 @@ const TheHeaderDropdownNotif = (props) => {
           <><CDropdownItem style={{paddingTop: 10}} onClick={() => handleClick(itm)}>
               
               <h6><CIcon height="20" name="cil-speedometer" className="mr-2 text-warning" />{itm.title}</h6>
-              <p>{itm.description}</p>
+              <p className="text-muted " style={{marginBottom: 4}}>{itm.description}</p>
+              <small >{moment(itm.createdAt).fromNow()}</small>
             </CDropdownItem>
           </>          
         )) : <>
