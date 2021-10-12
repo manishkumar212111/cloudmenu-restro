@@ -41,7 +41,7 @@ const Detail = (props) => {
                 </div>
 
                 <div className="col-3 text-center order-col-value">
-                  {localStorage.getItem("language") == "en" ?  props.productDetail.products[itm][item].title : props.productDetail.products[itm][item].titleAr}
+                  {localStorage.getItem("language") == "ar" ?  props.productDetail.products[itm][item].titleAr : props.productDetail.products[itm][item].title}
                 </div>
 
                 <div className="col-5 text-center order-col-value">
@@ -53,7 +53,7 @@ const Detail = (props) => {
                       <>
                         {data} :{" "}
                         {props.productDetail.products[itm][item].modifiers[data]
-                          .map((dta) => localStorage.getItem("language") == "en" ? dta.title : dta.titleAr)
+                          .map((dta) => localStorage.getItem("language") == "ar" ? dta.titleAr : dta.title)
                           .join(", ")}
                         ,{" "}
                       </>

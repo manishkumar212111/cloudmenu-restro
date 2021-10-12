@@ -150,7 +150,7 @@ const Items = (props) => {
                 categoryList.map((itm) => (
                   <div class="row" >
                     <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
-                      {localStorage.getItem("language") == "en" ? itm.name : itm.nameAr}
+                      {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
                       </div>
                     <div class="col-2">
                     <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
@@ -217,7 +217,7 @@ const Items = (props) => {
                   <div class="col-2 item-img-col">
                     <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
                   </div>
-                  <div class="col-3 item-name-col">{localStorage.getItem("language") == "en" ? itm.title : itm.titleAr}</div>
+                  <div class="col-3 item-name-col">{localStorage.getItem("language") == "ar" ? itm.titleAr : itm.title}</div>
                   <div class="col-3 item-btns-col">
                     <div class="row align-items-center justify-content-end">
                       <div class="col-3"></div>

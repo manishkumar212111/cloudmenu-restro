@@ -80,12 +80,12 @@ const Modifier = (props) => {
               modifiers.map((itm) => (
                 <div class="row item-row py-4 align-items-center px-0">
                   <div class="col-3 item-name-col-1 text-center">
-                    {localStorage.getItem("language") == "en" ? itm.name : itm.nameAr}
+                    {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
                   </div>
                   <div class="col-5 text-left item-name-col">
                     {itm.modifiers &&
                       itm.modifiers.length &&
-                      itm.modifiers.map((it) => localStorage.getItem("language") == "en" ? it.name : it.nameAr ).join(", ")}
+                      itm.modifiers.map((it) => localStorage.getItem("language") == "ar" ? it.nameAr : it.name ).join(", ")}
                   </div>
                   <div class="col-1"></div>
                   <div class="col-3 item-btns-col">

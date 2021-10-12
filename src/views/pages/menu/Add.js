@@ -288,7 +288,7 @@ const Add = (props) => {
                 >
                   <img src={dragIcon} className="drag-icon" />
                   <span onClick={() => setModifier(itm)}>
-                   {localStorage.getItem("language") == "en" ?  itm.name : itm.nameAr}
+                   {localStorage.getItem("language") == "ar" ?  itm.nameAr : itm.name}
                   </span>
                   <img
                     onClick={() => handleDelete(index)}
