@@ -9,6 +9,7 @@ export const getProductList = (options = {}) => async dispatch =>{
           JSON.parse(localStorage.getItem("userDetail"))
             ? JSON.parse(localStorage.getItem("userDetail")).restaurant
             : {};
+        options.limit = 500;
         options.menu = options.menu ? options.menu : localStorage.getItem("currentMenu")    
         options.restaurant= restaurantDetail.id;    
         options.category = options.category ? options.category : localStorage.getItem("activeCategory");

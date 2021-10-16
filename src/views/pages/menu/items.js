@@ -19,18 +19,20 @@ import {
   getProductById,
   getProductList,
   deleteProductById,
+  updateProductById
 } from "src/actions/product";
 import { connect } from "react-redux";
 import { BASE_URL } from "src/API/config";
 import Add from "./Add";
 import View from "./View";
-import { getCategoryList , deleteCategoryById} from "src/actions/category";
+import { getCategoryList , deleteCategoryById, updateCategoryById} from "src/actions/category";
 import CategoryForm from "../category/categoryForm";
 import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
 import crossIcon from "./images/cross.svg";
 import ConfirmPopup from "src/views/components/confirmPopup";
 import { t } from "src/utils/language";
+import DragAndDrop from "./DragAndDrop";
 
 const Items = (props) => {
   const [item, setItem] = useState([]);
@@ -126,6 +128,25 @@ const Items = (props) => {
 
     props.deleteProductById(id);
   };
+
+  const handleDragAndDrop = (newItem) => {
+    console.log(newItem)
+    let h = [];  
+    newItem.map((itm,index) => h.push({...itm , sort:index}))
+    props.updateCategoryById(category , { categoryList: h})
+    // setCategory(h)
+    // setfieldObj((fieldOb) => ({ ...fieldOb, modifierGroup: newItem }));
+  }
+
+  const handleProductDragDrop = (newItem) => {
+    console.log(newItem)
+    let h = [];  
+    newItem.map((itm,index) => h.push({...itm , sort:index}))
+    props.updateProductById(category, {productList: JSON.stringify(h)})
+    // setCategory(h)
+    // setfieldObj((fieldOb) => ({ ...fieldOb, modifierGroup: newItem }));
+  }
+
   const handleEdit = (id, type) => {
     if(type === "category"){
       openCategoryAddPopup(id);
@@ -137,6 +158,101 @@ const Items = (props) => {
     openDishAddPopup(true);
     setActievId(id);
   };
+  console.log(categoryList)
+  const renderCategory = (item) => {
+    return item.map((itm) => (
+        <div class="row" >
+          <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
+            {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
+            </div>
+          <div class="col-2">
+          <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
+          </div>
+          {openHandleCategory && <><div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
+               <div class={`item-dropdownCategory py-3 px-3 ${openHandleCategory == itm.id? "" : "d-none"}`}>
+                <div class="row item-dropdown-row py-2" style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id, "category")}>
+                  <div class="col-3" >
+                    <img
+                      src={editIcon}
+                      alt=""
+                      class="item-dropdown-icon"
+                    />
+                  </div>
+                  <div style={{cursor:"pointer"}}  class="col-8 item-dropdown-text px-0">Edit</div>
+                </div>
+                <div class="row item-dropdown-row py-2">
+                  <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id, "category")}>
+                    <div class="col-3" >
+                      <img
+                        src={crossIcon}
+                        alt=""
+                        class="item-dropdown-icon"
+                      />
+                    </div>
+                    <div style={{cursor:"pointer"}} class="col-8 item-dropdown-text px-1">
+                      {t("Delete")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+             </div>
+             <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleCategory(false)}></div>
+             </>
+             } 
+        </div>
+      ))
+  }
+
+  const renderProduct = (item) => {
+    return item.map((itm) => (
+        <div class="row item-row py-4 px-4 align-items-center">
+        <div class="col-2 item-img-col">
+          <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
+        </div>
+        <div class="col-3 item-name-col">{localStorage.getItem("language") == "ar" ? itm.titleAr : itm.title}</div>
+        <div class="col-3 item-btns-col">
+          <div class="row align-items-center justify-content-end">
+            <div class="col-3"></div>
+            <div class="col-3">
+              {/* <button type="button" onClick={() => setViewOpen(itm)} class="btn item-view-btn">
+                view
+              </button> */}
+            </div>
+            <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
+              <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
+              {openHandleItem && <><div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
+                <div class="row item-dropdown-row py-2"  style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)}>
+                  <div class="col-3" >
+                    <img
+                      src={editIcon}
+                      alt=""
+                      class="item-dropdown-icon"
+                    />
+                  </div>
+                  <div class="col-8 item-dropdown-text px-0">Edit Item</div>
+                </div>
+                <div class="row item-dropdown-row py-2">
+                  <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id)}>
+                    <div class="col-3" >
+                      <img
+                        src={crossIcon}
+                        alt=""
+                        class="item-dropdown-icon"
+                      />
+                    </div>
+                    <div class="col-8 item-dropdown-text px-1">
+                      {t("Delete Item")}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleItm(false)}></div></>}
+            </div>
+          </div>
+        </div>
+      </div>       
+      ))
+  }
   return (
     <>
       <div class="row menu-display-container bg-white mt-4">
@@ -146,48 +262,9 @@ const Items = (props) => {
             <div class="category-tab-heading py-4 px-0 mb-4">{t("Categories")}</div>
           </div>
           {(categoryList &&
-                categoryList.length > 0) &&
-                categoryList.map((itm) => (
-                  <div class="row" >
-                    <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
-                      {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
-                      </div>
-                    <div class="col-2">
-                    <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
-                    </div>
-                    {openHandleCategory && <><div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
-                         <div class={`item-dropdownCategory py-3 px-3 ${openHandleCategory == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2" style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id, "category")}>
-                            <div class="col-3" >
-                              <img
-                                src={editIcon}
-                                alt=""
-                                class="item-dropdown-icon"
-                              />
-                            </div>
-                            <div style={{cursor:"pointer"}}  class="col-8 item-dropdown-text px-0">Edit</div>
-                          </div>
-                          <div class="row item-dropdown-row py-2">
-                            <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id, "category")}>
-                              <div class="col-3" >
-                                <img
-                                  src={crossIcon}
-                                  alt=""
-                                  class="item-dropdown-icon"
-                                />
-                              </div>
-                              <div style={{cursor:"pointer"}} class="col-8 item-dropdown-text px-1">
-                                {t("Delete")}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                       </div>
-                       <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleCategory(false)}></div>
-                       </>
-                       } 
-                  </div>
-                ))}
+            categoryList.length > 0) && <DragAndDrop htmlContent={renderCategory(categoryList)} items={categoryList}  handleChange={handleDragAndDrop}/>
+          }
+          
         </div>
         <div class="col-md-6 col-xl-8">
           <div class="row menu-display-header pt-3">
@@ -212,61 +289,15 @@ const Items = (props) => {
           
           {!props.loading ? (activeProduct &&
                 activeProduct.length ?
-                activeProduct.map((itm) => (
-                  <div class="row item-row py-4 px-4 align-items-center">
-                  <div class="col-2 item-img-col">
-                    <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
-                  </div>
-                  <div class="col-3 item-name-col">{localStorage.getItem("language") == "ar" ? itm.titleAr : itm.title}</div>
-                  <div class="col-3 item-btns-col">
-                    <div class="row align-items-center justify-content-end">
-                      <div class="col-3"></div>
-                      <div class="col-3">
-                        {/* <button type="button" onClick={() => setViewOpen(itm)} class="btn item-view-btn">
-                          view
-                        </button> */}
-                      </div>
-                      <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
-                        <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
-                        {openHandleItem && <><div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
-                          <div class="row item-dropdown-row py-2"  style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)}>
-                            <div class="col-3" >
-                              <img
-                                src={editIcon}
-                                alt=""
-                                class="item-dropdown-icon"
-                              />
-                            </div>
-                            <div class="col-8 item-dropdown-text px-0">Edit Item</div>
-                          </div>
-                          <div class="row item-dropdown-row py-2">
-                            <div class="row item-dropdown-row" style={{cursor: "pointer"}} onClick={() => handleDelete(itm.id)}>
-                              <div class="col-3" >
-                                <img
-                                  src={crossIcon}
-                                  alt=""
-                                  class="item-dropdown-icon"
-                                />
-                              </div>
-                              <div class="col-8 item-dropdown-text px-1">
-                                {t("Delete Item")}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="custom-overlay" id="custom-overlay" onClick={() => setHandleItm(false)}></div></>}
-                      </div>
-                    </div>
-                  </div>
-                </div>       
-                )) : <>{t("No dish available")}</>) : <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>}
-              <div className={'mt-2 '} style={{float: "right"}}>
+                <DragAndDrop htmlContent={renderProduct(activeProduct)} items={activeProduct}  handleChange={handleProductDragDrop}/>
+                : <>{t("No dish available")}</>) : <div style={{textAlign: "center" , marginTop : "25px"}}><CSpinner /> </div>}
+              {/* <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination
                     activePage={page}
                     pages={props.totalPages || 0}
                     onActivePageChange={(i) => handlePaginationChange(i)}
                   ></CPagination>
-              </div>
+              </div> */}
         </div>
         {addDishPopup && (
           <CModal show={addDishPopup} className="temp" onClose={openDishAddPopup}>
@@ -318,7 +349,9 @@ const mapDispatchToProps = {
   deleteProductById,
   getProductById,
   getCategoryList,
-  deleteCategoryById
+  deleteCategoryById,
+  updateCategoryById,
+  updateProductById
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Items);
