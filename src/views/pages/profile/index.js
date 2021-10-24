@@ -380,10 +380,7 @@ const Profile = (props) => {
                       name="coverImage"
                       onChange={(e) => handleFileUpload(e, "coverImage")}
                       />
-                      <div
-                        style={{ width: 260, height: 130 }}
-                        class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center"
-                      >
+                      <div class="restaurantLogoUploadBackground d-flex justify-content-center align-items-center">
                         <img
                           src={
                             previewCoverImage
@@ -393,7 +390,6 @@ const Profile = (props) => {
                               : ImagUpload
                           }
                           alt=""
-                          style={{ width: 260, height: 130 }}
                           class="restaurantLogoUploadBackground-icon"
                         />
                       </div>
