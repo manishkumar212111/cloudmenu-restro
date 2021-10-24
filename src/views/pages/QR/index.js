@@ -271,7 +271,7 @@ const QR = () => {
                       </div>
                       <div style={{ padding: 15, backgroundColor: fieldObj.qrBackgroundColor, borderRadius: 10 }}>
                         <QRCode
-                          value={`https://arcane-citadel-48750.herokuapp.com/${restaurantDetail.id}/${Math.floor(100000 + Math.random() * 9000000000)}/${fieldObj.tableNo}`}
+                          value={`http://restaurant.cloudmenu.sa/${restaurantDetail.id}/${Math.floor(100000 + Math.random() * 9000000000)}/${fieldObj.tableNo}`}
                           className="qr-img"
                           size="300"
                           level="H"
