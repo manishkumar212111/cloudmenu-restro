@@ -68,7 +68,7 @@
   },
   "scripts": {
     "start": "serve -s build",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "build": "react-scripts build",
     "dev": "react-scripts start",
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand",
