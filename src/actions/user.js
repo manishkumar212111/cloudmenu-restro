@@ -165,5 +165,19 @@ export const UpdateUserById = (userId , data) => dispatch =>{
       console.log(err)
     }
   }
+
+  export const getUserDetail = (user) => dispatch => {
+      API.get('GetUserDetail' , {user:user}, '' , function(res){
+        console.log(res?.data, "Mnhh")
+        if(res?.data){
+          console.log("flkvjdlfjv lkjlk");
+          let userDetail = localStorage.getItem("userDetail") ? JSON.parse(localStorage.getItem("userDetail")): {};
+            localStorage.setItem("userDetail", JSON.stringify({...userDetail, ...res.data}))
+          } else {
+              //console.log(res.data.message);
+              // res && res.data && dispatch(setAlert(res.data.message , 'danger'));    
+          }
+      })
+  }
   
   

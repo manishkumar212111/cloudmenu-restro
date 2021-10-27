@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   CHeader,
@@ -13,7 +13,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import CloudMenu from "./images/CloudMenu.png";
-
+import { getUserDetail } from 'src/actions/user';
 // routes config
 import routes from '../routes'
 
@@ -24,10 +24,16 @@ import {
   TheHeaderDropdownTasks
 }  from './index'
 
-const TheHeader = () => {
+const TheHeader = (props) => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.changeState.sidebarShow)
 
+  useEffect(() => {
+    let userDetail = localStorage.getItem("userDetail") ? JSON.parse(localStorage.getItem("userDetail")): {};
+    if(userDetail && userDetail.user && userDetail.user.id){
+      dispatch(getUserDetail(userDetail.user.id))
+    }
+  }, [props]);
   const toggleSidebar = () => {
     const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive'
     dispatch({type: 'set', sidebarShow: val})

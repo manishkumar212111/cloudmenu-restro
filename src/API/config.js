@@ -85,6 +85,9 @@ const EndPoints = {
     },
     UpgradePlanRequest: {
         url: 'api/restaurant/user/subscription-request',
+    },
+    GetUserDetail:{
+        url: "api/user/users/detail"
     }
 };
 
