@@ -148,7 +148,7 @@ const AddModifier = (props) => {
   };
 
   const handleSubmit = () => {
-    if (!name || !nameAr || !price) {
+    if (!name || !nameAr) {
       return;
     }
     let field = fieldObj["modifiers"] || [];

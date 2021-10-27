@@ -210,7 +210,7 @@ const Items = (props) => {
           <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
         </div>
         <div class="col-3 item-name-col">{localStorage.getItem("language") == "ar" ? itm.titleAr : itm.title}</div>
-        <div class="col-3 item-btns-col">
+        <div class="col-7 item-btns-col">
           <div class="row align-items-center justify-content-end">
             <div class="col-3"></div>
             <div class="col-3">

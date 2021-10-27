@@ -47,6 +47,10 @@ const QR = () => {
       let restaurantDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).restaurant: {};
       
         if(!(userDetail.status && restaurantDetail && restaurantDetail.status)){
+          if(!restaurantDetail?.id){
+            window.location.href = '/';
+            return;
+          }
           window.location.href = '/#/profile?id='+restaurantDetail.id;
         }
   }, [])
