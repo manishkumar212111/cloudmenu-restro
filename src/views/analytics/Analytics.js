@@ -135,7 +135,7 @@ const Dashboard = (props) => {
                 <div class="row">
                     <div class="col-6">
                         <div class="row dashboard-details-container-value">
-                            {data.totalRevenue || 0 } 
+                            {(data.todayRevenue || 0).toFixed(2) } 
                         </div>
                         <div class="row">                                    
                             {/* <button type="button" class="btn dashboard-details-container-btn">View All</button> */}
