@@ -37,8 +37,10 @@ export const create = (data) => dispatch =>{
         let formData = new FormData();
 
         Object.keys(data).map(itm => {
-            formData.append(itm, data[itm]);
-        });
+          console.log(itm , data[itm], typeof data[itm]);
+            typeof data[itm] != "undefined" && data[itm] !== "" && formData.append(itm, data[itm]);
+          });
+
       API.post('Restaurants' , formData ,'', function(res){
         
         if(res && res.data.id){
@@ -48,7 +50,7 @@ export const create = (data) => dispatch =>{
             dispatch( { type: "RESTAURANT_ONBOARDING_MESSAGE",
                 data : true
             });
-            dispatch(setAlert("Restaurant successfully sent for verification" , 'success'));    
+            dispatch(setAlert("Restaurant Successfully created" , 'success'));    
 
           } else {
               //console.log(res.data.message);
@@ -59,7 +61,7 @@ export const create = (data) => dispatch =>{
             type : "REMOVE_LOADING",
             data : {}
            })
-    })
+    }, "application/json;multipart/form-data;")
       
     } catch (err) {
       

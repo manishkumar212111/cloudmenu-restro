@@ -51,7 +51,7 @@ const Dashboard = (props) => {
             window.location.href = '/';
             return;
           }
-          window.location.href = '/#/profile?id='+restaurantDetail.id;
+          window.location.href = '/#/profile/update';
         }
   }, [])
 
@@ -204,8 +204,8 @@ const Dashboard = (props) => {
                 {/* <th className="col-1 text-center menu-display-heading py-4">Status</th> */}
                 <th></th>
               </tr>
-            {orders && orders.results && 
-              orders.results.length &&
+            {(orders && orders.results && 
+              orders.results.length) ?
               orders.results.map((itm) => (
                 <tr className="item-row py-4 align-items-center px-0">
                   <td className="col-1 text-center py-4">
@@ -228,7 +228,7 @@ const Dashboard = (props) => {
                     </button>
                   </td>
                 </tr>
-              ))}
+              )): <>No orders</>}
               </table>
               <div className={'mt-2 '} style={{float: "right"}}>
                   <CPagination

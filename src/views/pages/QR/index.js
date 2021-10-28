@@ -31,6 +31,11 @@ const QR = () => {
     layoutSize: 420
   });
 
+  useEffect(() => {
+    if(localStorage.getItem("qrConfig")){
+      setfieldObj(fld => ({...fld, ...JSON.parse(localStorage.getItem("qrConfig"))}))
+    }
+  }, [localStorage.getItem("qrConfig")])
   const restaurantDetail =
     localStorage.getItem("userDetail") &&
     JSON.parse(localStorage.getItem("userDetail"))
@@ -41,6 +46,7 @@ const QR = () => {
     let field = {};
     field[key] = value ? value : e.target.value;
     setfieldObj((fieldOb) => ({ ...fieldOb, ...field }));
+    localStorage.setItem("qrConfig", JSON.stringify({ ...fieldObj, ...field }) );
   };
   useEffect(() => {
       let userDetail = localStorage.getItem('userDetail') && JSON.parse(localStorage.getItem('userDetail')) ? JSON.parse(localStorage.getItem('userDetail')).user: {};
@@ -51,7 +57,7 @@ const QR = () => {
             window.location.href = '/';
             return;
           }
-          window.location.href = '/#/profile?id='+restaurantDetail.id;
+          window.location.href = '/#/profile/update';
         }
   }, [])
 
@@ -242,11 +248,11 @@ const QR = () => {
                     </div>
                   </div>
               </div>
-              <div class="form-group d-flex justify-content-center mt-4">
+              {/* <div class="form-group d-flex justify-content-center mt-4">
                 <button type="button" class="btn update-btn">
                   {t("GENERATE QR")}
                 </button>
-              </div>
+              </div> */}
             </div>
             <div class={`col-12 col-xl-5 restaurant-details-right-container `} style={{maxWidth: "inherit"}}>
               <div class="row restaurant-details-right-container-plan bg-white  py-5 px-4" style={{ }}>

@@ -160,9 +160,9 @@ const Items = (props) => {
   };
   console.log(categoryList)
   const renderCategory = (item) => {
-    return item.map((itm) => (
+    return item.map((itm, index) => (
         <div class="row" >
-          <div onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
+          <div id={index+""} onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
             {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
             </div>
           <div class="col-2">

@@ -38,9 +38,9 @@ const Login = (props) => {
           if(restaurantDetail && restaurantDetail.status){
             window.location.href = '/#/dashboard';
           } else if(restaurantDetail && restaurantDetail.status == 0){
-            window.location.href = '/#/profile?id='+restaurantDetail.id;
+            window.location.href = '/#/profile/update';
           } else {
-            window.location.href = '/#/profile'
+            window.location.href = '/#/profile/update'
           }
         }
 

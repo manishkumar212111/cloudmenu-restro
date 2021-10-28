@@ -45,7 +45,7 @@ const Index = (props) => {
             window.location.href = '/';
             return;
           }
-          window.location.href = '/#/profile?id='+restaurantDetail.id;
+          window.location.href = '/#/profile/update';
         }
   }, [])
 

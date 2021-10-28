@@ -187,6 +187,7 @@ const Profile = (props) => {
   };
 
   const handleClick = () => {
+    console.log("fvdf vdkfj")
     let requiredObj = ["name", "nameAr", "noOfTable", "state", "city"];
     let errOb = errorObj;
 
@@ -201,7 +202,7 @@ const Profile = (props) => {
     console.log(status);
     if (!status) return;
 
-    if (isEdit) {
+    if (fieldObj.id) {
       delete fieldObj.id;
       delete fieldObj.createdAt;
       JSON.stringify(fieldObj.bankDetail);
@@ -222,7 +223,10 @@ const Profile = (props) => {
         return;
     }
     fieldObj.ccode = "+91";
-    props.create(fieldObj);
+    props.create({
+      ...fieldObj,
+      bankDetail: JSON.stringify(fieldObj.bankDetail),
+    });
   };
 
   const handleUpgrade = () => {
@@ -239,25 +243,25 @@ const Profile = (props) => {
       />
     );
   }
-  if (props.restaurantOnbordingMessage) {
-    return (
-      <>
-        <CRow>
-          <CCol xs="12" sm="12" style={{ "margin-top": "10px" }}>
-            <CCard>
-              <CCardHeader>
-                {t("Details Submission")}
-                {/* <small> Form</small> */}
-              </CCardHeader>
-              <CCardBody>
-                Your restaurant successfully submitted for verification, once verified you can start adding menus and start selling
-              </CCardBody>
-            </CCard>
-          </CCol>
-        </CRow>
-      </>
-    );
-  }
+  // if (props.restaurantOnbordingMessage) {
+  //   return (
+  //     <>
+  //       <CRow>
+  //         <CCol xs="12" sm="12" style={{ "margin-top": "10px" }}>
+  //           <CCard>
+  //             <CCardHeader>
+  //               {t("Details Submission")}
+  //               {/* <small> Form</small> */}
+  //             </CCardHeader>
+  //             <CCardBody>
+  //               Your restaurant successfully submitted for verification, once verified you can start adding menus and start selling
+  //             </CCardBody>
+  //           </CCard>
+  //         </CCol>
+  //       </CRow>
+  //     </>
+  //   );
+  // }
   return (
     <>
       <div class="row">
