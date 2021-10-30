@@ -43,6 +43,15 @@ const OrderList = (props) => {
     setOrderList(props.orderList);
     setActiveMenu(false);
   }, [props.orderList]);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {      
+      props.getOrderList({ page: page }, false);
+    }, 20000);
+  
+    return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  }, [])
+
   useEffect(() => {
     props.getOrderList();
   }, [props.getOrderList]);

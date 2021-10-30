@@ -2,7 +2,7 @@ import { setAlert } from "./alert";
 import API from "../API";
 // import { clearUserData } from '../utils/globals'
 
-export const getOrderList = (options = {}) => dispatch =>{
+export const getOrderList = (options = {} , loading=true) => dispatch =>{
   try{
     let restaurantDetail =
       localStorage.getItem("userDetail") &&
@@ -12,7 +12,7 @@ export const getOrderList = (options = {}) => dispatch =>{
     options.restaurant= restaurantDetail.id;    
     // options.sortBy = "orderNo:desc"
     options.limit = 12;
-      dispatch({
+    loading && dispatch({
           type : "ORDER_DETAIL_LOADING",
           data : true
       })
