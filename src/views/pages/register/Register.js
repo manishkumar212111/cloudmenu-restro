@@ -71,7 +71,7 @@ const Register = (props) => {
       <div class="container-fluid">
         <div class="form-inner">
           <div class="form-logo">
-            <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
+            <img className="img-fluid" src={localStorage.getItem("language") == "ar" ? "https://ik.imagekit.io/lcq5etn9k/restro/logo/ar_v3_Plan_de_travail_1_wKVquXj-sF.png?updatedAt=1635607055252" : "https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_YmU83YpQuQE.png?updatedAt=1635607055701"} alt="" />
           </div>
           <div class="main-form thank-you-page">
             <img src="https://ik.imagekit.io/lcq5etn9k/restro/tick_bHZRtBg2f1.png?updatedAt=1628352123585" class="img-fluid mb-5" alt="" />
@@ -87,7 +87,7 @@ const Register = (props) => {
         <div className="container-fluid">
           <div className="form-inner">
             <div className="form-logo">
-             <img className="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" />
+             <img className="img-fluid" src={localStorage.getItem("language") == "ar" ? "https://ik.imagekit.io/lcq5etn9k/restro/logo/ar_v3_Plan_de_travail_1_wKVquXj-sF.png?updatedAt=1635607055252" : "https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_YmU83YpQuQE.png?updatedAt=1635607055701"} alt="" />
             </div>
             <form>
               <div className="main-form">
