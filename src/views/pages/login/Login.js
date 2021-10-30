@@ -66,7 +66,7 @@ const Login = (props) => {
         <div class="container-fluid">
           <div class="form-inner">
             <div class="form-logo">
-              <img class="img-fluid" src="https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_tLuFEA5snG.png" alt="" />
+              <img class="img-fluid" src={localStorage.getItem("language") == "ar" ? "https://ik.imagekit.io/lcq5etn9k/restro/logo/ar_v3_Plan_de_travail_1_wKVquXj-sF.png?updatedAt=1635607055252" : "https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_YmU83YpQuQE.png?updatedAt=1635607055701"} alt="" />
             </div>
             <div class="main-form">
               <h5>{t("Login to your account")}</h5>
