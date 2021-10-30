@@ -66,15 +66,24 @@ const Dashboard = (props) => {
     setFrom(val);
     if(to && val){
       console.log(from , val)
-      props.getHomePageDataByDate({ from : new Date(val).toISOString() , to : new Date(to).toISOString()  });
+      props.getHomePageDataByDate({ from : new Date(val).toISOString() , to : addDays(new Date(to), 1).toISOString()  });
 
     }
   }
+
+  const addDays = (originalDate, days) => {
+    let cloneDate = new Date(originalDate.valueOf());
+    cloneDate.setDate(cloneDate.getDate() + days);
+    return cloneDate;
+  }
+  
+  
   const handleDateSelect = (val) => {
+    
     setTo(val);
     if(from && val){
       console.log(from , val)
-      props.getHomePageDataByDate({ from : new Date(from).toISOString() , to : new Date(val).toISOString()  });
+      props.getHomePageDataByDate({ from : new Date(from).toISOString() , to : addDays(new Date(val), 1).toISOString()  });
 
     }
   }
@@ -85,7 +94,7 @@ const Dashboard = (props) => {
     }
     if(from && to){
       options['from'] = new Date(from).toISOString()
-      options['to'] = new Date(to).toISOString()
+      options['to'] = addDays(new Date(to), 1).toISOString()
     }
     props.getHomePageDataByDate(options);
   };
