@@ -23,7 +23,7 @@ const VerifyOtp = (props) => {
           <div class="form-logo">
             <img
               class="img-fluid"
-              src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941"
+              src={localStorage.getItem("language") == "ar" ? "https://ik.imagekit.io/lcq5etn9k/restro/logo/ar_v3_Plan_de_travail_1_Jin_u6u54FX.png?updatedAt=1635586309034" : "https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_tLuFEA5snG.png?updatedAt=1635586308058"}
               alt=""
             />
           </div>

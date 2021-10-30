@@ -38,7 +38,7 @@ const Header = (props) => {
             <button type="button" onClick={() => setOpenNav(!openNav)} class="mobile-nav-toggle"><i style={{fontSize: 24}} class="bx bx-menu"></i></button>
             <div class="logo mr-auto">
               {/* <!-- <h1 class="text-light"><a href="index.html"><span>Ninestars</span></a></h1> --> */}
-              <a href="/"><img src="https://ik.imagekit.io/lcq5etn9k/restro/logo__Kk7H9BvuBE.svg?updatedAt=1628352121941" alt="" class="img-fluid" /></a>
+              <a href="/"><img src={localStorage.getItem("language") == "ar" ? "https://ik.imagekit.io/lcq5etn9k/restro/logo/ar_v3_Plan_de_travail_1_Jin_u6u54FX.png?updatedAt=1635586309034" : "https://ik.imagekit.io/lcq5etn9k/restro/logo/eng_vf_Plan_de_travail_1_tLuFEA5snG.png?updatedAt=1635586308058"} alt="" class="img-fluid" /></a>
             </div>
       
             <nav class="nav-menu d-none d-lg-block">
