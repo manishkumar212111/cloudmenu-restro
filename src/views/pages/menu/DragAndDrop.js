@@ -58,7 +58,7 @@ const DragAndDrop = (props) => {
             return arr; // for testing
         };
     
-        const SortableItem = SortableElement(({value}) => <li className={props.className} style={{listStyle : 'none'}}>{value}</li>);
+        const SortableItem = SortableElement(({value}) => <li className={props.className} style={{listStyle : 'none', zIndex: "999999999"}}>{value}</li>);
 
         const SortableList = SortableContainer(({items}) => {
         return (
@@ -71,7 +71,7 @@ const DragAndDrop = (props) => {
         });
     return(
         <div>
-            <SortableList pressDelay={200} items={contents} onSortEnd={handleDrop} />
+            <SortableList transitionDuration={0} pressDelay={200} items={contents} onSortEnd={handleDrop} />
             {/* <SortableContainer 
             items={contents.map((itm, index) => (
                 <SortableElement

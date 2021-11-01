@@ -279,7 +279,7 @@ const Add = (props) => {
     {item &&
       item.map((itm, index) => (
         h.push(<>
-          <div class="form-group px-2 pt-2">
+          <div class="form-group px-2 pt-2" style={{touchAction: "none"}} >
             <div class="mb-4">
               <div class="dropdown">
                 <button

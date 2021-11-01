@@ -23,13 +23,15 @@ const TheHeaderDropdownNotif = (props) => {
 
   useEffect(() => {
     temp =0;
-    props.getNotifications({isOpened: false})
+    props.getNotifications()
+    // {isOpened: false}
   }, [props.getNotifications]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       temp = 1;
-      props.getNotifications({isOpened: false})
+      props.getNotifications();
+      // {isOpened: false}
       console.log("New notification")
     }, 30000);
   
@@ -50,11 +52,16 @@ const TheHeaderDropdownNotif = (props) => {
   }, [props.notifications])
   
   const handleClick = (itm) => {
-      props.updateNotification(itm.id);
+      // props.updateNotification(itm.id);
       history.push("/order");
   };
 
+  const handleNotifClick = () => {
+    console.log("nofiii")
+    props.updateNotification({all : true});
+  }
   console.log(notifications)
+  let count = notifications.filter(itm => !itm.isOpened).length;
   return (
     <CDropdown
       inNav
@@ -62,9 +69,9 @@ const TheHeaderDropdownNotif = (props) => {
       className="c-header-nav-item mx-2"
       style={{marginTop: 7}}
     >
-      <CDropdownToggle  className="c-header-nav-link" caret={false}>
+      <CDropdownToggle onClick={handleNotifClick} className="c-header-nav-link" caret={false}>
         <CIcon name="cil-bell"/>
-        <CBadge shape="pill" color="danger">{notifications?.length}</CBadge>
+        <CBadge shape="pill" color="danger">{count}</CBadge>
       </CDropdownToggle>
       <CDropdownMenu  placement="bottom-end" className="pt-0" style={{maxHeight: 500, overflowY: "auto"}}>
         <CDropdownItem

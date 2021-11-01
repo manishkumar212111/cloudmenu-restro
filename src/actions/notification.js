@@ -23,14 +23,14 @@ export const getNotifications = ( option = {}) => ( dispatch ) =>{
 }
 
 
-export const updateNotification = ( id , status , page) => ( dispatch ) =>{
+export const updateNotification = ( data) => ( dispatch ) =>{
   
   // dispatch({
   //     type : "PAGE_LOADING",
   //     data : {}
   // })
-  API.patch('Notification', { isOpened : true} , id , function(res){
-    dispatch(getNotifications({isOpened: false}));    
+  API.patch('Notification', data , "6166a349596cbeac25167b95" , function(res){
+    dispatch(getNotifications());    
     // dispatch(setAlert("Notification successfully update" , 'success'));    
   
     // dispatch({

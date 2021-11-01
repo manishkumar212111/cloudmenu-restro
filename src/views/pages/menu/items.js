@@ -161,7 +161,7 @@ const Items = (props) => {
   console.log(categoryList)
   const renderCategory = (item) => {
     return item.map((itm, index) => (
-        <div class="row" >
+        <div class="row" style={{touchAction: "none"}}>
           <div id={index+""} onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
             {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
             </div>
@@ -205,7 +205,7 @@ const Items = (props) => {
 
   const renderProduct = (item) => {
     return item.map((itm) => (
-        <div class="row item-row py-4 px-4 align-items-center">
+        <div class="row item-row py-4 px-4 align-items-center" style={{touchAction: "none"}}>
         <div class="col-2 item-img-col">
           <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
         </div>
