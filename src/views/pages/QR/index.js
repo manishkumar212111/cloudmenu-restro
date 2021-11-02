@@ -189,8 +189,7 @@ const QR = () => {
                       type="Number"
                       id="layoutSize"
                       name="layoutSize"
-                      min="250"
-                      max="600"
+                      
                       value={fieldObj.layoutSize}
                       onChange={(e) => parseInt(e.target.value) < 601 && handleChange(e, "layoutSize")}
                       placeholder={t("Enter layout size")}
