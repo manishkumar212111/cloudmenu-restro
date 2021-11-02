@@ -44,9 +44,7 @@ const DragAndDrop = (props) => {
       
     };
 
-      const drag = (ev) => {
-        console.log("drag", ev.currentTarget)
-      }
+      
       const array_move = (arr, old_index, new_index) => {
         if (new_index >= arr.length) {
                 var k = new_index - arr.length + 1;
@@ -71,7 +69,7 @@ const DragAndDrop = (props) => {
         });
     return(
         <div>
-            <SortableList transitionDuration={0} pressDelay={200} items={contents} onSortEnd={handleDrop} />
+            <SortableList transitionDuration={0} pressDelay={props.clickable? 0 : 200} items={contents} onSortEnd={handleDrop} />
             {/* <SortableContainer 
             items={contents.map((itm, index) => (
                 <SortableElement

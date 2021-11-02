@@ -67,8 +67,8 @@ const Dashboard = (props) => {
   useEffect(()=>{
     if(props?.data?.result){
         setData(props?.data?.result);
-        setRevenueInWeek(GetDays(7 ,true , props?.data?.result.revenueInWeek));
-        setOrderInWeek(GetDays(7 ,true , props?.data?.result.orderInWeek));
+        setRevenueInWeek(props?.data?.result.revenueInWeek);
+        setOrderInWeek(props?.data?.result.orderInWeek);
     } 
   }, [props?.data])
 
