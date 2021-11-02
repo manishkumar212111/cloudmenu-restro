@@ -74,8 +74,7 @@ const QR = () => {
 
     // });
 
-    // exportComponentAsPNG(ref , { html2CanvasOptions: {backgroundColor: fieldObj.backgroundColor , borderRadius: 10, width: parseInt(fieldObj.layoutSize) + 15} });
-    exportComponentAsPNG(ref , { html2CanvasOptions: {} });
+    exportComponentAsJPEG(ref , { html2CanvasOptions: {backgroundColor: fieldObj.backgroundColor , borderRadius: 10, width: parseInt(fieldObj.layoutSize) + 15} });
     setLoading(false);
 
   };
@@ -259,7 +258,7 @@ const QR = () => {
               <div class="row restaurant-details-right-container-plan bg-white  py-5 px-4" style={{ }}>
                 
                 <div
-                  ref={ref}
+                    ref={ref}
                     style={{ backgroundColor: fieldObj.backgroundColor , borderRadius: 10, width: parseInt(fieldObj.layoutSize)}}
                     id="my-qr"
                   class="row m-auto"
@@ -289,7 +288,7 @@ const QR = () => {
                           fgColor={fieldObj.qrColor}
                         />
                       </div>
-                      {fieldObj.tableNo && (
+                      { (
                         <div
                           class="tbl-no text-center py-4"
                           style={{
@@ -297,7 +296,7 @@ const QR = () => {
                             fontSize: parseInt(fieldObj.textSize),
                           }}
                         >
-                          {t("Table Number")} : {fieldObj.tableNo}
+                          {fieldObj.tableNo && `${t("Table Number")} : ${fieldObj.tableNo}` }
                         </div>
                       )}
                     </div>

@@ -131,7 +131,7 @@ const Dashboard = (props) => {
                 <div class="col-12 col-lg-6 mb-4">
                     <div class="dashboard-details-container dashboard-details-container-revenue">
                         <div class="row dashboard-details-container-title mb-4">
-                            {t("Total Revenue Last 7 Days")} (t{("SR")} {data.totalRevenue})
+                            {t("Total Revenue Last 7 Days")} ({t("SR")} {(data.totalRevenue || 0).toFixed(2) })
                         </div>
                         <div class="row">
                         <CCard>
