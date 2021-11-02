@@ -74,7 +74,8 @@ const QR = () => {
 
     // });
 
-    exportComponentAsPNG(ref , { html2CanvasOptions: {backgroundColor: fieldObj.backgroundColor , borderRadius: 10, width: parseInt(fieldObj.layoutSize) + 15} });
+    // exportComponentAsPNG(ref , { html2CanvasOptions: {backgroundColor: fieldObj.backgroundColor , borderRadius: 10, width: parseInt(fieldObj.layoutSize) + 15} });
+    exportComponentAsPNG(ref , { html2CanvasOptions: {} });
     setLoading(false);
 
   };
