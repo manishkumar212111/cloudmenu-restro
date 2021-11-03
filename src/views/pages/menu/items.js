@@ -30,6 +30,7 @@ import CategoryForm from "../category/categoryForm";
 import menuIcon from "./images/menu.svg";
 import editIcon from "./images/edit.svg";
 import crossIcon from "./images/cross.svg";
+import dragIcon from "./images/drag.svg"
 import ConfirmPopup from "src/views/components/confirmPopup";
 import { t } from "src/utils/language";
 import DragAndDrop from "./DragAndDrop";
@@ -172,7 +173,7 @@ const Items = (props) => {
     return item.map((itm, index) => (
         <div class="row" style={{touchAction: "none"}}>
           <div id={index+""} onClick={() => handleCategoryClick(itm)} class={` col-10 category-tab py-1 mb-4 px-0 ${category === itm.id ? "category-tab-active" : ""}`}>
-            {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
+          <img src={dragIcon} className="drag-icon" /> {localStorage.getItem("language") == "ar" ? itm.nameAr : itm.name}
             </div>
           <div class="col-2">
           <img style={{cursor:"pointer"}} onClick={() => setHandleCategory(openHandleCategory == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
@@ -215,19 +216,13 @@ const Items = (props) => {
   const renderProduct = (item) => {
     return item.map((itm) => (
         <div class="row item-row py-4 px-4 align-items-center" style={{touchAction: "none"}}>
-        <div class="col-2 item-img-col">
-          <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
+        <div class="col-4 item-img-col">
+        <img src={dragIcon} className="drag-icon" /> <img src={BASE_URL + itm.imageUrl} width="50" height="50" alt="" class="cat-item-img item-img" />
         </div>
         <div class="col-3 item-name-col">{localStorage.getItem("language") == "ar" ? itm.titleAr : itm.title}</div>
-        <div class="col-7 col-md-5 col-lg-7 item-btns-col">
+        <div class="col-3 col-md-3 col-xl-5 item-btns-col">
           <div class="row align-items-center justify-content-end">
-            <div class="col-3"></div>
-            <div class="col-3">
-              {/* <button type="button" onClick={() => setViewOpen(itm)} class="btn item-view-btn">
-                view
-              </button> */}
-            </div>
-            <div class="col-6 d-flex temp  justify-content-end item-dropdown-container">
+            <div class="col-2 d-flex temp  justify-content-end item-dropdown-container">
               <img onClick={() => setHandleItm(openHandleItem == itm.id ? false : itm.id)} src={menuIcon} alt="" style={{cursor: "pointer"}} class="menu-icon" />
               {openHandleItem && <><div class={`item-dropdown py-3 px-3 ${openHandleItem == itm.id? "" : "d-none"}`}>
                 <div class="row item-dropdown-row py-2"  style={{cursor: "pointer"}} onClick={() => handleEdit(itm.id)}>
