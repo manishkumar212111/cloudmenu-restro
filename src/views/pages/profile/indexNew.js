@@ -103,6 +103,7 @@ const Profile = (props) => {
     props.fieldObj &&
       props.fieldObj.id &&
       setfieldObj({
+        id:props.fieldObj?.id,
         name: props.fieldObj?.name,
         nameAr: props.fieldObj?.nameAr,
         noOfTable: props.fieldObj?.noOfTable,

@@ -8,7 +8,7 @@ import { t } from "../../../utils/language";
 const Register = (props) => {
   console.log(props);
   const [planName , setPlanName] = useState(props.location && props.location.search ? props.location.search.split("=")[1] : "free");
-  const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "971" , mobile: "", password : "" });
+  const [fieldobj , setFieldObj] = useState({ name : "",  ccode : "966" , mobile: "", password : "" });
   const [errorObj , setErrorObj] = useState({ email : { error : true , msg : t("Please enter valid email") } , 
                                               password : { error : true , msg : t("Please enter min 6 chars") },
                                               mobile : { error : true , msg : t("Please enter valid mobile number") },
