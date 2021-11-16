@@ -61,7 +61,7 @@ const TheHeaderDropdownNotif = (props) => {
     props.updateNotification({all : true});
   }
   console.log(notifications)
-  let count = notifications.filter(itm => !itm.isOpened).length;
+  let count = notifications && notifications.filter(itm => !itm.isOpened).length;
   return (
     <CDropdown
       inNav
