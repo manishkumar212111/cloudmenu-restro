@@ -5,6 +5,7 @@ import { t } from "src/utils/language";
 const QRComponent = React.forwardRef((props, ref) => {
   const fieldObj = props.fieldObj;
   const restaurantDetail = props.restaurantDetail;
+  console.log(restaurantDetail)
   return (
     <div
       ref={ref}
@@ -42,9 +43,7 @@ const QRComponent = React.forwardRef((props, ref) => {
             }}
           >
             <QRCode
-              value={`http://restaurant.cloudmenu.sa/${
-                restaurantDetail.id
-              }/${Math.floor(100000 + Math.random() * 9000000000)}/${
+              value={`http://${restaurantDetail.url_key}.cloudmenu.sa/${Math.floor(100000 + Math.random() * 9000000000)}/${
                 fieldObj.tableNo
               }`}
               className="qr-img"

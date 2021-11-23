@@ -43,7 +43,7 @@ const App = (props) => {
 
     useEffect(() => {
       setLanguage(props.language)
-      document.dir=props.language == "ar" ? "rtl" : "ltr";
+      document.dir=localStorage.getItem("language") == "ar" ? "rtl" : "ltr";
     }, [props.language]);
 
     useEffect(() => {
@@ -79,7 +79,7 @@ const App = (props) => {
     }
     console.log(props)
   return (
-    <div className={language === "ar" ? "arabic-section" : ""} dir={language === "ar" ? "rtl": ""} style={{zoom : checkLogin() ? "0.9" : "1" }}>
+    <div className={language === "ar" ? "arabic-section" : ""} dir={localStorage.getItem("language") === "ar" ? "rtl": ""} style={{zoom : checkLogin() ? "0.9" : "1" }}>
       {/* <ToastContainer 
           position="top-right"
           autoClose={5000}
